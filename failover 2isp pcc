@@ -1,0 +1,42 @@
+1 kasih ip
+/ip address
+add address=192.168.168.1/24 comment="Local Network" interface=ether5 network=192.168.168.0
+add address=192.168.19.1/24 comment=ISP-2 interface=ether2 network=192.168.19.0
+add address=192.168.18.1/24 comment=ISP-1 interface=ether1 network=192.168.18.0
+
+2.kasih dns
+/ip dns
+set allow-remote-requests=yes servers=8.8.8.8,8.8.4.4
+
+3. konfig mangel untuk pcc
+-menandai input
+/ip firewall mangle
+add action=mark-connection chain=input connection-state=new in-interface=ether1 new-connection-mark=ISP-1 passthrough=yes
+add action=mark-connection chain=input connection-state=new in-interface=ether2 new-connection-mark=ISP-2 passthrough=yes
+
+-chain output
+add action=mark-routing chain=output connection-mark=ISP-1 new-routing-mark=Jalur-1 passthrough=no
+add action=mark-routing chain=output connection-mark=ISP-2 new-routing-mark=Jalur-2 passthrough=no
+
+-klasifikasi
+add action=mark-connection chain=prerouting dst-address-type=!local in-interface=ether5 new-connection-mark=ISP-1 passthrough=yes \ per-connection-classifier=both-addresses-and-ports:2/0
+add action=mark-connection chain=prerouting dst-address-type=!local in-interface=ether5 new-connection-mark=ISP-2 passthrough=yes \ per-connection-classifier=both-addresses-and-ports:2/1
+
+-mempetakan koneksi in out
+add action=mark-routing chain=prerouting connection-mark=ISP-1 in-interface=ether5 new-routing-mark=Jalur-1 passthrough=yes
+add action=mark-routing chain=prerouting connection-mark=ISP-2 in-interface=ether5 new-routing-mark=Jalur-2 passthrough=yes
+
+4. tambah nat
+/ip firewal nat
+add action=masquerade chain=srcnat out-interface=ether1
+add action=masquerade chain=srcnat out-interface=ether2
+
+5.kasih entry routing
+/ip route
+add check-gateway=ping distance=1 gateway=192.168.90.1 routing-mark=Jalur-1
+add check-gateway=ping distance=2 gateway=192.168.91.1 routing-mark=Jalur-2
+
+-skema fail down
+add distance=1 gateway=192.168.90.1
+add distance=2 gateway=192.168.91.1
+
