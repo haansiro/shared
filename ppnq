@@ -1,0 +1,80 @@
+# apr/21/2019 11:41:31 by RouterOS 6.43.14
+# software id = SETY-IVSS
+#
+# model = RouterBOARD 941-2nD
+# serial number = 66160695DC6B
+/interface bridge
+add fast-forward=no name=bridge1
+/interface wireless
+set [ find default-name=wlan1 ] disabled=no mode=ap-bridge ssid=MikroTik_PPNQ \
+    wps-mode=disabled
+/interface ethernet
+set [ find default-name=ether1 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+set [ find default-name=ether2 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+set [ find default-name=ether3 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+set [ find default-name=ether4 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+/interface pptp-client
+add connect-to=103.80.80.214 disabled=no name=pptp-out1 password=ppnq123 \
+    user=ppnq
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip hotspot profile
+set [ find default=yes ] dns-name=ppnq.com hotspot-address=192.168.0.1 \
+    html-directory-override=hotspot login-by=cookie,http-chap,http-pap
+/ip pool
+add name=dhcp_pool1 ranges=192.168.0.10-192.168.0.254
+/ip dhcp-server
+add address-pool=dhcp_pool1 authoritative=after-2sec-delay disabled=no \
+    interface=bridge1 name=dhcp1
+/ip hotspot
+add address-pool=dhcp_pool1 addresses-per-mac=10 disabled=no idle-timeout=\
+    none interface=bridge1 name=server1
+/queue simple
+add max-limit=3M/10M name=Total_BW target=192.168.0.0/24
+/ip hotspot user profile
+set [ find default=yes ] address-pool=dhcp_pool1 parent-queue=Total_BW \
+    rate-limit=2m/10m
+add address-pool=dhcp_pool1 name=tamu parent-queue=Total_BW rate-limit=1m/2m \
+    shared-users=20
+/interface bridge port
+add bridge=bridge1 hw=no interface=ether2
+add bridge=bridge1 hw=no interface=ether3
+add bridge=bridge1 hw=no interface=ether4
+add bridge=bridge1 interface=wlan1
+/ip address
+add address=192.168.2.133/24 interface=ether1 network=192.168.2.0
+add address=192.168.0.1/24 interface=bridge1 network=192.168.0.0
+/ip dhcp-server network
+add address=192.168.0.0/24 gateway=192.168.0.1
+/ip dns
+set allow-remote-requests=yes servers=8.8.8.8,8.8.4.4
+/ip firewall filter
+add action=passthrough chain=unused-hs-chain comment=\
+    "place hotspot rules here" disabled=yes
+/ip firewall nat
+add action=passthrough chain=unused-hs-chain comment=\
+    "place hotspot rules here" disabled=yes
+add action=masquerade chain=srcnat
+/ip hotspot user
+add name=dani password=123
+add name=Ummi password=PPNQ99
+add name=abuya password=PPNQ99
+add name=mfatah password=balqis89
+add name=ubalqis password=fatah87
+add name=adzrohanimah password=h4n4z4hw4h
+add name=zaky password=4hm4dz4kyfu4dy
+add name=Jithul25 password=najiyyanaj95
+add name=Phillip12 password=nafnaf20
+add name=Hpburik password=davidgadgetin
+add name=PPNQ password=PPNQ999 profile=tamu
+/ip route
+add distance=1 gateway=192.168.2.1
+add distance=1 dst-address=10.10.10.0/24 gateway=10.10.10.4
+/system clock
+set time-zone-name=Asia/Jakarta
+/system package update
+set channel=long-term
