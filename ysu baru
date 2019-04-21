@@ -1,0 +1,293 @@
+# apr/21/2019 12:06:27 by RouterOS 6.39.2
+# software id = Q3WJ-A1GV
+#
+/interface bridge
+add fast-forward=no name=bridge1
+/interface wireless
+set [ find default-name=wlan1 ] disabled=no mode=ap-bridge ssid=\
+    "Mikrotik Ysu" wps-mode=disabled
+/interface ethernet
+set [ find default-name=ether1 ] name="ether1 wan olt"
+set [ find default-name=ether2 ] name="ether2 Speedy"
+set [ find default-name=ether3 ] l2mtu=1522 name="ether3 MA"
+set [ find default-name=ether4 ] l2mtu=1522 name="ether4 Lan MI Mts"
+/interface ethernet switch port
+set 2 vlan-mode=fallback
+set 3 vlan-mode=fallback
+set 4 vlan-mode=fallback
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip hotspot profile
+set [ find default=yes ] dns-name=ysu.com hotspot-address=192.168.1.1 \
+    html-directory=hotspot-sekolah http-cookie-lifetime=52w1d login-by=\
+    cookie,http-chap,http-pap,mac-cookie
+/ip pool
+add name=hs-pool-6 ranges=192.168.168.4-192.168.168.199
+/ip dhcp-server
+add address-pool=hs-pool-6 authoritative=after-2sec-delay disabled=no \
+    interface=bridge1 name=dhcp1
+/ip hotspot
+add address-pool=hs-pool-6 disabled=no idle-timeout=none interface=bridge1 \
+    name=hotspot1
+/port
+set 0 name=serial0
+/queue simple
+add max-limit=4M/10M name=Total_Hotspot target=192.168.0.0/16
+/ip hotspot user profile
+add address-pool=hs-pool-6 !idle-timeout mac-cookie-timeout=52w1d name=guru \
+    parent-queue=Total_Hotspot rate-limit=2m/6m shared-users=2
+add address-list=murid address-pool=hs-pool-6 !idle-timeout \
+    mac-cookie-timeout=52w1d name=murid parent-queue=Total_Hotspot \
+    rate-limit=256k/768k shared-users=12
+add address-pool=hs-pool-6 !idle-timeout mac-cookie-timeout=52w1d name=tamu \
+    parent-queue=Total_Hotspot rate-limit=2m/8m shared-users=5
+/interface bridge nat
+add action=accept chain=srcnat
+/interface bridge port
+add bridge=bridge1 interface="ether3 MA"
+add bridge=bridge1 interface=wlan1
+add bridge=bridge1 interface="ether4 Lan MI Mts"
+/ip address
+add address=192.168.168.1/24 interface=bridge1 network=192.168.168.0
+add address=192.168.4.144/24 interface="ether1 wan olt" network=192.168.4.0
+add address=103.80.82.65 disabled=yes interface="ether1 wan olt" network=\
+    103.80.82.64
+add address=192.168.1.144/24 interface="ether2 Speedy" network=192.168.1.0
+/ip dhcp-server network
+add address=192.168.168.0/24 comment="hotspot network" gateway=192.168.168.1
+/ip dns
+set allow-remote-requests=yes cache-max-ttl=10m cache-size=600KiB servers=\
+    8.8.8.8,8.8.4.4
+/ip firewall filter
+add action=passthrough chain=unused-hs-chain comment=\
+    "place hotspot rules here" disabled=yes
+# inactive time
+add action=drop chain=forward comment=fb content=facebook src-address-list=\
+    murid time=7h-12h,sun,mon,tue,wed,thu,fri,sat
+add action=drop chain=forward comment=you content=youtube src-address-list=\
+    murid time=7h-13h,sun,mon,tue,wed,thu,fri,sat
+add action=drop chain=forward comment=1 content=bugil src-address-list=murid
+add action=drop chain=forward comment=2 content=porn src-address-list=murid
+add action=drop chain=forward comment=3 content=xxx src-address-list=murid
+add action=drop chain=forward comment=4 content=sex src-address-list=murid
+add action=drop chain=forward comment=5 content=nude src-address-list=murid
+add action=drop chain=forward comment=6 content=xvideos src-address-list=\
+    murid
+add action=drop chain=forward comment=7 content=telanjang src-address-list=\
+    murid
+# inactive time
+add action=drop chain=forward comment="siswa off" src-address-list=murid \
+    time=18h-7h,sun,mon,tue,wed,thu,fri,sat
+/ip firewall nat
+add action=passthrough chain=unused-hs-chain comment=\
+    "place hotspot rules here" disabled=yes
+add action=masquerade chain=srcnat out-interface="ether2 Speedy"
+add action=masquerade chain=srcnat out-interface="ether1 wan olt"
+/ip hotspot user
+set [ find default=yes ] limit-uptime=10m
+add name=admin password=admin123
+add email=mi12@gmail.com name=jumaedi password=085325067451 profile=guru \
+    server=hotspot1
+add email=mi14@gmail.com name=srimurwati password=085228879782 profile=guru \
+    server=hotspot1
+add email=mi8@gmail.com name=zaenuri password=085292452250 profile=guru \
+    server=hotspot1
+add email=mi15@gmail.com name=anisfadlilah password=089601583989 profile=guru \
+    server=hotspot1
+add email=mts41@gmail.com name=masruhinsholeh password=081390082500 profile=\
+    guru server=hotspot1
+add email=mts42@gmail.com name=nursaidah password=nursaidah profile=guru \
+    server=hotspot1
+add email=mts3@gmail.com name=mudakirin password=085293311021 profile=guru \
+    server=hotspot1
+add email=mts1@gmail.com name=masyhud password=081326401236 profile=guru \
+    server=hotspot1
+add email=mts2@gmail.com name=salamun password=085330218305 profile=guru \
+    server=hotspot1
+add email=mts@gmail.com name=endang password=085226092808 profile=guru \
+    server=hotspot1
+add email=mi16@gmail.com name=masluri password=085225992338 profile=guru \
+    server=hotspot1
+add email=mts@gmail.com name=ulilanshori password=08976466177 profile=guru \
+    server=hotspot1
+add email=mi1@gmail.com name=mustain password=085226876738 profile=guru \
+    server=hotspot1
+add email=ma@gmail.com name=aminah password=aminah profile=guru server=\
+    hotspot1
+add email=ma@gmail.com name=putih password=matu2 profile=guru server=hotspot1
+add email=ma@gmail.com name=pakmus password=pakmus123 profile=guru server=\
+    hotspot1
+add email=ma37@gmail.com name=ahmuayyad password=089727728827 profile=guru \
+    server=hotspot1
+add email=ma36@gmail.com mac-address=08:8C:2C:07:54:51 name=ummufaiqoh \
+    password=08976808062 profile=guru server=hotspot1
+add email=ma35@gmail.com name=sitiaminah password=085229972383 profile=guru \
+    server=hotspot1
+add email=ma34@gmail.com name=subhatun password=085290496972 profile=guru \
+    server=hotspot1
+add email=ma33@gmail.com name=mashudi password=085229306681 profile=guru \
+    server=hotspot1
+add email=ma32@gmail.com name=supriyadi password=085290113894 profile=guru \
+    server=hotspot1
+add email=ma31@gmail.com name=bulawi password=082134321998 profile=guru \
+    server=hotspot1
+add email=ma27@gmail.com name=anayuli password=anayuli profile=guru server=\
+    hotspot1
+add email=ma26@gmail.com name=selamet password=082330536367 profile=guru \
+    server=hotspot1
+add email=ma24@gmail.com name=mohabbad password=kangmase21 server=hotspot1
+add email=ma23@gmail.com name=idamurjiningsih password=081575138907 profile=\
+    guru server=hotspot1
+add email=ma22@gmail.com name=retno password=085226981934 profile=guru \
+    server=hotspot1
+add email=ma21@gmail.com name=yumiati password=085293307540 profile=guru \
+    server=hotspot1
+add email=ma19@gmail.com name=erirahmawati password=081390027720 profile=guru \
+    server=hotspot1
+add email=ma18@gmail.com name=srisupinah password=085225763272 profile=guru \
+    server=hotspot1
+add email=ma17@gmail.com name=landung password=081227250080 profile=guru \
+    server=hotspot1
+add email=ma16@gmail.com name=jamiatun password=081390302849 profile=guru \
+    server=hotspot1
+add email=ma15@gmail.com name=eniwati password=085712344977 profile=guru \
+    server=hotspot1
+add email=ma14@gmail.com name=suparno password=08156658342 profile=guru \
+    server=hotspot1
+add email=ma12@gmail.com name=juyati password=085385861288 profile=guru \
+    server=hotspot1
+add email=ma11@gmail.com name=alithohar password=085225243284 profile=guru \
+    server=hotspot1
+add email=ma10@gmail.com name=muslikun password=081575313605 profile=guru \
+    server=hotspot1
+add email=ma9@gmail.com name=jauharimubarrok password=08995751241 profile=\
+    guru server=hotspot1
+add email=ma8@gmail.com name=sulargo password=081326439895 profile=guru \
+    server=hotspot1
+add email=ma7@gmail.com name=ratrinurf password=081226009605 profile=guru \
+    server=hotspot1
+add email=ma4@gmail.com name=edysupriyanto password=082322684956 profile=guru \
+    server=hotspot1
+add email=mi2@gmail.com name=suwardi password=081326258547 profile=guru \
+    server=hotspot1
+add email=mi3@gmail.com name=ninikparsini password=085293869103 profile=guru \
+    server=hotspot1
+add email=mi4@gmail.com name=sitiruhamnah password=085326816869 profile=guru \
+    server=hotspot1
+add email=mi5@gmail.com name=mudrikah password=085290699841 profile=guru \
+    server=hotspot1
+add email=mi6@gmail.com name=mokhamadsahli password=085210434726 profile=guru \
+    server=hotspot1
+add email=mi7@gmail.com name=ahyani password=085290710650 profile=guru \
+    server=hotspot1
+add email=mi9@gmail.com name=sitimuniamah password=085217658556 profile=guru \
+    server=hotspot1
+add email=mi10@gmail.com name=rukanah password=085229408194 profile=guru \
+    server=hotspot1
+add email=mi11@gmail.com name=shodiq password=081325908363 profile=guru \
+    server=hotspot1
+add email=mi13@gmail.com name=lilikmuawwidah password=081282435228 profile=\
+    guru server=hotspot1
+add email=mts4@gmail.com name=shofwan password=085225795406 profile=guru \
+    server=hotspot1
+add email=mts6@gmail.com name=alymohtar password=085225772950 profile=guru \
+    server=hotspot1
+add email=mts7@gmail.com name=wito password=081326011947 profile=guru server=\
+    hotspot1
+add email=mts8@gmail.com name=aspiyah password=085310110769 profile=guru \
+    server=hotspot1
+add email=mts9@gmail.com name=jumi password=082137125790 profile=guru server=\
+    hotspot1
+add email=mts10@gmail.com name=mohshodiq password=085225887176 profile=guru \
+    server=hotspot1
+add email=mts11@gmail.com name=yusuf password=085228386256 profile=guru \
+    server=hotspot1
+add email=mts12@gmail.com name=umisadiyati password=085325807804 profile=guru \
+    server=hotspot1
+add email=mts13@gmail.com name=ahmadrojihin password=085289664068 profile=\
+    guru server=hotspot1
+add email=mts14@gmail.com name=ninikasrikah password=082139971886 profile=\
+    guru server=hotspot1
+add email=mts15@gmail.com name=stradawiyah password=085641935516 profile=guru \
+    server=hotspot1
+add email=mts16@gmail.com name=mohdardak password=081390768228 profile=guru \
+    server=hotspot1
+add email=mts17@gmail.com name=maulinnimah password=085225874479 profile=guru \
+    server=hotspot1
+add email=mts18@gmail.com name=alymasad password=085225706129 profile=guru \
+    server=hotspot1
+add email=mts19@gmail.com name=mohmaqfur password=081326049449 profile=guru \
+    server=hotspot1
+add email=mts20@gmail.com name=astri password=081326963916 profile=guru \
+    server=hotspot1
+add email=mts21@gmail.com name=eniasrihah password=085225158673 profile=guru \
+    server=hotspot1
+add email=mts22@gmail.com name=zaenalarifin password=08157640635 profile=guru \
+    server=hotspot1
+add email=mts25@gmail.com name=abdillahrofie password=085290823738 profile=\
+    guru server=hotspot1
+add email=mts26@gmail.com name=nurlailatin password=081326969628 profile=guru \
+    server=hotspot1
+add email=mts32@gmail.com name=hariri password=085226474246 profile=guru \
+    server=hotspot1
+add email=mts33@gmail.com name=fauzansukijan password=082325743535 profile=\
+    guru server=hotspot1
+add email=mts34@gmail.com name=munawaroh password=085225459129 profile=guru \
+    server=hotspot1
+add email=mts35@gmail.com name=istianah password=081326049449 profile=guru \
+    server=hotspot1
+add email=mts36@gmail.com name=anikmiswarotun password=082271250622 profile=\
+    guru server=hotspot1
+add email=mts37@gmail.com name=dwikabagussatria password=081225796564 \
+    profile=guru server=hotspot1
+add email=mts38@gmail.com name=alyshofa password=085249692829 profile=guru \
+    server=hotspot1
+add email=mts39@gmail.com name=muslih password=081326247420 profile=guru \
+    server=hotspot1
+add email=mts40@gmail.com name=mohsyafiq password=082334141679 profile=guru \
+    server=hotspot1
+add email=siswama@gmail.com name=siswa password=masu profile=murid server=\
+    hotspot1
+add email=mi12@gmail.com mac-address=6E:73:50:08:41:EF name=jumiatin \
+    password=081325142104 profile=guru server=hotspot1
+add email=mi000@gmail.com name=banser password=banserku profile=tamu server=\
+    hotspot1
+add name=istatik password=082323823078 profile=guru
+add name=taufiqurrohman password=asempapan profile=guru server=hotspot1
+add name=muslihan password=asempapan profile=guru
+add name=sumarni password=asempapan profile=guru
+add email=mi16@gmail.com name=hamidabd password=082335727045 profile=guru \
+    server=hotspot1
+add name=abdulkholiq password=abdulkholiq profile=guru
+add name=ayufergiyana password=ayufergiyana profile=guru server=hotspot1
+add name=compaq password=compaq profile=guru
+add name=compaq password=compaq profile=guru server=hotspot1
+add name=dani password=12345678 profile=tamu
+/ip route
+add distance=1 gateway=192.168.4.1
+add distance=2 gateway=192.168.1.1
+add disabled=yes distance=1 gateway=103.80.82.64
+/ip service
+set telnet disabled=yes
+set ftp disabled=yes
+set www disabled=yes port=81
+set ssh disabled=yes
+set api disabled=yes
+set winbox port=5432
+set api-ssl disabled=yes
+/system clock
+set time-zone-name=Asia/Jakarta
+/system clock manual
+set dst-delta=+07:00 time-zone=+07:00
+/system identity
+set name="ysu baru"
+/system ntp client
+set enabled=yes primary-ntp=202.162.32.12 secondary-ntp=180.211.88.211
+/system scheduler
+add interval=1d name="flush dns" on-event=flushDns policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive start-date=\
+    may/09/2017 start-time=00:00:30
+/system script
+add name=flushDns owner=haansiro policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive source=\
+    "/ip dns cache flush"
