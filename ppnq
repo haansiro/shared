@@ -1,4 +1,4 @@
-# apr/21/2019 11:41:31 by RouterOS 6.43.14
+# apr/23/2019 10:23:36 by RouterOS 6.43.14
 # software id = SETY-IVSS
 #
 # model = RouterBOARD 941-2nD
@@ -6,7 +6,7 @@
 /interface bridge
 add fast-forward=no name=bridge1
 /interface wireless
-set [ find default-name=wlan1 ] disabled=no mode=ap-bridge ssid=MikroTik_PPNQ \
+set [ find default-name=wlan1 ] disabled=no mode=ap-bridge ssid=PPNQ \
     wps-mode=disabled
 /interface ethernet
 set [ find default-name=ether1 ] advertise=\
@@ -24,7 +24,8 @@ add connect-to=103.80.80.214 disabled=no name=pptp-out1 password=ppnq123 \
 set [ find default=yes ] supplicant-identity=MikroTik
 /ip hotspot profile
 set [ find default=yes ] dns-name=ppnq.com hotspot-address=192.168.0.1 \
-    html-directory-override=hotspot login-by=cookie,http-chap,http-pap
+    html-directory-override=hotspot http-cookie-lifetime=42w6d login-by=\
+    cookie,http-chap,http-pap
 /ip pool
 add name=dhcp_pool1 ranges=192.168.0.10-192.168.0.254
 /ip dhcp-server
@@ -45,9 +46,12 @@ add bridge=bridge1 hw=no interface=ether2
 add bridge=bridge1 hw=no interface=ether3
 add bridge=bridge1 hw=no interface=ether4
 add bridge=bridge1 interface=wlan1
+/interface detect-internet
+set detect-interface-list=all
 /ip address
-add address=192.168.2.133/24 interface=ether1 network=192.168.2.0
+add address=192.168.6.110/24 interface=ether1 network=192.168.6.0
 add address=192.168.0.1/24 interface=bridge1 network=192.168.0.0
+add address=192.168.1.252/24 interface=ether2 network=192.168.1.0
 /ip dhcp-server network
 add address=192.168.0.0/24 gateway=192.168.0.1
 /ip dns
@@ -71,8 +75,9 @@ add name=Jithul25 password=najiyyanaj95
 add name=Phillip12 password=nafnaf20
 add name=Hpburik password=davidgadgetin
 add name=PPNQ password=PPNQ999 profile=tamu
+add name=ubalqis1 password=fatah87
 /ip route
-add distance=1 gateway=192.168.2.1
+add distance=1 gateway=192.168.6.1
 add distance=1 dst-address=10.10.10.0/24 gateway=10.10.10.4
 /system clock
 set time-zone-name=Asia/Jakarta
