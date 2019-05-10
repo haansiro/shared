@@ -1,15 +1,11 @@
-/ip hotspot user profile
-add name=Harian on-login=":local pengguna \$user;\r\
-    \n:local date [/sys cl get date];\r\
-    \n:local time [/sys cl get time];\r\
-    \n:log warning \"\$pengguna telah login pada jam \$time\";\r\
-    \n{\r\
-    \n:if ([/sys sch find name=\$pengguna]=\"\") do={\r\
-    \n/sys sch add name=\$pengguna interval=1d on-event=\"/ip h u rem [find name=\$pengguna] \\r\\n/ip h ac rem [find user=\$pengguna]\\r\\n/system sch rem [find name=\$pe\
-    ngguna]\"\r\
-    \n}\r\
-    \n}" rate-limit=512k/2m
+server 1.id.pool.ntp.org
+server 0.asia.pool.ntp.org
+server 2.asia.pool.ntp.org
 
+server 0.id.pool.ntp.org = 202.154.59.226
+server 1.id.pool.ntp.org = 203.89.31.12
+server 2.id.pool.ntp.org = 114.141.48.158
+server 3.id.pool.ntp.org = 123.255.202.74
 
 /ip hotspot user profile
 add name=Harian on-login=":local pengguna \$user;\r\
