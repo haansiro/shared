@@ -32,3 +32,9 @@ isi scripny adlh sppt dibawah
 /sys sch add name=$pengguna interval=1d on-event="/ip h u rem [find name=$pengguna] \r\n/ip h ac rem [find user=$pengguna]\r\n/system sch rem [find name=$pengguna]"
 }
 }
+
+
+
+salah satu referensi
+http://cokokabirawidya.blogspot.com/2016/09/cara-membuat-voucher-hotspot-harian.html.
+
