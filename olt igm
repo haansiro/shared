@@ -2726,7 +2726,7 @@ writ
 conf t
 
 interface gpon-olt_1/2/5
-onu 95 type ZTEG-F609 sn ZTEGC0E4CB65
+onu 96 type ZTEG-F609 sn ZTEGC0E4CB65
 exit
 interface gpon-onu_1/2/5:96
 tcont 1 name modem4 profile 05M
