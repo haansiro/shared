@@ -1,0 +1,7 @@
+/ip firewall mangle
+add action=mark-connection chain=forward comment="Mangle untuk bypass ICMP" dst-address=192.168.0.0/16 \
+    new-connection-mark=conn-bypass-icmp passthrough=yes protocol=!icmp
+add action=mark-connection chain=forward new-connection-mark=conn-bypass-icmp passthrough=yes protocol=!icmp \
+    src-address=192.168.0.0/16
+add action=mark-packet chain=forward connection-mark=conn-bypass-icmp new-packet-mark=packet-bypass-icmp \
+    passthrough=no
