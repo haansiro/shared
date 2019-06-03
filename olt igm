@@ -1711,11 +1711,11 @@ pppoe 1 nat enable release-timer 10 user igm59@jontro password 12345678 connect 
 end
 writ
 
-60 HaaNSiro ZTEGC85E3FDC
+60 HaaNSiro ZTEGC6767D34
 conf t
 
 interface gpon-olt_1/2/3
-onu 60 type ZTEG-F609 sn ZTEGC85E3FDC
+onu 60 type ZTEG-F609 sn ZTEGC6767D34
 exit
 
 interface gpon-onu_1/2/3:60
@@ -2971,9 +2971,9 @@ writ
 conf t
 
 interface gpon-olt_1/2/8
-onu 105 type ZTEG-F609 sn ZTEGC868152F
+onu 60 type ZTEG-F609 sn ZTEGC868152F
 exit
-interface gpon-onu_1/2/8:105
+interface gpon-onu_1/2/8:60
 tcont 1 name modem4 profile 05M
 tcont 1 gap mode2
 gemport 1 name modem4 unicast tcont 1 dir both
@@ -2982,7 +2982,7 @@ switchport vlan 101 tag vport 1
 port-location format dsl-forum vport 1
 pppoe-plus enable vport 1
 exit
-pon-onu-mng gpon-onu_1/2/8:105
+pon-onu-mng gpon-onu_1/2/8:60
 flow 3 switch switch_0/1
 flow mode 3 tag-filter vid-filter untag-filter discard
 flow 3 priority 0 vid 101
@@ -2990,9 +2990,33 @@ gemport 1 flow 3
 switchport-bind switch_0/1 iphost 1
 vlan-filter-mode iphost 1 tag-filter vid-filter untag-filter discard
 vlan-filter iphost 1 priority 0 vid 101
-pppoe 1 nat enable release-timer 10 user igm105@jontro password 12345678 connect always mode auto
+pppoe 1 nat enable release-timer 10 user igm60@jontro password 12345678 connect always mode auto
 end
 writ
 
+106 agung cat jajalan
+conf t
 
-106
+interface gpon-olt_1/2/8
+onu 106 type ZTEG-F609 sn ZTEGC868152F
+exit
+interface gpon-onu_1/2/8:106
+tcont 1 name modem4 profile 05M
+tcont 1 gap mode2
+gemport 1 name modem4 unicast tcont 1 dir both
+switchport mode hybrid vport 1
+switchport vlan 101 tag vport 1
+port-location format dsl-forum vport 1
+pppoe-plus enable vport 1
+exit
+pon-onu-mng gpon-onu_1/2/8:106
+flow 3 switch switch_0/1
+flow mode 3 tag-filter vid-filter untag-filter discard
+flow 3 priority 0 vid 101
+gemport 1 flow 3
+switchport-bind switch_0/1 iphost 1
+vlan-filter-mode iphost 1 tag-filter vid-filter untag-filter discard
+vlan-filter iphost 1 priority 0 vid 101
+pppoe 1 nat enable release-timer 10 user igm106@jontro password 12345678 connect always mode auto
+end
+writ
