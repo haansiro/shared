@@ -3021,4 +3021,29 @@ pppoe 1 nat enable release-timer 10 user igm106@jontro password 12345678 connect
 end
 writ
 
+107 dpan sanggar ZTEGC83892FA
+conf t
 
+interface gpon-olt_1/2/5
+onu 107 type ZTEG-F609 sn ZTEGC83892FA
+exit
+interface gpon-onu_1/2/5:107
+tcont 1 name modem4 profile 05M
+tcont 1 gap mode2
+gemport 1 name modem4 unicast tcont 1 dir both
+switchport mode hybrid vport 1
+switchport vlan 101 tag vport 1
+port-location format dsl-forum vport 1
+pppoe-plus enable vport 1
+exit
+pon-onu-mng gpon-onu_1/2/5:107
+flow 3 switch switch_0/1
+flow mode 3 tag-filter vid-filter untag-filter discard
+flow 3 priority 0 vid 101
+gemport 1 flow 3
+switchport-bind switch_0/1 iphost 1
+vlan-filter-mode iphost 1 tag-filter vid-filter untag-filter discard
+vlan-filter iphost 1 priority 0 vid 101
+pppoe 1 nat enable release-timer 10 user igm107@jontro password 12345678 connect always mode auto
+end
+writ
