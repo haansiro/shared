@@ -3333,5 +3333,65 @@ pppoe 1 nat enable release-timer 10 user igm114@jontro password 12345678 connect
 end
 writ
 
+115 mas budi dpn baldes ZTEGC8259AF2
+conf t
 
+interface gpon-olt_1/2/4
+onu 115 type ZTEG-F609 sn ZTEGC8259AF2
+exit
+interface gpon-onu_1/2/4:115
+tcont 1 name modem4 profile 05M
+tcont 1 gap mode2
+gemport 1 name modem4 unicast tcont 1 dir both
+switchport mode hybrid vport 1
+switchport vlan 101 tag vport 1
+port-location format dsl-forum vport 1
+pppoe-plus enable vport 1
+exit
+pon-onu-mng gpon-onu_1/2/4:115
+flow 3 switch switch_0/1
+flow mode 3 tag-filter vid-filter untag-filter discard
+flow 3 priority 0 vid 101
+gemport 1 flow 3
+switchport-bind switch_0/1 iphost 1
+vlan-filter-mode iphost 1 tag-filter vid-filter untag-filter discard
+vlan-filter iphost 1 priority 0 vid 101
+pppoe 1 nat enable release-timer 10 user igm115@jontro password 12345678 connect always mode auto
+end
+writ
+
+
+
+116 lina fc ZTEGC0D4C858
+conf t
+
+interface gpon-olt_1/2/5
+onu 116 type ZTEG-F609 sn ZTEGC0D4C858
+exit
+interface gpon-onu_1/2/5:116
+tcont 1 name modem4 profile 05M
+tcont 1 gap mode2
+gemport 1 name modem4 unicast tcont 1 dir both
+switchport mode hybrid vport 1
+switchport vlan 101 tag vport 1
+port-location format dsl-forum vport 1
+pppoe-plus enable vport 1
+exit
+pon-onu-mng gpon-onu_1/2/5:116
+flow 3 switch switch_0/1
+flow mode 3 tag-filter vid-filter untag-filter discard
+flow 3 priority 0 vid 101
+gemport 1 flow 3
+switchport-bind switch_0/1 iphost 1
+vlan-filter-mode iphost 1 tag-filter vid-filter untag-filter discard
+vlan-filter iphost 1 priority 0 vid 101
+pppoe 1 nat enable release-timer 10 user igm116@jontro password 12345678 connect always mode auto
+end
+writ
+
+
+117
+118
+119
+120
 
