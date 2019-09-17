@@ -3458,12 +3458,12 @@ pon-onu-mng gpon-onu_1/2/2:117
 end
 write
 
-118 betet ZTEGC673BECA
+118 betet ZTEGC862DD88
 
 conf t
 
 interface gpon-olt_1/2/4
-onu 118 type ZTE-F660 sn ZTEGC673BECA
+onu 118 type ZTE-F660 sn ZTEGC862DD88
 exit
 interface gpon-onu_1/2/4:118
   sn-bind enable sn
