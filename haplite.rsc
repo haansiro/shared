@@ -66,7 +66,7 @@ add bridge=bridge1 interface=ether2
 add bridge=bridge1 interface=ether3
 add bridge=bridge1 interface=ether4
 /ip address
-add address=192.168.2.160/24 interface=ether1 network=192.168.2.0
+add address=192.168.1.9/24 interface=ether1 network=192.168.2.0
 add address=192.168.0.1/24 interface=bridge1 network=192.168.0.0
 /ip dhcp-server network
 add address=192.168.0.0/24 gateway=192.168.0.1
@@ -82,7 +82,7 @@ add action=masquerade chain=srcnat comment="masquerade hotspot network"
 /ip hotspot user
 add name=admin password=admin123
 /ip route
-add distance=1 gateway=192.168.2.1
+add distance=1 gateway=192.168.1.1
 /system clock
 set time-zone-name=Asia/Jakarta
 /system ntp client
