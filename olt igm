@@ -2930,7 +2930,7 @@ pppoe 1 nat enable release-timer 10 user igm97@jontro password 12345678 connect 
 end
 writ
 
-98 ZTEGC8510A21
+98 ZTEGC8510A21 abehBuah
 conf t
 
 interface gpon-olt_1/2/8
