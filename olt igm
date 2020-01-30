@@ -2970,7 +2970,7 @@ pon-onu-mng gpon-onu_1/2/8:53
 end
 write
 
-104 ZTEGC85AB963
+104 ZTEGC85AB963 wo lis off
 conf t
 
 interface gpon-olt_1/2/8
