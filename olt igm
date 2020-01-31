@@ -2883,32 +2883,39 @@ pppoe 1 nat enable release-timer 10 user igm100@jontro password 12345678 connect
 end
 writ
 
-101 ZTEGC85E3FDC
+101 ZTEGC85E3FDC yuni
+
 conf t
 
 interface gpon-olt_1/2/8
-onu 101 type ZTEG-F609 sn ZTEGC85E3FDC
+onu 46 type ZTE-F660 sn ZTEGC85E3FDC
 exit
-interface gpon-onu_1/2/8:101
-tcont 1 name modem4 profile 05M
-tcont 1 gap mode2
-gemport 1 name modem4 unicast tcont 1 dir both
-switchport mode hybrid vport 1
-switchport vlan 101 tag vport 1
-port-location format dsl-forum vport 1
-pppoe-plus enable vport 1
+interface gpon-onu_1/2/8:46
+  sn-bind enable sn
+  tcont 1 name HSI profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name HSI unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 1 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
 exit
-pon-onu-mng gpon-onu_1/2/8:101
-flow 3 switch switch_0/1
-flow mode 3 tag-filter vid-filter untag-filter discard
-flow 3 priority 0 vid 101
-gemport 1 flow 3
-switchport-bind switch_0/1 iphost 1
-vlan-filter-mode iphost 1 tag-filter vid-filter untag-filter discard
-vlan-filter iphost 1 priority 0 vid 101
-pppoe 1 nat enable release-timer 10 user igm101@jontro password 12345678 connect always mode auto
+pon-onu-mng gpon-onu_1/2/8:46
+  service HSI type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode pppoe username igm101yuni@jontro password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
 end
-writ
+write
 
 102 ZTEGC84C4F81
 conf t
