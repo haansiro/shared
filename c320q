@@ -28,7 +28,7 @@ exit
 pon-onu-mng gpon-onu_1/1/1:1
   service HSI type internet gemport 1 vlan 600
   service HOT type internet gemport 2 vlan 500
-  wan-ip 1 mode pppoe username 000104jajalan@haans password 12345678 vlan-profile pppoe4m4m host 1
+  wan-ip 1 mode pppoe username 000104jajalan@haans password 12345678 vlan-profile PPPoE host 1
   wan-ip 1 ping-response enable traceroute-response enable
 end
 write
