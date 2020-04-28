@@ -1,0 +1,384 @@
+### CHECKING ONT STATUS
+
+GPON#show gpon onu state gpon-olt_1/2/3
+OnuIndex   Admin State  OMCC State  Phase State  Channel
+--------------------------------------------------------------
+1/2/3:1     enable       disable     OffLine      1(GPON)
+1/2/3:2     enable       disable     OffLine      1(GPON)
+1/2/3:3     enable       disable     OffLine      1(GPON)
+1/2/3:4     enable       disable     OffLine      1(GPON)
+1/2/3:5     enable       disable     OffLine      1(GPON)
+1/2/3:6     enable       disable     OffLine      1(GPON)
+1/2/3:7     enable       disable     OffLine      1(GPON)
+1/2/3:8     enable       disable     OffLine      1(GPON)
+1/2/3:9     enable       disable     OffLine      1(GPON)
+1/2/3:10    enable       disable     OffLine      1(GPON)
+1/2/3:11    enable       disable     OffLine      1(GPON)
+1/2/3:12    enable       disable     OffLine      1(GPON)
+1/2/3:13    enable       disable     OffLine      1(GPON)
+1/2/3:14    enable       disable     OffLine      1(GPON)
+1/2/3:15    enable       disable     OffLine      1(GPON)
+1/2/3:16    enable       disable     OffLine      1(GPON)
+1/2/3:17    enable       disable     OffLine      1(GPON) => modem 
+1/2/3:18    enable       disable     working      1(GPON) => modem operate normaly
+
+
+
+### CHECKING ONT LASER POWER
+
+GPON-JKT-KBJ#show pon power attenuation gpon-onu_1/2/3:18
+           OLT                  ONU              Attenuation
+--------------------------------------------------------------------------
+ up      Rx :no signal         Tx:N/A               N/A
+
+ down    Tx :6.892(dbm)        Rx:N/A               N/A
+
+
+
+### CHECKING ONT MAC ADDRESS
+
+GPON-JKT-KBJ#show mac gpon onu gpon-onu_1/2/3:18
+Total mac address : 0
+
+
+
+### CHEKING ONT UPTIME AND ONT HISTORY LOGS
+
+GPON#show gpon onu detail-info gpon-onu_1/2/3:18
+
+ONU interface:         gpon-onu_1/2/3:18
+  Name:                ONU-3:18
+  Type:                ZTE-F660
+  State:               ready
+  Configured channel:  auto
+  Current channel:     1(GPON)
+  Admin state:         enable
+  Phase state:         OffLine
+  Config state:        success
+  Authentication mode: sn
+  SN Bind:             enable with SN check
+  Serial number:       ZTEGC123456F
+  Password:
+  Description:         ONU-3:18
+  Vport mode:          gemport
+  DBA Mode:            Hybrid
+  ONU Status:          enable
+  OMCI BW Profile:
+  Line Profile:        N/A
+  Service Profile:     N/A
+  ONU Distance:        N/A
+  Online Duration:     0h 0m 0s
+  FEC:                 none
+  FEC actual mode:     N/A
+  1PPS+ToD:            disable
+  Auto replace:        disable
+  Multicast encryption:disable
+  Multicast encryption current state:N/A
+------------------------------------------
+       Authpass Time          OfflineTime             Cause
+   1   0000-00-00 00:00:00    0000-00-00 00:00:00
+   2   0000-00-00 00:00:00    0000-00-00 00:00:00
+   3   0000-00-00 00:00:00    0000-00-00 00:00:00
+   4   0000-00-00 00:00:00    0000-00-00 00:00:00
+   5   0000-00-00 00:00:00    0000-00-00 00:00:00
+   6   0000-00-00 00:00:00    0000-00-00 00:00:00
+   7   0000-00-00 00:00:00    0000-00-00 00:00:00
+   8   0000-00-00 00:00:00    0000-00-00 00:00:00
+   9   0000-00-00 00:00:00    0000-00-00 00:00:00
+  10   0000-00-00 00:00:00    0000-00-00 00:00:00
+
+
+
+### FINDING ONT BY SN NUMBER
+
+GPON#show gpon onu by sn ZTEGC123456F
+Search result
+-----------------
+gpon-onu_1/2/3:18
+
+
+
+### CHECKING ONT VERSION
+
+GPON#show gpon remote-onu equip gpon-onu_1/2/3:18
+Vendor ID:                 N/A
+Version:                   N/A
+SN:                        N/A
+Admin status:              unlock
+Battery monitor:           false
+Security mode:             aes
+Product code:              0
+Total priority queue num:  0
+Total traffic schedule num:0
+Traffic management option: N/A
+Operate status:            N/A
+Equipment ID:              N/A
+OMCC version:              80
+Security capability:       aes
+Model:                     N/A
+Survival time:             N/A
+Total GEM port num:        0
+System uptime:             0
+Region code:               N/A
+Product SN:                N/A
+Chip info:                 0
+
+
+
+### Checking OLT Uptime
+
+GPON#show system-group
+System Description: C320 Version V2.1.0 Software
+Started before: 6 days, 6 hours, 24 minutes
+System name:  GPON
+
+
+
+### Checking OLT Board
+
+GPON#show card
+Rack Shelf Slot CfgType RealType Port  HardVer SoftVer         Status
+-------------------------------------------------------------------------------
+1    1     2    GTGH    GTGHG    16    V1.0.0  V2.1.0          INSERVICE
+1    1     3    PRAM    PRAM     3     V1.0.0  V1.01           INSERVICE
+1    1     4    SMXA    SMXA     3     V1.0.0  V2.1.0          INSERVICE
+
+
+GTGOH = 16 Port (H = Hexa)
+
+
+
+### CHECKING OLT PROCESSOR AND MEMORY
+
+GPON#show processor
+Rack   Shelf    Slot   CPU(5s)   CPU(1m)    CPU(5m)   PhyMem(MB)  Memory
+-------------------------------------------------------------------------------
+1       1       2       10%       13%       13%       512         38%
+1       1       4       12%       8%        8%        2048        25%
+
+
+
+### CHECKING OLT CARD TEMPERATURE
+
+GPON#show card-temperature
+All cards temperature(deg c):
+----------------------------------------------------------------------------
+Rack Shelf Slot Temperature Temperature(5m) Temperature(1h) Optical-Temp
+----------------------------------------------------------------------------
+1    1     2    30          29              29              N/A.
+1    1     3    30          30              30              N/A.
+1    1     4    33          32              32              N/A.
+
+
+
+### CHECKING OLT PER SLOT
+
+GPON#show card slotno 2
+Config-Type   : GTGH      Status        : INSERVICE
+Port-Number   : 16
+Cpu-Alarm-Threshold : 100%
+Mem-Alarm-Threshold : 100%
+
+Real-Type     : GTGHG     Serial-Number : 706761801136
+Phy-Mem-Size  : 512MB     Main-CPU      : PowerPC Processor
+M-CODE        : 140901    Hardware-VER  : V1.0.0
+Cpld-VER      : V1.3      Fpga-VER      :
+OtherfirmwareVER:pm.fw(V2.1.0)
+
+BootROM-VER   : V4.0.5    2014-12-17 13:37:42
+Software-VER  : V2.1.0    2017-01-17 00:40:26
+Cpu-Usage     : 12%
+Mem-Usage     : 38%
+C-Code        : FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00EE12
+Uptime        : 6 Days, 6 Hours, 51 Minutes, 41 Seconds
+Last restart reason : Other reason
+
+GPON#show card slotno 3
+Config-Type   : PRAM      Status        : INSERVICE
+Port-Number   : 3
+Cpu-Alarm-Threshold : 100%
+Mem-Alarm-Threshold : 100%
+
+Real-Type     : PRAM      Serial-Number : 712151100106
+Phy-Mem-Size  :           Main-CPU      :
+M-CODE        :           Hardware-VER  : V1.0.0
+Cpld-VER      :           Fpga-VER      :
+OtherfirmwareVER:
+
+BootROM-VER   :
+Software-VER  :
+Cpu-Usage     :
+Mem-Usage     :
+C-Code        : 00000000000000000000000000000000000000
+Uptime        :
+Last restart reason : Power-off
+
+GPON#show card slotno 4
+Config-Type   : SMXA      Status        : INSERVICE
+Port-Number   : 3
+Cpu-Alarm-Threshold : 100%
+Mem-Alarm-Threshold : 100%
+
+Real-Type     : SMXA      Serial-Number : 712068000791
+Phy-Mem-Size  : 2048MB    Main-CPU      : PowerPC Processor
+M-CODE        : 131201    Hardware-VER  : V1.0.0
+Cpld-VER      : V2.3      Fpga-VER      : V2.1.0
+OtherfirmwareVER:
+
+BootROM-VER   : V4.0.13    2017-04-26  9:53:13
+Software-VER  : V2.1.0    2017-01-17 01:04:45
+Cpu-Usage     : 8%
+Mem-Usage     : 25%
+C-Code        : 00000000000000000000000000000000000000
+Uptime        : 6 Days, 6 Hours, 56 Minutes, 34 Seconds
+Last restart reason : CLI Command
+
+
+
+### CHECKING ONT IP ROUTING MODE
+
+gpon# show gpon remote-onu ip-host  gpon-onu_1/2/1:3
+
+Host ID:            1
+HostName:           omci_ipv4_dhcp_1
+Identify:
+IP:                 0.0.0.0
+Mask:               0.0.0.0
+Gateway:            0.0.0.0
+Primary DNS:        0.0.0.0
+Second DNS:         0.0.0.0
+DHCP-enable:        true
+Ping-response:      true
+Traceroute-response:true
+MAC:                
+KEREN.KEREN.KEREN
+CurIP:              1.2.3.4
+CurMask:            255.255.255.0
+CurGateway:         1.2.3.4
+CurPriDNS:          6.6.6.6
+CurSecDNS:          7.7.7.7
+
+
+
+### CHECKING ONT CONFIGURATION
+
+GPON#show run int gpon-onu_1/4/1:2
+Building configuration...
+!
+interface gpon-onu_1/4/1:2
+descriptionIRONMAN
+tcont 1 profile share
+gemport 1 name ngenet unicast tcont 1 dir both
+gemport 1 traffic-limit downstream 300m
+gemport 2 name nontonfelm unicast tcont 1 dir both
+gemport 2 traffic-limit downstream 300m
+gemport 3 name tilpun unicast tcont 1 dir both
+gemport 3 traffic-limit downstream 300m
+switchport mode hybrid vport 1
+switchport vlan 212  tag vport 1
+switchport mode hybrid vport 2
+switchport vlan 121  tag vport 2
+switchport mode hybrid vport 3
+switchport vlan 122  tag vport 3
+!
+end
+
+
+
+### REBOOT ONT
+
+gpon#config t
+gpon#pon-onu-mng gpon-onu_1/2/1:3
+gpon(gpon-onu-mng)#reboot
+
+
+
+### RESET FACTORY ONT
+
+gpon#config t
+gpon#pon-onu-mng gpon-onu_1/2/1:3
+gpon(gpon-onu-mng)#restore factory
+
+
+
+### DISABLE/SHUTDOWN PORT ONT
+
+gpon#config t
+gpon#pon-onu-mng gpon-onu_1/2/1:3
+gpon(gpon-onu-mng)#interface eth eth_0/2 state lock --> disable/shutdown port number 2
+
+
+
+### ENABLE/SHUTDOWN PORT ONT
+
+gpon#config t
+gpon#pon-onu-mng gpon-onu_1/2/1:3
+gpon(gpon-onu-mng)#interface eth eth_0/2 state unlock --> enable port number 2
+
+
+
+###  RELEASE RENEW ONT AS DHCP CLIENT
+GPON#config t
+Enter configuration commands, one per line.  End with CTRL/Z.
+GPON(config)#pon-onu
+GPON(config)#pon-onu-mng gpon-onu_1/2/1:3
+GPON(gpon-onu-mng)#ip-host 1 dhcp-enable false ping-response false traceroute-response false
+GPON(gpon-onu-mng)#ip-host 1 dhcp-enable true ping-response true traceroute-response true
+
+
+
+### CHECKING RX/TX LEVEL UPLINK PORT
+
+GPON#sho int optical-module-info xgei_1/21/1
+Optical module information:xgei_1/21/1
+Basic-info:
+Vendor-Name    : SOU   Vendor-Pn      : SPP1
+Vendor-Sn      : D9                Version-Lev    : 10
+Production-Date: 13                    Module-Type    : 10GBASE-LR
+Wavelength     : 1310      (nm)         Connector      : LC
+Diagnostic-info:
+RxPoWer        : -10.1(dbm)           TxPower      : -1.7(dbm)
+Bias-Current   : 25.724    (mA)         Laser-Rate   : 103(100Mb/s)
+Temperature    : 24.184    (c)          Supply-Vol   : 3.324(v)
+Alarm-thresh: –> Threshold
+RxPower-Upper    : 3  (dbm)             RxPower-Lower    : -34(dbm)
+TxPower-Upper    : 9  (dbm)             TxPower-Lower    : -14(dbm)
+Bias-Upper       : 131(mA)              Bias-Lower       : 0  (mA)
+Voltage-Upper    : 7  (v)               Voltage-Lower    : 0  (v)
+Temperature-Upper: 90 (c)               Temperature-Lower: -45(c)
+
+
+
+### RESET SLOT CARD
+
+GPON#reset-card slotno 2
+
+
+
+### SWAP
+
+Use This for First Level Handling when you get Anomaly Process.
+sometimes it can help you, but sometime isn’t
+
+GPON#swap
+
+
+
+### SHOW VLAN SUMMARY
+
+GPON# show vlan summary
+All created vlan num: 3
+Details are following:
+111, 222 , 333
+GPON#
+GPON#show vlan 111
+vlanid          :111
+name            :VLAN00111
+description     :N/A
+multicast-packet:flood-unknown
+tpid:0x8100
+port(untagged):
+port(tagged):
+gpon-onu_1/2/1:3:6
+xgei_1/3/4
+sg1
