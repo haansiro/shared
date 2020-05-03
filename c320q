@@ -213,13 +213,13 @@ pon-onu-mng gpon-onu_1/1/1:6
 end
 write
 
-7. Pak Edy
+7. Pak Edy ZTEGC8A4FD3F
 
 ppp secret add name=0070101pakedy@koroyo password=12345678 profile=pppoe4m/4m
 conf t
 
 interface gpon-olt_1/1/1
-onu 7 type ZTE-F660 sn ZTEGC89588F3
+onu 7 type ZTE-F660 sn ZTEGC8A4FD3F
 exit
 interface gpon-onu_1/1/1:7
   sn-bind enable sn
@@ -248,7 +248,7 @@ pon-onu-mng gpon-onu_1/1/1:7
 end
 write
 
-8
+8 
 
 9
 
