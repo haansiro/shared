@@ -308,13 +308,13 @@ end
 write
 
 
-10 ra koroyo ZTEGC8A68676
+10 ra koroyo ZTEGC674ED3C
 
 ppp secret add name=0100101ra@koroyo password=12345678 profile=pppoe4m/4m
 conf t
 
 interface gpon-olt_1/1/1
-onu 10 type ZTE-F660 sn ZTEGC8A68676
+onu 10 type ZTE-F660 sn ZTEGC674ED3C
 exit
 interface gpon-onu_1/1/1:10
   sn-bind enable sn
