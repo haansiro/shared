@@ -379,13 +379,13 @@ end
 write
 
 
-12 pak badi prapean ZTEGC8A68676
+12 pak badi prapean ZTEGC862F1A7
 
 ppp secret add name=0120101pakbadi@prapean password=12345678 profile=pppoe4m/4m
 conf t
 
 interface gpon-olt_1/1/1
-onu 12 type ZTE-F660 sn ZTEGC8A68676
+onu 12 type ZTE-F660 sn ZTEGC862F1A7
 exit
 interface gpon-onu_1/1/1:12
   sn-bind enable sn
