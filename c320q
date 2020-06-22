@@ -621,12 +621,12 @@ pon-onu-mng gpon-onu_1/1/1:18
 end
 write
 
-19 AndreNdari ZTEGC674E87D
+19 AndreNdari ZTEGCC43B083
 
 ppp secret add name=0190101andre@ndari password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/1
-onu 19 type ZTE-F660 sn ZTEGC674E87D
+onu 19 type ZTE-F660 sn ZTEGCC43B083
 exit
 interface gpon-onu_1/1/1:19
   sn-bind enable sn
