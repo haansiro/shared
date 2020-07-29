@@ -655,12 +655,12 @@ pon-onu-mng gpon-onu_1/1/1:19
 end
 write
 
-20 PakTohir Prapean ZTEGCC437EE0
+1.20 pongokprapean ZTEGCBD8D95A
 
-ppp secret add name=0200101paktohir@prapean password=12345678 profile=pppoe4m/4m
+ppp secret add name=0200101pongokprapean@prapean password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/1
-onu 20 type ZTE-F660 sn ZTEGCC437EE0
+onu 20 type ZTE-F660 sn ZTEGCBD8D95A
 exit
 interface gpon-onu_1/1/1:20
   sn-bind enable sn
@@ -684,7 +684,7 @@ exit
 pon-onu-mng gpon-onu_1/1/1:20
   service HSI type internet gemport 1 vlan 600
   service HOT type internet gemport 2 vlan 500
-  wan-ip 1 mode pppoe username 0200101paktohir@prapean password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 mode pppoe username 0200101pongokprapean@prapean password 12345678 vlan-profile PPPoE host 1
   wan-ip 1 ping-response enable traceroute-response enable
 end
 write
@@ -926,4 +926,39 @@ write
 
 28
 29
+
+-------------------------------------------PORT 02-------------------------------------------------------
+2.1 PakTohir Prapean ZTEGCC437EE0
+
+ppp secret add name=0010201paktohir@prapean password=12345678 profile=pppoe4m/4m
+conf t
+interface gpon-olt_1/1/2
+onu 1 type ZTE-F660 sn ZTEGCC437EE0
+exit
+interface gpon-onu_1/1/2:1
+  sn-bind enable sn
+  tcont 1 name HSI profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name HSI unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 1 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/2:1
+  service HSI type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 0010201paktohir@prapean password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+end
+write
 
