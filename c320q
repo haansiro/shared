@@ -518,12 +518,12 @@ pon-onu-mng gpon-onu_1/1/1:15
 end
 write
 
-16 oyek prapean ZTEGC6751757
+16 oyek prapean ZTEGC6751757 ZTEGC8388457
 ppp secret add name=0160101oyek@prapean password=12345678 profile=pppoe6m/6m
 conf t
 
 interface gpon-olt_1/1/1
-onu 16 type ZTE-F660 sn ZTEGC6751757
+onu 16 type ZTE-F660 sn ZTEGC8388457
 exit
 interface gpon-onu_1/1/1:16
   sn-bind enable sn
