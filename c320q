@@ -961,11 +961,11 @@ pon-onu-mng gpon-onu_1/1/1:28
 end
 write
 
-1.29 Pak Teguh ndari ZTEGC8A3EDE9 ZTEGC8597938
+1.29 Pak Teguh ndari ZTEGC1ED7293 ZTEGC8A3EDE9 ZTEGC8597938
 ppp secret add name=0290101pakteguh@ndari password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/1
-onu 29 type ZTE-F660 sn ZTEGC8A3EDE9
+onu 29 type ZTE-F660 sn ZTEGC1ED7293
 exit
 interface gpon-onu_1/1/1:29
   sn-bind enable sn
