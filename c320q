@@ -487,7 +487,7 @@ pon-onu-mng gpon-onu_1/1/1:14
 end
 write
 
-1.15 Dwi Fatonah Koroyo ZTEGC88EFB0F
+1.15 Dwi Fatonah Koroyo ZTEGC88EFB0F libur
 
 ppp secret add name=0150101dwifatonah@koroyo password=12345678 profile=pppoe4m/4m
 conf t
