@@ -22,3 +22,8 @@ add bridge=bridge1 untagged=\
 
 /system identity
 set name=Swich_Mbarangndengah
+
+/tool romon
+set enabled=yes secrets=JSN-Bersama
+/tool romon port
+set [ find default=yes ] secrets=JSN-Bersama
