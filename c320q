@@ -1095,12 +1095,12 @@ pon-onu-mng gpon-onu_1/1/1:32
 end
 write
 
-1.33 minto kambang ZTEGC0818D16
+1.33 minto kambang ZTEGC0DDAE07 ZTEGC0818D16
 
 ppp secret add name=0330101minto@kambang password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/1
-onu 33 type ZTE-F660 sn ZTEGC0818D16
+onu 33 type ZTE-F660 sn ZTEGC0DDAE07
 exit
 interface gpon-onu_1/1/1:33
   sn-bind enable sn
