@@ -11,7 +11,7 @@ gpon-onu_1/1/2:2         HWTC3C0C4E0E        unknown epon
 
 conf t
 interface gpon-olt_1/1/16
-  onu 1 type ZTE-F641 sn FHTT919159E0
+  onu 1 type ZTE-F641 sn FHTT098EB2F0
 exit
 interface gpon-onu_1/1/16:1
   sn-bind enable sn
