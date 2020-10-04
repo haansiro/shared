@@ -3,15 +3,16 @@ melihat sn modem show gpon onu baseinfo gpon-olt_1/1/1
 melihat redaman modem show pon power onu-rx gpon-olt_1/1/1
 melihat detail info modem show gpon onu detail-info gpon-onu_1/1/1:5
 
-gpon-onu_1/1/2:1         HWTC3C0C4C2E        unknown epon
-gpon-onu_1/1/2:2         HWTC3C0C4E0E        unknown epon
-
+menghapus modem
+con t
+interface gpon-olt_1/1/16
+no onu 1
 
 1.1 jajalan bridge FH kembang ZTEGC8388457
 
 conf t
 interface gpon-olt_1/1/16
-  onu 1 type ZTE-F641 sn FHTT098EB2F0
+  onu 1 type ZTE-F641 sn FHTT11AFF9B0
 exit
 interface gpon-onu_1/1/16:1
   sn-bind enable sn
