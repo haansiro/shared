@@ -1,2 +1,2 @@
  /queue simple
- :for x from 2 to 30 do={/queue simple add name="queue-$x" max-limit=1M/5M target="192.168.0.$x" parent Total_BW}
+ :for x from 2 to 30 do={/queue simple add name="queue-$x" max-limit=4M/4M target="192.168.0.$x" parent Total_BW}
