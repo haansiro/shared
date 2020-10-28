@@ -2819,12 +2819,12 @@ pon-onu-mng gpon-onu_1/1/2:43
 end
 write
 
-2.44  anita ngurensiti
+2.44  anita ngurensiti ZTEGC8A8E5FB
 
 ppp secret add name=0440201anita@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
-onu 44 type ZTE-F660 sn 
+onu 44 type ZTE-F660 sn ZTEGC8A8E5FB
 exit
 interface gpon-onu_1/1/2:44
   sn-bind enable sn
