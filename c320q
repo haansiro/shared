@@ -32,6 +32,8 @@ exit
 end
 Write
 
+---------------------------port 01 odc server n cepit-------------------------------------------
+
 1.2 Pak Aly Koroyo ZTEGC8817240
 
 ppp secret add name=0020101pakaly@koroyo password=12345678 profile=pppoe4m4m
@@ -1388,7 +1390,7 @@ pon-onu-mng gpon-onu_1/1/1:41
 end
 write
 
--------------------------------------------PORT 02-------------------------------------------------------
+-------------------------------------------PORT 02 ngurenrejo/siti----------------------------------------------
 2.1 PakTohir Prapean ZTEGCC437EE0
 
 ppp secret add name=0010201paktohir@prapean password=12345678 profile=pppoe4m/4m
@@ -2887,7 +2889,7 @@ end
 write
 
 
------------------------------pindah port 3----------------------------
+-----------------------------pindah port 3 arah ngidul(pati)----------------------------
 
 3.1 arah pati studio kusuma pati ZTEGC0C662F4 ZTEGC1DC0DC5
 ppp secret add name=0010301kusuma@pati password=12345678 profile=pppoe4m/4m
@@ -2960,7 +2962,7 @@ write
 3.3 xxx
 
 
------------------------pindah port 4 --------------------------
+-----------------------pindah port 4 karangturi/anyar/sinoman--------------------------
 
 4.1 MbUlya Karangturi ZTEGC1F1358D
 
@@ -3235,7 +3237,7 @@ pon-onu-mng gpon-onu_1/1/4:8
 end
 write
 
---------------------------------pindah port 5--------------------------------------
+--------------------------------pindah port 5 odc dpan pasar wdr--------------------------------------
 
 5.1 mb asri ndari ZTEGC85C0A37
 
@@ -3305,7 +3307,7 @@ pon-onu-mng gpon-onu_1/1/5:2
 end
 write
 
---------------------------------pindah port 6--------------------------------------
+--------------------------------pindah port 6 odp jontro odc kantor pos n pasar pajaran --------------------------------------
 
 4.3 wardigudel jontro ZTEGC806102D
 
@@ -3375,7 +3377,7 @@ pon-onu-mng gpon-onu_1/1/6:2
 end
 write
 
------------------------pindah port 7---------------------------
+-----------------------pindah port 7 pajaran--------------------------
 
 7.1 pak muridi pajaran ZTEGC86AF6AE
 
