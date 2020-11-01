@@ -3394,12 +3394,12 @@ pon-onu-mng gpon-onu_1/1/6:11
 end
 write
 
-6.12 xxx
+6.12 pak muridi pajaran ZTEGC86AF6AE
 
-ppp secret add name=0020601ekopongok@jontro password=12345678 profile=pppoe4m/4m
+ppp secret add name=0010701muridi@pajaran password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/6
-onu 12 type ZTE-F660 sn ZTEGC837492D
+onu 12 type ZTE-F660 sn ZTEGC86AF6AE
 exit
 interface gpon-onu_1/1/6:12
   sn-bind enable sn
@@ -3499,7 +3499,7 @@ write
 
 -----------------------pindah port 7 pajaran--------------------------
 
-7.1 pak muridi pajaran ZTEGC86AF6AE
+7.1 xxxxx
 
 ppp secret add name=0010701muridi@pajaran password=12345678 profile=pppoe4m/4m
 conf t
