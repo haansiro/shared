@@ -3423,7 +3423,7 @@ exit
 pon-onu-mng gpon-onu_1/1/6:12
   service HSI type internet gemport 1 vlan 600
   service HOT type internet gemport 2 vlan 500
-  wan-ip 1 mode pppoe username 0020601ekopongok@jontro password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 mode pppoe username 0010701muridi@pajaran password 12345678 vlan-profile PPPoE host 1
   wan-ip 1 ping-response enable traceroute-response enable
 end
 write
