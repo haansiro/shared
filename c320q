@@ -1107,11 +1107,11 @@ pon-onu-mng gpon-onu_1/1/1:41
 end
 write
 
-1.42 mb aspuah prapean
+1.42 mb aspuah prapean ZTEGCC9D70BC
 ppp secret add name=0420101aspuah@prapean password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/1
-onu 42 type ZTE-F660 sn 
+onu 42 type ZTE-F660 sn ZTEGCC9D70BC
 exit
 interface gpon-onu_1/1/1:42
   sn-bind enable sn
