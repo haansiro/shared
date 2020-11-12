@@ -1021,29 +1021,39 @@ write
 
 1.32 
 
-1.33 minto kambang ZTEGC0DDAE07 ZTEGC0818D16
-
+1.33 minto kambang ZTEGCC9D30DC
+ppp secret add name=0330101minto@ckambang password=12345678 profile=pppoe8m/8m
 conf t
 interface gpon-olt_1/1/1
-  onu 33 type ZTE-F641 sn FHTT11AFF9B0
+onu 33 type ZTE-F660 sn ZTEGCC9D30DC
 exit
 interface gpon-onu_1/1/1:33
   sn-bind enable sn
   tcont 1 name HSI profile 100M
-  gemport 1 name 1 unicast tcont 1 dir both
+  tcont 2 name HOT profile 100M
+  gemport 1 name HSI unicast tcont 1 dir both
   gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 1 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
   switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
   service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
 exit
 pon-onu-mng gpon-onu_1/1/1:33
-  service hsi gemport 1 vlan 600
-  vlan port eth_0/1 mode tag vlan 600
-  vlan port eth_0/2 mode tag vlan 600
-  vlan port eth_0/3 mode tag vlan 600
-  vlan port eth_0/4 mode tag vlan 600
-exit
+  service HSI type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 0330101minto@ckambang password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
 end
-Write
+write
+
 
 1.34 dias pongok prapean cepit ZTEGC8374D18 ZTEGC8369E84
 
@@ -3468,28 +3478,39 @@ exit
 end
 Write
 
-5.11 wage swd FHTT099128E0
+5.11 wage swd ZTEGCCA156AD FHTT099128E0
+ppp secret add name=0110501wage@suwaduk password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/5
-  onu 11 type ZTE-F641 sn FHTT099128E0
+onu 11 type ZTE-F660 sn ZTEGCCA156AD
 exit
 interface gpon-onu_1/1/5:11
   sn-bind enable sn
   tcont 1 name HSI profile 100M
-  gemport 1 name 1 unicast tcont 1 dir both
+  tcont 2 name HOT profile 100M
+  gemport 1 name HSI unicast tcont 1 dir both
   gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 1 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
   switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
   service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
 exit
 pon-onu-mng gpon-onu_1/1/5:11
-  service hsi gemport 1 vlan 600
-  vlan port eth_0/1 mode tag vlan 600
-  vlan port eth_0/2 mode tag vlan 600
-  vlan port eth_0/3 mode tag vlan 600
-  vlan port eth_0/4 mode tag vlan 600
-exit
+  service HSI type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 0110501wage@suwaduk password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
 end
-Write
+write
+
 
 5.12  pak slamet swd ZTEGCBDA446A
 ppp secret add name=0120501selamet@suwaduk password=12345678 profile=pppoe4m/4m
@@ -3591,7 +3612,39 @@ pon-onu-mng gpon-onu_1/1/5:14
 end
 write
 
-5.15
+5.15 rushadi ponggok suwaduk ZTEGC86B0D78
+ppp secret add name=0150501rushadipongok@suwaduk password=12345678 profile=pppoe4m/4m
+conf t
+interface gpon-olt_1/1/5
+onu 15 type ZTE-F660 sn ZTEGC86B0D78
+exit
+interface gpon-onu_1/1/5:15
+  sn-bind enable sn
+  tcont 1 name HSI profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name HSI unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 1 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/5:15
+  service HSI type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 0150501rushadipongok@suwaduk password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+end
+write
+
 5.16
 5.17
 5.18
