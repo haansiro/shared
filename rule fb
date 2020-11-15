@@ -188,3 +188,9 @@ add comment=fb dst-address=129.134.129.0/24 table=metropoe
 add comment=fb dst-address=129.134.128.0/24 table=metropoe
 add comment=fb dst-address=129.134.0.0/17 table=metropoe
 add comment=fb dst-address=102.132.96.0/20 table=metropoe
+
+add comment=wa dst-address=66.111.51.0/24 table=metropoe
+add comment=wa dst-address=66.111.50.0/24 table=metropoe
+add comment=wa dst-address=66.111.49.0/24 table=metropoe
+add comment=wa dst-address=66.111.48.0/24 table=metropoe
+add comment=wa dst-address=66.111.48.0/22 table=metropoe
