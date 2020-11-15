@@ -2704,12 +2704,12 @@ pon-onu-mng gpon-onu_1/1/2:41
 end
 write
 
-2.42 pak supo prapean ZTEGC864AC18
+2.42 pak supo prapean ZTEGCCA55644 ZTEGC864AC18
 
 ppp secret add name=0420201supo@prapean password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
-onu 42 type ZTE-F660 sn ZTEGC864AC18
+onu 42 type ZTE-F660 sn ZTEGCCA55644
 exit
 interface gpon-onu_1/1/2:42
   sn-bind enable sn
