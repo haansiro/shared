@@ -4631,7 +4631,7 @@ conf t
 interface gpon-olt_1/1/6
 onu 20 type ZTE-F660 sn ZTEGCC91F92E
 exit
-interface gpon-onu_1/1/6:19
+interface gpon-onu_1/1/6:20
   sn-bind enable sn
   tcont 1 name HSI profile 100M
   tcont 2 name HOT profile 100M
