@@ -2564,12 +2564,12 @@ pon-onu-mng gpon-onu_1/1/2:34
 end
 write
 
-2.35 mb elvi ngurensiti ZTEGC1ECFD92
+2.35 mb elvi ngurensiti ZTEGC1ECFD92 ZTEGCBDA27FB
 
 ppp secret add name=0350201elvi@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
-onu 35 type ZTE-F660 sn ZTEGC1ECFD92
+onu 35 type ZTE-F660 sn ZTEGCBDA27FB
 exit
 interface gpon-onu_1/1/2:35
   sn-bind enable sn
