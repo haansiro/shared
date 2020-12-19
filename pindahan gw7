@@ -1,0 +1,312 @@
+/ip address
+add address=192.168.24.1/24 interface=ether6 network=192.168.24.0
+add address=192.168.16.1/24 interface=ether6 network=192.168.16.0
+add address=192.168.192.1/24 interface=ether6 network=192.168.192.0
+add address=192.168.193.1/24 interface=ether6 network=192.168.193.0
+add address=192.168.191.1/24 interface=ether6 network=192.168.191.0
+add address=192.168.17.1/24 interface=ether6 network=192.168.17.0
+add address=192.168.61.1/24 interface=ether6 network=192.168.61.0
+
+/queue simple
+add max-limit=90M/90M name=gw24 parent=Total_BW target=192.168.24.0/24
+add max-limit=20M/20M name=192.suroso parent=Total_BW target=192.168.192.0/24
+add max-limit=5M/5M name="2410. eko trangkil" parent=gw24 target=\
+    192.168.24.10/32
+add max-limit=4M/4M name="2411. edi trangkil" parent=gw24 target=\
+    192.168.24.11/32
+add max-limit=4M/4M name="2412. putri trangkil" parent=gw24 target=\
+    192.168.24.12/32
+add max-limit=50M/50M name=16.pongok parent=Total_BW target=192.168.16.0/24
+add max-limit=4M/4M name=2 parent=16.pongok target=192.168.16.2/32
+add max-limit=4M/4M name=hendra parent=16.pongok target=192.168.16.3/32
+add max-limit=4M/4M name="kukuh kalicilik" parent=16.pongok target=\
+    192.168.16.4/32
+add max-limit=4M/4M name=omnyo parent=16.pongok target=192.168.16.5/32
+add max-limit=4M/4M name=sugito parent=16.pongok target=192.168.16.6/32
+add max-limit=4M/4M name=hadi parent=16.pongok target=192.168.16.7/32
+add max-limit=4M/4M name=8 parent=16.pongok target=192.168.16.8/32
+add max-limit=10M/10M name=ptgcab parent=16.pongok target=192.168.16.9/32
+add max-limit=10M/10M name=baldes parent=16.pongok target=192.168.16.10/32
+add max-limit=4M/4M name=heru parent=16.pongok target=192.168.16.11/32
+add max-limit=4M/4M name=paing parent=16.pongok target=192.168.16.12/32
+add max-limit=4M/4M name=mathad parent=16.pongok target=192.168.16.13/32
+add max-limit=4M/4M name=hardiperangkat parent=16.pongok target=\
+    192.168.16.14/32
+add max-limit=4M/4M name=pakwo parent=16.pongok target=192.168.16.15/32
+add max-limit=4M/4M name=diki parent=16.pongok target=192.168.16.16/32
+add max-limit=4M/4M name=soleh parent=16.pongok target=192.168.16.17/32
+add max-limit=4M/4M name=arum parent=16.pongok target=192.168.16.18/32
+add max-limit=4M/4M name="sulis bapoh" parent=16.pongok target=192.168.16.19/32
+add max-limit=4M/4M name=mahfud parent=16.pongok target=192.168.16.20/32
+add max-limit=4M/4M name="aif lahar" parent=16.pongok target=192.168.16.21/32
+add max-limit=4M/4M name=queue16 parent=16.pongok target=192.168.16.25/32
+add max-limit=5M/5M name="h eko brito" parent=16.pongok target=192.168.16.26/32
+add max-limit=4M/4M name=sudiono parent=16.pongok target=192.168.16.27/32
+add max-limit=4M/4M name="arip bagangan" parent=16.pongok target=\
+    192.168.16.31/32
+add max-limit=4M/4M name="markus rms" parent=16.pongok target=192.168.16.32/32
+add max-limit=4M/4M name=queue8 parent=16.pongok target=192.168.16.33/32
+add max-limit=5M/5M name="kang mat" parent=16.pongok target=192.168.16.34/32
+add max-limit=4M/4M name="sigit kali cilik" parent=16.pongok target=\
+    192.168.16.35/32
+add max-limit=4M/4M name="sulas kali cilik" parent=16.pongok target=\
+    192.168.16.36/32
+add max-limit=4M/4M name="santoso nganggrek" parent=16.pongok target=\
+    192.168.16.40/32
+add max-limit=4M/4M name=queue13 parent=16.pongok target=192.168.16.44/32
+add max-limit=4M/4M name="supardi kopi ngerames" parent=16.pongok target=\
+    192.168.16.43/32
+add max-limit=4M/4M name="mahfud brito" parent=16.pongok target=\
+    192.168.16.42/32
+add max-limit=4M/4M name="pak siswoyo nganggrek" parent=16.pongok target=\
+    192.168.16.41/32
+add max-limit=4M/4M name="ahaun kali cilik" parent=16.pongok target=\
+    192.168.16.39/32
+add max-limit=4M/4M name="ipul cabak" parent=16.pongok target=192.168.16.38/32
+add max-limit=4M/4M name="ali nganggrek" parent=16.pongok target=\
+    192.168.16.37/32
+add max-limit=4M/4M name="roby sepapan" parent=16.pongok target=\
+    192.168.16.30/32
+add max-limit=4M/4M name=sarmidi parent=16.pongok target=192.168.16.29/32
+add max-limit=4M/4M name=rumadi parent=16.pongok target=192.168.16.28/32
+add max-limit=4M/4M name="mas aris" parent=16.pongok target=192.168.16.24/32
+add max-limit=4M/4M name="pak rozaq lahar" parent=16.pongok target=\
+    192.168.16.23/32
+add max-limit=4M/4M name="ipung bagangan" parent=16.pongok target=\
+    192.168.16.22/32
+add max-limit=4M/4M name="2413. eska trangkil" parent=gw24 target=\
+    192.168.24.13/32
+add max-limit=4M/4M name="2414. harmo trangkil" parent=gw24 target=\
+    192.168.24.14/32
+add max-limit=4M/4M name="2415. rini trangkil" parent=gw24 target=\
+    192.168.24.15/32
+add max-limit=4M/4M name="2416. arifin trangkil" parent=gw24 target=\
+    192.168.24.16/32
+add max-limit=4M/4M name="2417. agus alim trangkil" parent=gw24 target=\
+    192.168.24.17/32
+add max-limit=4M/4M name="2418. cesi trangkil" parent=gw24 target=\
+    192.168.24.18/32
+add max-limit=4M/4M name="2419. dwi trangkil" parent=gw24 target=\
+    192.168.24.19/32
+add max-limit=4M/4M name="2420. dila trangkil" parent=gw24 target=\
+    192.168.24.20/32
+add max-limit=4M/4M name="2421. suyono trangkil" parent=gw24 target=\
+    192.168.24.21/32
+add max-limit=4M/4M name="2422. cipto trangkil" parent=gw24 target=\
+    192.168.24.22/32
+add max-limit=4M/4M name="2423. tocilik trangkil" parent=gw24 target=\
+    192.168.24.23/32
+add max-limit=4M/4M name="2424.bu hanik landoh" parent=gw24 target=\
+    192.168.24.24/32
+add max-limit=4M/4M name="2425. yanto bayan landoh" parent=gw24 target=\
+    192.168.24.25/32
+add max-limit=4M/4M name="2426. pak kusnan sawo" parent=gw24 target=\
+    192.168.24.26/32
+add max-limit=4M/4M name="2427. ella kurniawati irmasta" parent=gw24 target=\
+    192.168.24.27/32
+add max-limit=4M/4M name="2428. mbakyuli kemiri" parent=gw24 target=\
+    192.168.24.28/32
+add max-limit=4M/4M name="2429. Pak ahmadi/toko sahabat (pak rony)" parent=gw24 \
+    target=192.168.24.29/32
+add max-limit=4M/4M name="2430. mas yuana/ bu kis trangkilan" parent=gw24 \
+    target=192.168.24.30/32
+add max-limit=4M/4M name="2431. muzakin trangkilan sawo" parent=gw24 target=\
+    192.168.24.31/32
+add max-limit=4M/4M name="2432. Bu Sri ngurensiti" parent=gw24 target=\
+    192.168.24.32/32
+add max-limit=4M/4M name="2433. Mas Agus ndari" parent=gw24 target=\
+    192.168.24.33/32
+add max-limit=4M/4M name="2434. Fauzi Jatiurep" parent=gw24 target=\
+    192.168.24.34/32
+add max-limit=4M/4M name="2435. bu endang ngulakan" parent=gw24 target=\
+    192.168.24.35/32
+add max-limit=4M/4M name=suroso-110 parent=192.suroso target=192.168.192.110/32
+add max-limit=4M/4M name=suroso-111 parent=192.suroso target=192.168.192.111/32
+add max-limit=4M/4M name=suroso-112 parent=192.suroso target=192.168.192.112/32
+add max-limit=4M/4M name=suroso-113 parent=192.suroso target=192.168.192.113/32
+add max-limit=4M/4M name=suroso-114 parent=192.suroso target=192.168.192.114/32
+add max-limit=4M/4M name=suroso-115 parent=192.suroso target=192.168.192.115/32
+add max-limit=4M/4M name=suroso-116 parent=192.suroso target=192.168.192.116/32
+add max-limit=4M/4M name=suroso-117 parent=192.suroso target=192.168.192.117/32
+add max-limit=4M/4M name=suroso-118 parent=192.suroso target=192.168.192.118/32
+add max-limit=4M/4M name=suroso-119 parent=192.suroso target=192.168.192.119/32
+add max-limit=18M/18M name="193. RT Ndari Demang" parent=Total_BW target=\
+    192.168.193.0/24
+add max-limit=4M/4M name=iwan parent="193. RT Ndari Demang" target=\
+    192.168.193.2/32
+add max-limit=4M/4M name=suwardi parent="193. RT Ndari Demang" target=\
+    192.168.193.3/32
+add max-limit=4M/4M name=yono parent="193. RT Ndari Demang" target=\
+    192.168.193.4/32
+add max-limit=4M/4M name=agus parent="193. RT Ndari Demang" target=\
+    192.168.193.5/32
+add max-limit=4M/4M name="bu santik" parent="193. RT Ndari Demang" target=\
+    192.168.193.6/32
+add max-limit=6M/6M name=aris parent="193. RT Ndari Demang" target=\
+    192.168.193.7/32
+add max-limit=4M/4M name=jasmin parent="193. RT Ndari Demang" target=\
+    192.168.193.8/32
+add max-limit=4M/4M name=sutrisno parent="193. RT Ndari Demang" target=\
+    192.168.193.9/32
+add max-limit=4M/4M name=wayan parent="193. RT Ndari Demang" target=\
+    192.168.193.10/32
+add max-limit=4M/4M name=ngadino parent="193. RT Ndari Demang" target=\
+    192.168.193.11/32
+add max-limit=4M/4M name=queue-12 parent="193. RT Ndari Demang" target=\
+    192.168.193.12/32
+add max-limit=4M/4M name=queue17 parent="193. RT Ndari Demang" target=\
+    192.168.193.13/32
+add max-limit=4M/4M name=queue12 parent="193. RT Ndari Demang" target=\
+    192.168.193.14/32
+add max-limit=4M/4M name="bu endang" parent="193. RT Ndari Demang" target=\
+    192.168.193.15/32
+add max-limit=7M/15M name="191. Pur" parent=Total_BW target=192.168.191.0/24
+add max-limit=2k/2k name=17.kv parent=Total_BW target=192.168.17.0/24
+add max-limit=6M/6M name=61.ulum parent=Total_BW target=192.168.61.0/24
+add max-limit=2M/7M name="110. andi " parent="191. Pur" target=\
+    192.168.191.110/32
+add max-limit=2M/5M name="111. andi2" parent="191. Pur" target=\
+    192.168.191.111/32
+add max-limit=2M/5M name="114. tadi" parent="191. Pur" target=\
+    192.168.191.114/32
+add max-limit=4M/9M name="115. baru" parent="191. Pur" target=\
+    192.168.191.115/32
+add max-limit=5M/12M name="112. imam" parent="191. Pur" target=\
+    192.168.191.112/32
+add max-limit=2M/5M name="113. ifur" parent="191. Pur" target=\
+    192.168.191.113/32
+add max-limit=4M/4M name="2436. pak hardi diman ngulakan" parent=gw24 target=\
+    192.168.24.36/32
+add max-limit=70M/70M name="2437. bumdes krandan" parent=gw24 target=\
+    192.168.24.37/32
+add max-limit=4M/4M name="2438. mas dayat tempel" parent=gw24 target=\
+    192.168.24.38/32
+add max-limit=4M/4M name="2439. Mas Rofi'i irmasta " parent=gw24 target=\
+    192.168.24.39/32
+add max-limit=4M/4M name=gw24-40 parent=gw24 target=192.168.24.40/32
+add max-limit=4M/4M name=gw24-41 parent=gw24 target=192.168.24.41/32
+add max-limit=4M/4M name=gw24-42 parent=gw24 target=192.168.24.42/32
+add max-limit=4M/4M name=gw24-43 parent=gw24 target=192.168.24.43/32
+add max-limit=4M/4M name=gw24-44 parent=gw24 target=192.168.24.44/32
+add max-limit=4M/4M name=gw24-45 parent=gw24 target=192.168.24.45/32
+add max-limit=4M/4M name=gw24-46 parent=gw24 target=192.168.24.46/32
+add max-limit=4M/4M name=gw24-47 parent=gw24 target=192.168.24.47/32
+add max-limit=4M/4M name=gw24-48 parent=gw24 target=192.168.24.48/32
+add max-limit=4M/4M name=gw24-49 parent=gw24 target=192.168.24.49/32
+add max-limit=4M/4M name=gw24-50 parent=gw24 target=192.168.24.50/32
+add max-limit=20M/20M name="24251. service" parent=gw24 target=\
+    192.168.24.251/32
+
+/ppp profile
+set *0 comment=10m/10m dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 parent-queue=Total_BW rate-limit=20m/20m remote-address=pool1
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=roso100 parent-queue=Total_BW rate-limit=100m/100m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=igm parent-queue=Total_BW rate-limit=155m/155m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=hastina parent-queue=Total_BW rate-limit=65m/65m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=ded10m parent-queue=Total_BW rate-limit=11m/11m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=top parent-queue=Total_BW rate-limit=62m/62m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.15.1 name=arinpjr parent-queue=Total_BW rate-limit=23m/23m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=ded25m parent-queue=Total_BW rate-limit=25m/25m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=masud22 parent-queue=Total_BW rate-limit=52m/52m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=pongok90 parent-queue=Total_BW rate-limit=75m/75m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=isolir parent-queue=Total_BW rate-limit=2k/2k
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=kap200 parent-queue=Total_BW rate-limit=80m/80m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=ded8m parent-queue=Total_BW rate-limit=8m/8m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=ded5 parent-queue=Total_BW rate-limit=5200k/5200k
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=bumkrandan parent-queue=Total_BW rate-limit=50m/50m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=bustan parent-queue=Total_BW rate-limit=13m/13m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=ded6 parent-queue=Total_BW rate-limit=6200k/6200k
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=kvtv parent-queue=Total_BW rate-limit=180m/180m
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=kopr parent-queue=Total_BW rate-limit=42m/42m
+add change-tcp-mss=yes dns-server=8.8.8.8 local-address=192.168.9.1 name=\
+    pppoe3m/3m only-one=yes parent-queue=Total_BW rate-limit=3m/3m \
+    remote-address=dhcp_pool0 wins-server=8.8.4.4
+add change-tcp-mss=yes dns-server=103.80.80.231,103.80.80.232 local-address=\
+    192.168.11.1 name=ded15m parent-queue=Total_BW rate-limit=15m/15m
+
+/ppp secret
+add name=igm password=123456 profile=igm remote-address=192.168.11.10 service=\
+    pppoe
+add name=roso password=123456 profile=roso100 remote-address=192.168.11.11 \
+    service=pppoe
+add name=ppp1 password=123456 service=pppoe
+add name=hastina password=123456 profile=hastina remote-address=192.168.11.12 \
+    service=pppoe
+add name=masud password=123456 profile=masud22 remote-address=192.168.11.13 \
+    service=pppoe
+add name=alfa password=123456 profile=top remote-address=192.168.11.14 service=\
+    pppoe
+add disabled=yes name=arinpjr password=arinpjr123 profile=arinpjr \
+    remote-address=192.168.15.15 service=pppoe
+add name=malugandong password=123456 profile=ded10m remote-address=\
+    192.168.11.16 service=pppoe
+add name=yusufscn password=123456 remote-address=192.168.11.15 service=pppoe
+add name=hajir password=123456 profile=isolir remote-address=192.168.11.18 \
+    service=pppoe
+add name=milugandong password=123456 profile=ded10m remote-address=\
+    192.168.11.17 service=pppoe
+add name=live password=123456 profile=ded10m remote-address=192.168.11.19 \
+    service=pppoe
+add name=zaito password=123456 profile=ded25m remote-address=192.168.11.20 \
+    service=pppoe
+add name=4011tunel password=123456 profile=kap200 remote-address=192.168.11.21 \
+    service=pppoe
+add name=0020401kintian@nguren password=12345678 profile=pppoe4m/4m
+add name=0310101pakkaryono@prapean password=12345678 profile=pppoe6m/6m
+add name=edir password=123456 profile=ded15m remote-address=192.168.11.22 \
+    service=pppoe
+add name=0320101masmuji@ndari password=12345678 profile=pppoe4m/4m
+add name=0030401srisukarni@nguren password=12345678 profile=pppoe4m/4m
+add name=ajibr password=123456 profile=ded8m remote-address=192.168.11.23 \
+    service=pppoe
+add name=faisallan password=123456 profile=ded10m remote-address=192.168.11.24 \
+    service=pppoe
+add name=mncell password=123456 profile=ded8m remote-address=192.168.11.25 \
+    service=pppoe
+add name=aristap password=123456 profile=ded8m remote-address=192.168.11.26 \
+    service=pppoe
+add name=0340101diaspongok@cepit password=12345678 profile=pppoe4m/4m
+add name=kopral password=123456 profile=kopr remote-address=192.168.11.27 \
+    service=pppoe
+add name=imronk password=123456 profile=ded5 remote-address=192.168.11.28 \
+    service=pppoe
+add name=0350101gimanwowok@cepit password=12345678 profile=pppoe4m/4m
+add name=0010501asri@ndari password=12345678 profile=pppoe4m/4m
+add name=bumkrandan password=123456 profile=bumkrandan remote-address=\
+    192.168.11.29 service=pppoe
+add name=bustan password=123456 profile=bustan remote-address=192.168.11.30 \
+    service=pppoe
+add name=0010601wardigudel@jontro password=12345678 profile=pppoe4m/4m
+add name=0020601ekopongok@jontro password=12345678 profile=pppoe4m/4m
+add name=4011tunel200 password=123456 profile=kap200 remote-address=\
+    192.168.11.31 service=pppoe
+add name=0360201prayogo@ngurenrejo password=12345678 profile=pppoe4m/4m
+add name=ediks password=123456 profile=ded6 remote-address=192.168.11.32 \
+    service=pppoe
+add name=baldesbapoh password=123456 profile=ded10m remote-address=\
+    192.168.11.33 service=pppoe
+add name=kvtv password=123456 profile=kvtv remote-address=192.168.11.34 \
+    service=pppoe
+add name=samuji password=123456 profile=ded6 remote-address=192.168.11.35 \
+    service=pppoe
+add name=4011kpl password=123456 profile=kap200 remote-address=192.168.11.36 \
+    service=pppoe
+    
