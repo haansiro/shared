@@ -5727,11 +5727,11 @@ pon-onu-mng gpon-onu_1/1/7:7
 end
 write
 
-7.8 hariri jontro 
+7.8 hariri jontro ZTEGC89CAAB3
 ppp secret add name=008070hariri@jontro password=12345678 profile=pppoe3m/3m
 conf t
 interface gpon-olt_1/1/7
-onu 8 type ZTE-F660 sn 
+onu 8 type ZTE-F660 sn ZTEGC89CAAB3
 exit
 interface gpon-onu_1/1/7:8
   sn-bind enable sn
