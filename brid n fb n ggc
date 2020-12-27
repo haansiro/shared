@@ -1,0 +1,124 @@
+/interface bridge
+add name=bridge-top-kedung
+/interface vlan
+add interface=ether11 name=vlan701top vlan-id=701
+add interface=ether13 name=vlan701topngalor vlan-id=701
+/interface bridge port
+add bridge=bridge-top-kedung interface=vlan701top
+add bridge=bridge-top-kedung interface=vlan701topngalor
+
+/interface bridge
+add name=bridge-top-kedung
+/interface vlan
+add interface=ether9 name=vlan701top vlan-id=701
+add interface=ether9 name=vlan702topngalor vlan-id=702
+/interface bridge port
+add bridge=bridge-top-kedung interface=vlan701top
+add bridge=bridge-top-kedung interface=vlan702topngalor
+
+
+/ip firewall address-list
+add address=31.13.24.0/21 comment=FB list=Content
+add address=31.13.64.0/18 comment=FB list=Content
+add address=36.91.0.0/16 comment=FB list=Content
+add address=45.64.40.0/22 comment=FB list=Content
+add address=66.220.144.0/20 comment=FB list=Content
+add address=69.63.176.0/20 comment=FB list=Content
+add address=69.171.224.0/19 comment=FB list=Content
+add address=74.119.76.0/22 comment=FB list=Content
+add address=103.4.96.0/22 comment=FB list=Content
+add address=129.134.0.0/16 comment=FB list=Content
+add address=157.240.0.0/17 comment=FB list=Content
+add address=157.240.24.0/24 comment=FB list=Content
+add address=173.252.64.0/18 comment=FB list=Content
+add address=179.60.192.0/22 comment=FB list=Content
+add address=185.60.216.0/22 comment=FB list=Content
+add address=204.15.20.0/22 comment=FB list=Content
+add address=8.8.4.0/24 comment=Google list=Content
+add address=8.8.8.0/24 comment=Google list=Content
+add address=8.15.202.0/24 comment=Google list=Content
+add address=8.34.208.0/20 comment=Google list=Content
+add address=8.35.192.0/20 comment=Google list=Content
+add address=23.236.48.0/20 comment=Google list=Content
+add address=23.251.128.0/19 comment=Google list=Content
+add address=35.184.0.0/13 comment=Google list=Content
+add address=35.192.0.0/12 comment=Google list=Content
+add address=45.121.228.0/22 comment=Google list=Content
+add address=64.15.112.0/20 comment=Google list=Content
+add address=64.233.160.0/19 comment=Google list=Content
+add address=66.102.0.0/20 comment=Google list=Content
+add address=66.249.64.0/19 comment=Google list=Content
+add address=70.32.128.0/19 comment=Google list=Content
+add address=72.14.192.0/18 comment=Google list=Content
+add address=74.114.24.0/21 comment=Google list=Content
+add address=74.125.0.0/16 comment=Google list=Content
+add address=103.62.64.0/22 comment=Google list=Content
+add address=104.132.0.0/16 comment=Google list=Content
+add address=104.133.0.0/17 comment=Google list=Content
+add address=104.134.128.0/17 comment=Google list=Content
+add address=104.154.0.0/15 comment=Google list=Content
+add address=104.196.0.0/14 comment=Google list=Content
+add address=107.167.160.0/19 comment=Google list=Content
+add address=107.178.192.0/18 comment=Google list=Content
+add address=108.59.80.0/20 comment=Google list=Content
+add address=108.170.192.0/18 comment=Google list=Content
+add address=108.177.0.0/17 comment=Google list=Content
+add address=113.197.106.0/24 comment=Google list=Content
+add address=130.211.0.0/16 comment=Google list=Content
+add address=142.250.0.0/15 comment=Google list=Content
+add address=146.148.0.0/17 comment=Google list=Content
+add address=162.216.148.0/22 comment=Google list=Content
+add address=162.222.176.0/21 comment=Google list=Content
+add address=172.102.8.0/21 comment=Google list=Content
+add address=172.110.32.0/21 comment=Google list=Content
+add address=172.217.0.0/16 comment=Google list=Content
+add address=172.253.0.0/16 comment=Google list=Content
+add address=173.194.0.0/16 comment=Google list=Content
+add address=173.255.112.0/20 comment=Google list=Content
+add address=185.25.28.0/23 comment=Google list=Content
+add address=185.150.148.0/22 comment=Google list=Content
+add address=192.104.160.0/23 comment=Google list=Content
+add address=192.158.28.0/22 comment=Google list=Content
+add address=192.178.0.0/15 comment=Google list=Content
+add address=199.192.112.0/22 comment=Google list=Content
+add address=199.223.232.0/21 comment=Google list=Content
+add address=207.223.160.0/20 comment=Google list=Content
+add address=208.65.152.0/22 comment=Google list=Content
+add address=208.68.108.0/22 comment=Google list=Content
+add address=208.81.188.0/22 comment=Google list=Content
+add address=208.117.224.0/19 comment=Google list=Content
+add address=209.85.128.0/17 comment=Google list=Content
+add address=209.107.176.0/20 comment=Google list=Content
+add address=216.58.192.0/19 comment=Google list=Content
+add address=216.73.80.0/20 comment=Google list=Content
+add address=216.239.32.0/19 comment=Google list=Content
+add address=216.252.220.0/22 comment=Google list=Content
+add address=118.98.30.0/24 comment=Telkom list=Content
+add address=118.98.36.0/24 comment=Telkom list=Content
+add address=118.98.76.0/23 comment=Telkom list=Content
+add address=118.98.106.0/24 comment=Telkom list=Content
+add address=118.98.109.0/24 comment=Telkom list=Content
+add address=118.98.110.0/23 comment=Telkom list=Content
+add address=118.98.93.0/24 comment=Telkom list=Content
+add address=118.98.95.0/24 comment=Telkom list=Content
+add address=118.98.96.0/22 comment=Telkom list=Content
+add address=118.98.97.0/24 comment=Telkom list=Content
+add address=118.97.158.0/23 comment=Telkom list=Content
+add address=117.102.117.0/24 comment=BIZNET list=Content
+add address=182.253.60.0/24 comment=BIZNET list=Content
+add address=182.253.80.0/24 comment=BIZNET list=Content
+add address=182.253.220.0/24 comment=BIZNET list=Content
+add address=13.104.0.0/14 comment=Microsoft list=Content
+add address=www.youtube.com comment=YT list=JSN
+add address=m.youtube.com comment=YT list=JSN
+add address=redirector.c.youtube.com comment=YT list=JSN
+add address=redirector.googlevideo.com comment=YT list=JSN
+add address=redirector.gvt1.com comment=YT list=JSN
+add address=redirector.c.googlevideo.com comment=YT list=JSN
+add address=157.240.208.0/24 comment=FB list=JSN
+add address=103.80.80.128/26 comment="GGC JSN" list=JSN
+add address=203.207.55.0/24 comment="GGC CDIX" list=JSN
+add address=10.0.0.0/8 list=RFC-1918
+add address=192.168.0.0/16 list=RFC-1918
+add address=172.16.0.0/12 list=RFC-1918
+
