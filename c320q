@@ -5794,12 +5794,12 @@ pon-onu-mng gpon-onu_1/1/7:8
 end
 write
 
-7.9 paad jontro ZTEGC848C579
+7.9 paad jontro ZTEGC848C579 ZTEGC866BE9F
 
 ppp secret add name=009070paad@jontro password=12345678 profile=pppoe3m/3m
 conf t
 interface gpon-olt_1/1/7
-onu 9 type ZTE-F660 sn ZTEGC848C579
+onu 9 type ZTE-F660 sn ZTEGC866BE9F
 exit
 interface gpon-onu_1/1/7:9
   sn-bind enable sn
