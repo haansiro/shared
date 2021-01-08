@@ -1066,12 +1066,12 @@ pon-onu-mng gpon-onu_1/1/1:31
 end
 write
 
-1.32 diah jontro talun  ZTEGC8362CE6
+1.32 diah jontro talun  ZTEGC8362CE6 ZTEGCCA26E52
 
 ppp secret add name=0320101diah@jontrotalun password=12345678 profile=pppoe3m/3m
 conf t
 interface gpon-olt_1/1/1
-onu 32 type ZTE-F660 sn ZTEGC8362CE6
+onu 32 type ZTE-F660 sn ZTEGCCA26E52
 exit
 interface gpon-onu_1/1/1:32
   sn-bind enable sn
