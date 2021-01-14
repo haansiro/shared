@@ -8,3 +8,10 @@ forwad dst
 add action=dst-nat chain=dstnat comment=ard dst-address=192.168.3.223 dst-port=\
     8323 protocol=tcp to-addresses=192.168.0.201 to-ports=80
 add action=masquerade chain=srcnat dst-address=192.168.0.201
+
+/system scheduler
+add interval=1d name=auto-backup on-event=\
+    "/export compact file=autoscrip\r\
+    \n/system backup save name=autobk" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/12/2021 start-time=03:30:44
