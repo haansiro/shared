@@ -3,7 +3,7 @@ melihat sn modem show gpon onu baseinfo gpon-olt_1/1/1
 melihat redaman modem show pon power onu-rx gpon-olt_1/1/1
 melihat detail info modem show gpon onu detail-info gpon-onu_1/1/1:5
 
-menghapus modem
+menghapus modem xx
 con t
 interface gpon-olt_1/1/2
 no onu 38
@@ -4433,12 +4433,12 @@ pon-onu-mng gpon-onu_1/1/5:8
 end
 write
 
-5.9 mas farid ndari demang ZTEGC4E661F0
+5.9 mas farid ndari demang ZTEGC4E661F0 ZTEGCC406640
 
 ppp secret add name=0090501farid@ndari password=12345678 profile=pppoe5m/5m
 conf t
 interface gpon-olt_1/1/5
-onu 9 type ZTE-F660 sn ZTEGC4E661F0
+onu 9 type ZTE-F660 sn ZTEGCC406640
 exit
 interface gpon-onu_1/1/5:9
   sn-bind enable sn
