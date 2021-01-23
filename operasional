@@ -1,0 +1,797 @@
+add interval=4w2d name=coba on-event=" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon start-date=\
+    jan/22/2021 start-time=20:26:41
+
+queue simple add max-limit=4M/4M name=queue1 target=192.111.111.2/32
+queue simple set [find name=queue1] max-limit=2k/2k
+
+/queue simple
+add max-limit=3M/3M name="16. cctv haansiro" target=192.168.2.116/32
+add max-limit=3M/5M name="20. P Sudir Kepoh" priority=5/5 target=\
+    192.168.2.120/32
+add max-limit=4M/4M name="29. pak gunadi nguren" target=192.168.2.129/32
+add max-limit=4M/4M name="30. Ramidi siti rusmini rambutan" target=\
+    192.168.2.130/32
+add max-limit=16M/16M name="2136. EDY tekputih" target=192.168.2.136/32
+add max-limit=4M/5M name="35. Mb Endang / haryono kambang" target=\
+    192.168.2.135/32
+add max-limit=4M/4M name="38. mas tres rames" target=192.168.2.138/32
+add max-limit=4M/4M name="39. MH Landoh" target=192.168.2.139/32
+add max-limit=4M/6M name="40. kuntoyo ngandong" target=192.168.2.140/32
+add max-limit=2M/4M name="41. Rahman sabella sulikati tapen" priority=7/7 \
+    target=192.168.2.141/32
+add max-limit=5k/5k name="44. Wondo Kepoh" target=192.168.2.144/32
+add max-limit=4M/4M name="50. Mas Pur nguren" target=192.168.2.150/32
+add max-limit=2M/5M name="51. Mas rin ndanu" target=192.168.2.151/32
+add max-limit=7M/7M name="53. mas kalam jasem" target=192.168.2.153/32
+add max-limit=9M/9M name="61. BalaiDesa Tawangharjo" target="192.168.2.161\
+    /32,192.168.2.70/32,192.168.2.171/32,192.168.2.181/32,192.168.2.187/32\
+    "
+add max-limit=4M/4M name="63. fery etan" target=192.168.2.163/32
+add max-limit=2M/4M name="76. Agus Naim Tempel" target=192.168.2.176/32
+add max-limit=2M/4M name="77. mb jumiati rms" target=192.168.2.177/32
+add max-limit=4M/4M name="82. Bu Sri Kajar" target=192.168.2.182/32
+add max-limit=4M/4M name="87. pak wandi tapen" parent=\
+    "61. BalaiDesa Tawangharjo" target=192.168.2.187/32
+add max-limit=7M/7M name="88. Hendi nguren" target=192.168.2.188/32
+add max-limit=2M/4M name="96. Pak Karim Sambilawang" target=\
+    192.168.2.196/32
+add max-limit=4M/4M name=99. target=192.168.2.199/32
+add max-limit=7M/7M name="201. Pak Yasin Jetak" target=\
+    192.168.2.201/32,192.168.2.206/32
+add max-limit=7M/7M name="201 pak yasin" parent="201. Pak Yasin Jetak" \
+    target=192.168.2.201/32
+add max-limit=4M/4M name="202. Sudar tlutup" target=192.168.2.202/32
+add max-limit=6M/6M name="203  Mb Asti Tawang" target=192.168.2.203/32
+add max-limit=10M/10M name="204 YiAkek" target=192.168.2.204/32
+add max-limit=4M/4M name=205. target=192.168.2.205/32
+add max-limit=4M/4M name="206. Tonggo Yasin Jtak" parent=\
+    "201. Pak Yasin Jetak" target=192.168.2.206/32
+add max-limit=4M/4M name="208. Kartini Rms" target=192.168.2.208/32
+add max-limit=4M/4M name="209. Rukani Pjr" target=192.168.2.209/32
+add max-limit=4M/4M name="213. Pak Isom Tlutup" target=192.168.2.213/32
+add max-limit=5M/5M name="216. Mas Heppy Kajar" target=192.168.2.216/32
+add max-limit=4M/4M name="217. Pak Agus Mbenagung sawo" target=\
+    192.168.2.217/32
+add max-limit=5M/5M name="218. Endang Lestari Kajar" target=\
+    192.168.2.218/32
+add max-limit=4M/4M name="221. Mas Habib Trangkil" target=\
+    192.168.2.221/32
+add max-limit=6M/6M name="219 220 Supriono Siti dwex" target=\
+    192.168.2.219/32,192.168.2.220/32
+add max-limit=4M/4M name="222. Mbah Mundir" target=192.168.2.222/32
+add max-limit=4M/4M name="223. Pak Ngadi Tlutup" target=192.168.2.223/32
+add max-limit=4M/4M name="224. Mas Hamdan Tlutup" target=192.168.2.224/32
+add max-limit=4M/4M name="225. SD Tlogosari 02" target=192.168.2.225/32
+add max-limit=4M/4M name="228. Pak Tatak Ngulakan" target=\
+    192.168.2.228/32
+add max-limit=4M/4M name="226. Bu Ning Trangkil" target=192.168.2.226/32
+add max-limit=4M/4M name="227. Mbah Angga sucen" target=192.168.2.227/32
+add max-limit=6M/6M name="219. Supriono/Rebo" parent=\
+    "219 220 Supriono Siti dwex" target=192.168.2.219/32
+add max-limit=4M/4M name="215. aprisa varil krganyar" target=\
+    192.168.2.215/32
+add max-limit=4M/4M name="214. Wartono Nguren" target=192.168.2.214/32
+add max-limit=4M/4M name=210. target=192.168.2.210/32
+add max-limit=4M/4M name="211. Agus Jatiurip" priority=6/6 target=\
+    192.168.2.211/32 total-priority=6
+add max-limit=4M/4M name="212. Nardi Elektro" target=192.168.2.212/32
+add max-limit=3M/5M name="98. Pak Wiwid Langgen" target=192.168.2.198/32
+add max-limit=4M/4M name="97. Pos kampling" target=192.168.2.197/32
+add max-limit=4M/4M name="95. Mas rudi ngulakan" target=192.168.2.195/32
+add max-limit=3M/6M name="93. mbah udin gunung" target=\
+    192.168.2.193/32,192.168.2.194/32
+add max-limit=2M/4M name="193. Mbh udin gratis" parent=\
+    "93. mbah udin gunung" target=192.168.2.193/32
+add max-limit=3M/5M name="194. Mbh udin rumah" parent=\
+    "93. mbah udin gunung" target=192.168.2.194/32
+add max-limit=4M/4M name="92. Pak Gun Pagadaian" target=192.168.2.192/32
+add max-limit=5M/5M name="90. kies cell" target=192.168.2.190/32
+add max-limit=4M/4M name="89. " target=192.168.2.189/32
+add max-limit=4M/4M name="86. Mb Maya Gandong" target=192.168.2.186/32
+add max-limit=4M/4M name="84. Rusmanto Susi Mbagangan" target=\
+    192.168.2.184/32
+add max-limit=4M/4M name="85. pos rt4rw1 etan" target=192.168.2.185/32
+add max-limit=4M/4M name="81. kamituo karangturi" parent=\
+    "61. BalaiDesa Tawangharjo" target=192.168.2.181/32
+add max-limit=4M/4M name="83. agus b jnt" target=192.168.2.183/32
+add max-limit=4M/4M name="80. Hardoko Rambutan" target=192.168.2.180/32
+add max-limit=3M/5M name="78. pak ma'rup grup" target=\
+    192.168.2.178/32,192.168.2.179/32
+add max-limit=2M/4M name=bnagung parent="78. pak ma'rup grup" target=\
+    192.168.2.178/32
+add max-limit=2M/3M name=ndari parent="78. pak ma'rup grup" target=\
+    192.168.2.179/32
+add max-limit=2M/4M name="75. AAn Yusuf Mbagangan" target=\
+    192.168.2.175/32
+add max-limit=4M/4M name="71. Pak sis tawang" parent=\
+    "61. BalaiDesa Tawangharjo" target=192.168.2.171/32
+add max-limit=5M/8M name="72. Mas Hadi Ngalian" target=192.168.2.172/32
+add max-limit=5M/6M name="73. Widi Santoso tawang" target=\
+    192.168.2.173/32,192.168.2.73/32
+add max-limit=4M/5M name=widi parent="73. Widi Santoso tawang" target=\
+    192.168.2.173/32
+add max-limit=4M/4M name=tonggo parent="73. Widi Santoso tawang" target=\
+    192.168.2.73/32
+add max-limit=5M/5M name="74. MI Tapen" target=192.168.2.174/32
+add max-limit=4M/4M name="69. mimin nguren" priority=7/7 target=\
+    192.168.2.169/32
+add max-limit=2M/4M name="168. firdaus bangsal tluwuk" target=\
+    192.168.2.168/32
+add max-limit=3M/5M name="66. Pak Wawan Gudang" target=192.168.2.166/32
+add max-limit=7M/7M name="67. Dwex ppob" target=\
+    192.168.2.67/32,192.168.2.167/32
+add max-limit=1M/1M name="tonggo dwex" parent="67. Dwex ppob" target=\
+    192.168.2.67/32
+add max-limit=7M/7M name=dwex parent="67. Dwex ppob" target=\
+    192.168.2.167/32
+add max-limit=6M/6M name="64. Yusuf Zidan Ngandong" target=\
+    192.168.2.164/32
+add max-limit=2M/5M name="65. Pak Supadi gajah" target=192.168.2.165/32
+add max-limit=2M/4M name="162. SD tlogosari" target=192.168.2.162/32
+add max-limit=4M/4M name="59. bu rismiwati nguren" target=\
+    192.168.2.159/32
+add max-limit=4M/4M name="60. sri wahyuni krisik rambutan" target=\
+    192.168.2.160/32
+add max-limit=4M/4M name="58. mas kiko karangturi" target=\
+    192.168.2.158/32
+add max-limit=3M/4M name="57. Carik Sepapan" priority=5/5 target=\
+    192.168.2.157/32
+add max-limit=4M/4M name="55. wak arip landoh" target=192.168.2.155/32
+add max-limit=4M/4M name="56. king elektro" target=192.168.2.156/32
+add max-limit=5M/7M name="56. Pak Arya Ngulakan" target=192.168.2.149/32
+add max-limit=3M/5M name="54. mb aslamah" target=192.168.2.154/32
+add max-limit=4M/4M name="58. mb  tiya jnt" target=192.168.2.58/32
+add max-limit=4M/4M name="16. sokib jnt" target=192.168.2.16/32
+add max-limit=2M/5M name="52. Pak Trisno  klumpit" target=\
+    192.168.2.152/32
+add max-limit=3M/5M name="48. Bu Sri Mb Ita Kedalon" target=\
+    192.168.2.148/32
+add max-limit=4M/4M name="47. Mas Tegar Sucen" target=192.168.2.147/32
+add max-limit=4M/4M name="46. pur pangkalan" priority=5/5 target=\
+    192.168.2.146/32
+add max-limit=4M/4M name="45. Pak Man pjr" target=192.168.2.145/32
+add max-limit=4M/4M name="37. LN tawang" target=192.168.2.137/32
+add max-limit=4M/4M name="34. Mas Sugi Tawang" priority=4/4 target=\
+    192.168.2.134/32
+add max-limit=3M/6M name="33. Pak Jarwi" target=192.168.2.133/32
+add max-limit=2M/4M name="32. agus nardi swd" target=192.168.2.132/32
+add max-limit=5M/5M name="31. bela tapen free" target=192.168.2.131/32
+add max-limit=4M/4M name="31. tawang dwex" target=192.168.2.31/32
+add max-limit=3M/4M name="54. Pak lasi rms" target=192.168.2.54/32
+add max-limit=3M/6M name="08. mas arif tajung" target=192.168.2.108/32
+add max-limit=4M/4M name="28. mb sri karangturi" target=192.168.2.128/32
+add max-limit=4M/4M name="27. pak rifan masong" target=192.168.2.127/32
+add max-limit=3M/4M name="26. Warji Landoh" target=192.168.2.126/32
+add max-limit=4M/4M name="26. Mas Arfan/p suwardi nguren" target=\
+    192.168.2.26/32
+add max-limit=2M/4M name="25. pak selamet sinoman" target=\
+    192.168.2.125/32
+add max-limit=7M/7M name="24. Multi Beton" priority=5/5 target=\
+    192.168.2.124/32
+add max-limit=2M/5M name="23. MasUd Ngepung" target=192.168.2.123/32
+add max-limit=15M/15M name="22. Mas Andi pur" target=192.168.2.122/32
+add max-limit=4M/4M name="21. Afrizal aziz ngulaan" priority=5/5 target=\
+    192.168.2.121/32
+add max-limit=4M/6M name="19. soimah grup" target=\
+    192.168.2.119/32,192.168.2.200/32
+add max-limit=4M/4M name="18. mas safik rames" target=192.168.2.118/32
+add max-limit=4M/4M name="17. kardi jnt" target=192.168.2.117/32
+add max-limit=4M/4M name="15. Sirot bu" target=192.168.2.115/32
+add max-limit=4M/4M name="13. Mb Jum Tluwuk" target=192.168.2.113/32
+add max-limit=4M/4M name="12. Mb Nia Tawang" target=192.168.2.112/32
+add max-limit=2M/4M name="10. Bang toyo" target=\
+    192.168.2.110/32,192.168.2.111/32
+add max-limit=1M/3M name="10 toko bang toyo" parent="10. Bang toyo" \
+    target=192.168.2.110/32
+add max-limit=7M/7M name="218. MI Misbahul Ulum Sucen" priority=5/5 \
+    target=192.168.3.218/32
+add max-limit=1M/3M name="11 rmh bang toyo" parent="10. Bang toyo" \
+    target=192.168.2.111/32
+add max-limit=4M/4M name="70. pak carik tapen" parent=\
+    "61. BalaiDesa Tawangharjo" target=192.168.2.70/32
+add max-limit=11M/11M name="223. MI luthful ulum" priority=5/5 target=\
+    192.168.3.223/32
+add max-limit=25M/25M name="234. Yusuf Sucen" priority=5/5 target=\
+    192.168.3.234/32
+add max-limit=100M/140M name="229. Dvs bapoh" priority=4/4 target=\
+    192.168.3.229/32 total-priority=6
+add max-limit=10M/10M name="214. MANU Nggandong" priority=5/5 target=\
+    192.168.3.214/32
+add max-limit=2M/5M name="231. MI Alfattah" priority=5/5 target=\
+    192.168.3.231/32
+add max-limit=2M/4M name="232. MTS kholifah" priority=5/5 target=\
+    192.168.3.232/32
+add max-limit=70M/70M name="236. Bumdes krandan" priority=5/5 target=\
+    192.168.3.236/32
+add max-limit=2M/6M name="238. MI miftahul huda Ndoliko" priority=5/5 \
+    target=192.168.3.238/32
+add max-limit=10M/10M name="235. MI GUNTING" priority=5/5 target=\
+    192.168.3.235/32
+add max-limit=10M/10M name="215. MAMU Swd" priority=5/5 target=\
+    192.168.3.115/32
+add max-limit=2M/7M name="217. MtsAsyariyyah" priority=5/5 target=\
+    192.168.3.217/32
+add max-limit=5M/8M name="213. SPPBE Ngulakan" priority=5/5 target=\
+    192.168.3.213/32
+add max-limit=10M/10M name="216. MI MMU Jontro" priority=5/5 target=\
+    192.168.3.216/32
+add max-limit=7M/7M name="16. Baldes sucen" priority=5/5 target=\
+    192.168.3.16/32
+add max-limit=27M/27M name="219. Kopral" target=192.168.3.219/32
+add max-limit=4M/4M name="220. Mi Dekem" target=192.168.3.220/32
+add max-limit=9M/9M name="221. YKMU Sinoman" target=192.168.3.221/32
+add max-limit=4M/7M name="222. Mts Tasib Kedalon" target=192.168.3.222/32
+add max-limit=4M/6M name="241. SDn Pasucen 02" target=192.168.3.241/32
+add max-limit=4M/4M name="224. modin tlutup" priority=5/5 target=\
+    192.168.3.224/32
+add max-limit=7M/7M name="225. Baldes Ndari" priority=5/5 target=\
+    192.168.3.225/32,192.168.3.125/32
+add max-limit=7M/7M name=baldesNdary parent="225. Baldes Ndari" priority=\
+    5/5 target=192.168.3.225/32
+add max-limit=5M/5M name="pak aly" parent="225. Baldes Ndari" priority=\
+    5/5 target=192.168.3.125/32
+add max-limit=4M/4M name="226. SDN Ndari 01" priority=5/5 target=\
+    192.168.3.226/32
+add max-limit=4M/4M name="227. SDN Ndari 02" priority=5/5 target=\
+    192.168.3.227/32
+add max-limit=2M/4M name="228............SDN Mulyoharjo 01" priority=5/5 \
+    target=192.168.3.228/32
+add max-limit=2M/4M name="242. SD NgurenSiti" priority=5/5 target=\
+    192.168.3.242/32
+add max-limit=42M/42M name="244.................Heri Hastina" priority=\
+    5/5 target=192.168.3.244/32
+add max-limit=5M/6M name="245. SMP Abayasha Tlutub" priority=5/5 target=\
+    192.168.3.245/32
+add max-limit=10M/10M name="248. SDN Tawangharjo" priority=5/5 target=\
+    192.168.3.248/32,192.168.5.229/32
+add max-limit=10M/10M name="248. SD" parent="248. SDN Tawangharjo" \
+    priority=5/5 target=192.168.3.248/32
+add max-limit=2M/4M name="249. SDN Mbapoh" priority=5/5 target=\
+    192.168.3.249/32
+add max-limit=10M/12M name="210. Al Bustan" priority=5/5 target=\
+    192.168.3.210/32
+add max-limit=10M/10M name="10. teguhGroup" priority=5/5 target=\
+    192.168.3.10/32
+add max-limit=10M/10M name="11. CCR1009_jnt" priority=5/5 target=\
+    192.168.3.11/32
+add max-limit=4M/4M name="211. SDN Sukoharjo 03" priority=5/5 target=\
+    192.168.3.211/32
+add max-limit=10M/10M name="212. Mts MN Njugo" priority=5/5 target="192.16\
+    8.3.212/32,192.168.3.112/32,192.168.2.143/32,192.168.3.147/32,192.168.\
+    3.247/32,192.168.3.111/32,192.168.2.243/32"
+add disabled=yes max-limit=2k/2k name="3212. MI_MTs_lokal_off" parent=\
+    "212. Mts MN Njugo" priority=5/5 target=192.168.3.212/32 time=\
+    13h-6h,sun,mon,tue,wed,thu,fri,sat
+add max-limit=5M/5M name="3212. MI_MTs_lokal" parent="212. Mts MN Njugo" \
+    priority=5/5 target=192.168.3.212/32
+add max-limit=5M/5M name="3111. server" parent="212. Mts MN Njugo" \
+    priority=5/5 target=192.168.3.111/32
+add max-limit=2M/7M name="230. Mts NI Sanglur" priority=5/5 target=\
+    192.168.3.230/32,192.168.3.130/32
+add max-limit=2M/4M name="233. SD Suwaduk" priority=5/5 target=\
+    192.168.3.233/32
+add max-limit=2M/4M name="130. Pak hadi sutarno" parent=\
+    "230. Mts NI Sanglur" priority=5/5 target=192.168.3.130/32
+add max-limit=2M/5M name="230. Mts" parent="230. Mts NI Sanglur" \
+    priority=5/5 target=192.168.3.230/32
+add max-limit=5M/5M name="240. MI Sanglur" priority=5/5 target=\
+    192.168.3.240/32
+add max-limit=2M/4M name="246. SD Trangkilan" priority=5/5 target=\
+    192.168.3.246/32
+add max-limit=5M/5M name="239. Masjid Al-mubarok ndari" priority=2/2 \
+    target=192.168.3.239/32
+add max-limit=4M/4M name="124. p slamet swd" parent="224. modin tlutup" \
+    target=192.168.3.124/32
+add max-limit=5M/5M name="61. baldes tawang" parent=\
+    "61. BalaiDesa Tawangharjo" target=192.168.2.161/32
+add max-limit=40M/40M name="251. Office Haans" target=\
+    192.168.2.251/32,192.168.3.251/32,192.168.4.251/32,192.168.5.251/32
+add max-limit=2M/4M name="115. Pak Busroni SWD" parent="215. MAMU Swd" \
+    priority=5/5 target=192.168.3.115/32
+add max-limit=3M/3M name="3143. ra njugo" parent="212. Mts MN Njugo" \
+    target=192.168.3.143/32
+add max-limit=5M/5M name="90. dul rms" target=192.168.2.90/32
+add max-limit=4M/4M name="97. pos rt4rw1 jontro" target=192.168.2.97/32
+add max-limit=4M/4M name="18. Rms2" target=192.168.2.18/32
+add max-limit=8M/8M name="12. Lek Naufal" target=192.168.2.12/32
+add max-limit=6M/7M name="07. fitri faisal" target=192.168.2.7/32
+add max-limit=6M/6M name="37. mas endik nguren" target=192.168.2.37/32
+add max-limit=13M/13M name="236.Agus mie karanganyar" target=\
+    192.168.2.36/32
+add max-limit=7M/7M name="2.35 . Ptg Trangkilan" target=192.168.2.35/32
+add max-limit=4M/4M name="38. Mulyadi krgturi" target=192.168.2.38/32
+add max-limit=4M/4M name="91. antok tapen" target=192.168.2.191/32
+add max-limit=4M/4M name="22. Surono ngulakan" priority=5/5 target=\
+    192.168.2.22/32
+add max-limit=4M/4M name="5229. Husain sd tawag" parent=\
+    "248. SDN Tawangharjo" target=192.168.5.229/32
+add max-limit=4M/6M name="06. udin sppn" target=192.168.2.106/32
+add max-limit=4M/4M name="229. Adik Kajar" target=192.168.2.229/32
+add max-limit=4M/4M name="230. Mas Afif Tawang" target=192.168.2.230/32
+add max-limit=4M/4M name="231. Kang Kardi Ndari" target=192.168.2.231/32
+add max-limit=4M/4M name="232. Mas Agung Kajar" target=192.168.2.232/32
+add max-limit=4M/4M name="233. Pak Parno Trangkil" target=\
+    192.168.2.233/32
+add max-limit=4M/4M name="234. Pak Heri Ndari" target=192.168.2.234/32
+add max-limit=4M/4M name="235. Mas Juned Trangkilan sawo" target=\
+    192.168.2.235/32
+add max-limit=4M/4M name="237. Mas Adib karanganyar lor" target=\
+    192.168.2.237/32
+add max-limit=4M/4M name="236. Toni Ketanen" target=192.168.2.236/32
+add max-limit=4M/4M name="238. Aprisa krganyar lor" target=\
+    192.168.2.238/32
+add max-limit=4M/4M name="239. Sareh Pjr" target=192.168.2.239/32
+add max-limit=4M/4M name="240. Sukardi Pjr wowok" target=192.168.2.240/32
+add max-limit=4M/4M name="241. Wak Arip New" target=192.168.2.241/32
+add max-limit=4M/4M name="242. Cipto Mukidi Kajar wowok" target=\
+    192.168.2.242/32
+add max-limit=3M/3M name="244. Mas Gik Jnt" target=192.168.2.244/32
+add max-limit=6M/6M name="245. MA Misbahul Ulum Sucen" target=\
+    192.168.2.245/32
+add max-limit=4M/4M name="246. Wahyu Kolan" target=192.168.2.246/32
+add max-limit=1300k/1300k name="247. Pak musa" target=192.168.2.247/32
+add max-limit=5M/5M name="248. Jabuddin Trangkilan" target=\
+    192.168.2.248/32
+add max-limit=10M/10M name="249. Hendri Tawang" target=192.168.2.249/32
+add max-limit=14M/14M name="6137. SMK GAMA MGYS" target=192.168.6.137/32
+add max-limit=14M/14M name="6138. Rumah Gama" target=192.168.6.138/32
+add max-limit=10M/10M name="6153. Dony Kemiri" target=192.168.6.153/32
+add max-limit=26M/26M name="6152. kopraal" target=192.168.6.152/32
+add max-limit=2M/5M name="6177. Sarkub" target=192.168.6.177/32
+add max-limit=2M/5M name="6129. huda cep" target=192.168.6.129/32
+add max-limit=4M/4M name="6172. har cipeng" target=192.168.6.172/32
+add max-limit=4M/4M name="6196. Pak Totok" target=192.168.6.196/32
+add max-limit=4M/4M name="6197. Pak Bowo" target=192.168.6.197/32
+add max-limit=6M/6M name="6115. baldes bulumanis kidul" target=\
+    192.168.6.115/32
+add max-limit=4M/4M name="6117. Dimas Haryanto Cabak" target=\
+    192.168.6.117/32
+add max-limit=1M/1M name="6140. keysa cabak" target=192.168.6.140/32
+add max-limit=4M/4M name="6139. Surono Haryanto" target=192.168.6.139/32
+add max-limit=4M/8M name="188. Aman Agung" target=\
+    192.168.6.188/32,192.168.6.190/32
+add max-limit=4M/8M name=agung parent="188. Aman Agung" target=\
+    192.168.6.188/32
+add max-limit=4M/8M name=hamim parent="188. Aman Agung" target=\
+    192.168.6.190/32
+add comment=--------------GW6--------------------- max-limit=4M/5M name=\
+    "6108. Sd karangwage" target=192.168.6.108/32
+add max-limit=5M/5M name="6144. Rizal karangwage" target=192.168.6.144/32
+add max-limit=7M/7M name="6145. Adi Cabak" target=192.168.6.145/32
+add max-limit=5M/7M name="6160. Pak Wawan Trangkil" target=\
+    192.168.6.160/32
+add max-limit=8M/8M name="90. Dian ADM" target="192.168.2.252/32,192.168.3\
+    .252/32,192.168.4.252/32,192.168.5.252/32,192.168.6.252/32,192.168.7.2\
+    52/32,192.168.8.252/32,192.168.9.252/32"
+add max-limit=2M/4M name="200. soimah2" parent="19. soimah grup" target=\
+    192.168.2.200/32
+add max-limit=5M/5M name="43 pak subhan jugo" parent="212. Mts MN Njugo" \
+    target=192.168.2.143/32
+add max-limit=2M/4M name="2243 mi jugo" parent="212. Mts MN Njugo" \
+    target=192.168.2.243/32
+add max-limit=6M/6M name="220. Siti" parent="219 220 Supriono Siti dwex" \
+    target=192.168.2.220/32
+add max-limit=2M/5M name="19. Mb Soimah Tajung" parent="19. soimah grup" \
+    target=192.168.2.119/32
+add max-limit=4M/4M name="247. P Agus Jugo" parent="212. Mts MN Njugo" \
+    priority=5/5 target=192.168.3.247/32,192.168.3.147/32
+add max-limit=10M/50M name="100. Gratis/Crew haans" target=\
+    192.168.5.100/32,192.168.4.100/32,192.168.3.100/32,192.168.2.100/32
+add max-limit=2M/4M name="111. " target=192.168.5.111/32
+add max-limit=4M/8M name="112. bu lilik gandong" priority=5/5 target=\
+    192.168.5.112/32
+add max-limit=2M/6M name="113. Pak Huri Trangkilan" target=\
+    192.168.5.113/32
+add max-limit=4M/4M name="114. Pak Pri koramil kajar" target=\
+    192.168.5.114/32
+add max-limit=2M/4M name="160. suroso ttp" target=192.168.5.160/32
+add max-limit=4M/4M name="162. saiful MI sucen" target=192.168.5.162/32
+add max-limit=2k/4k name="161. lek supriyanto ngandong" target=\
+    192.168.5.161/32
+add max-limit=3k/3k name="163. wulandari tapen" target=192.168.5.163/32
+add max-limit=3M/3M name="164. muis jetak" target=192.168.5.164/32
+add max-limit=2M/5M name="165. Pak Sarwi Klumpit" target=192.168.5.165/32
+add max-limit=2M/6M name="166  Mas imam runting" target=192.168.5.166/32
+add max-limit=4M/4M name="127. dardi umar wowok" target=192.168.5.127/32
+add max-limit=2M/4M name="128. Agus bapoh" target=192.168.5.128/32
+add max-limit=2M/4M name="129. ...............K7Cell" target=\
+    192.168.5.129/32
+add max-limit=2M/5M name="115. Pak Muhlis Koramil" target=\
+    192.168.5.115/32
+add max-limit=4M/4M name="116. Siti masudah itmasta" target=\
+    192.168.5.116/32
+add max-limit=2M/4M name="118. Mas Abdullah Rmbtan" target=\
+    192.168.5.118/32
+add max-limit=4M/4M name="117. ............." priority=5/5 target=\
+    192.168.5.117/32
+add max-limit=4M/4M name="110. Anom Pokis Rms" target=192.168.5.110/32
+add max-limit=2M/4M name="108. Minan Ggeneng" target=192.168.5.108/32
+add max-limit=2M/4M name=109..... target=192.168.5.109/32
+add max-limit=5M/5M name="107. Pak Nursid Ngandong" target=\
+    192.168.5.107/32
+add max-limit=2M/4M name="106. Masjid Trangkilan" target=192.168.5.106/32
+add max-limit=6M/6M name="134. Pak Juned Tawang" target=192.168.5.134/32
+add max-limit=2M/5M name="159. Pak sulis lahar" target=192.168.5.159/32
+add max-limit=4M/4M name="167. Siswanto ngatelan" target=192.168.5.167/32
+add max-limit=4M/4M name="67. Pak Ngatawi ngulakan" target=\
+    192.168.5.67/32
+add max-limit=4M/4M name="38. p mito" target=192.168.5.38/32
+add max-limit=2M/4M name="169.  Mas Anggi rames" target=192.168.5.169/32
+add max-limit=6M/6M name="170...............Mas Zakky Swd" target=\
+    192.168.5.170/32
+add max-limit=3M/7M name="171. Mas Yogi ngandong" target=192.168.5.171/32
+add max-limit=2M/4M name="172. c Mb Rinta Tlutup" target=192.168.5.172/32
+add max-limit=2M/4M name="173..............Bu Haryati kambang" target=\
+    192.168.5.173/32
+add max-limit=4M/4M name="174. Umar Landoh" target=192.168.5.174/32
+add max-limit=4M/7M name="175. Mas Waito Gandong" target=192.168.5.175/32
+add max-limit=4M/4M name="168. Yi Munadi" target=192.168.5.168/32
+add max-limit=5M/5M name="120. Evada Mas Rosyad" target=192.168.5.120/32
+add max-limit=4M/4M name="121. Nikmah" target=192.168.5.121/32
+add max-limit=2M/4M name="131. Mas Andre binagung" target=\
+    192.168.5.131/32
+add max-limit=2M/4M name=132..... target=192.168.5.132/32
+add max-limit=4M/4M name="130. Wowok Pjr" target=192.168.5.130/32
+add max-limit=2M/4M name="136. pak ishaq ngulaan" target=192.168.5.136/32
+add max-limit=2M/5M name="137..............kg aly pjr" target=\
+    192.168.5.137/32
+add max-limit=4M/4M name="138  pak diman" target=192.168.5.138/32
+add max-limit=4M/5M name="139  pak jo koroyo" target=192.168.5.139/32
+add max-limit=6M/7M name="122. Bang Jay Group" target=\
+    192.168.5.122/32,192.168.5.150/32
+add max-limit=3M/7M name="140. Pilip Karanganyar" target=192.168.5.140/32
+add max-limit=7M/7M name="141. Mas Yudi Nguren" target=192.168.5.141/32
+add max-limit=5M/7M name="142.,,,,,,,,,,,,,,,,,,Aris nguren" target=\
+    192.168.5.142/32
+add max-limit=5M/10M name="143. Pemdes Klumpit" target=\
+    192.168.5.144/32,192.168.5.145/32,192.168.5.146/32,192.168.5.147/32
+add max-limit=5M/10M name="145. Baldes" parent="143. Pemdes Klumpit" \
+    target=192.168.5.145/32
+add max-limit=5M/8M name="146. Ruslan" parent="143. Pemdes Klumpit" \
+    target=192.168.5.146/32
+add max-limit=5M/8M name="147. Pak Yanto" parent="143. Pemdes Klumpit" \
+    target=192.168.5.147/32
+add max-limit=2M/4M name="144. pak jasri tuwowo klumpit" parent=\
+    "143. Pemdes Klumpit" target=192.168.5.144/32
+add max-limit=8M/8M name="133. Mb rofik sumbermulyo" target=\
+    192.168.5.133/32
+add max-limit=4M/4M name="124. Mas Subki rames" target=192.168.5.124/32
+add max-limit=3M/4M name="125. Pak kabul nguren" target=192.168.5.125/32
+add max-limit=3M/4M name="126. Aris Diman Ngulakan" priority=4/4 target=\
+    192.168.5.126/32
+add max-limit=2M/4M name="119. Wirausaha" target=192.168.5.119/32
+add max-limit=4M/4M name="135. Mbk puput ngurensiti" target=\
+    192.168.5.135/32
+add max-limit=4M/4M name="148. .............ak wage swd" priority=5/5 \
+    target=192.168.5.148/32
+add max-limit=2M/4M name="149. SD Wedarijaksa 03" priority=5/5 target=\
+    192.168.5.148/32
+add max-limit=4M/4M name="154. Pak Salim Sate Kadilangu" priority=5/5 \
+    target=192.168.5.154/32
+add max-limit=2M/4M name="156. Pak Rasup Ngandong" priority=5/5 target=\
+    192.168.5.156/32
+add max-limit=2M/4M name="155. Gilang RT Koroyo" priority=5/5 target=\
+    192.168.5.155/32
+add max-limit=2M/2500k name="157. Yi Amari Tapen" priority=5/5 target=\
+    192.168.5.157/32
+add max-limit=4M/4M name="158. Adine wardi Ngawen" priority=5/5 target=\
+    192.168.5.158/32
+add max-limit=2k/4k name="152. Kakak Kentos" priority=5/5 target=\
+    192.168.5.152/32
+add max-limit=2M/4M name="151. kentos klumpit" priority=5/5 target=\
+    192.168.5.151/32
+add max-limit=4M/4M name="153. Pokes aris" priority=5/5 target=\
+    192.168.5.153/32
+add max-limit=2M/4M name="143. Adit anake Carik klumpit" target=\
+    192.168.5.143/32
+add max-limit=2M/4M name="5241. Pak Rony swd" target=192.168.5.241/32
+add max-limit=4M/6M name="176. Bu Karyati ngandong" target=\
+    192.168.5.176/32
+add max-limit=2M/4M name="177.TK Rames" target=192.168.5.177/32
+add max-limit=4M/4M name=178.,,,,,,, target=192.168.5.178/32
+add max-limit=4M/4M name="179. Mas Didik Tawang" target=192.168.5.179/32
+add max-limit=4M/4M name="180. RA Kajar Group" target=\
+    192.168.5.180/32,192.168.5.80/32
+add max-limit=4M/4M name="181. DN Karanganyar" target=192.168.5.181/32
+add max-limit=4M/4M name="182. Bu Rosmi Melly" target=192.168.5.182/32
+add max-limit=4M/4M name="183. Lek Untung pjr" target=192.168.5.183/32
+add max-limit=7M/7M name="184. lek karno pjr" priority=5/5 target=\
+    192.168.5.184/32
+add max-limit=4M/4M name="185. Muhlis Lia classic" target=\
+    192.168.5.185/32
+add max-limit=4M/4M name="194. Ripai Tlutub" target=192.168.5.194/32
+add max-limit=4M/4M name="187. Hasan Nguren" target=192.168.5.187/32
+add max-limit=7M/7M name="189. bu fetty trangkil" target=192.168.5.189/32
+add max-limit=4M/4M name="190. Solhadi isi ulang tlutub" target=\
+    192.168.5.190/32
+add max-limit=2M/4M name="191. Suroso Ngepung" target=192.168.5.191/32
+add max-limit=2M/4M name="192. Pak Santoso Ngandong" target=\
+    192.168.5.192/32
+add max-limit=4M/4M name="193. .........Pak mashuri ndari" target=\
+    192.168.5.193/32
+add max-limit=5M/5M name="122. Bang jay" parent="122. Bang Jay Group" \
+    target=192.168.5.122/32
+add max-limit=5M/5M name="150. Bang jay pertelon" parent=\
+    "122. Bang Jay Group" target=192.168.5.150/32
+add max-limit=5M/5M name="195. mb tatik gandong" target=192.168.5.195/32
+add max-limit=2M/4M name="196. mb widy ngeneng" target=192.168.5.196/32
+add max-limit=5M/7M name="197. Danang ngulakan" target=192.168.5.197/32
+add max-limit=3M/5M name="198. Carik Klumpit" target=192.168.5.198/32
+add max-limit=3M/4M name="199. pokis new" target=192.168.5.199/32
+add max-limit=4M/4M name="5213. Pak Wanto landoh" target=192.168.5.213/32
+add max-limit=3M/4M name="5214. CCTV Masjid Landoh" target=\
+    192.168.5.214/32
+add max-limit=3M/4M name="5212. Pak Sutaji landoh" target=\
+    192.168.5.212/32
+add max-limit=5M/5M name="5209. Koramil Trangkil" target=192.168.5.209/32
+add max-limit=5M/5M name="5208. Koramil Ndari" target=192.168.5.208/32
+add max-limit=4M/4M name="5207.Pak Mualim Trangkil" target=\
+    192.168.5.207/32
+add max-limit=3M/4M name="5215. Mertua LekWowok" target=192.168.5.215/32
+add max-limit=3M/4M name="5216. Yono landoh" target=192.168.5.216/32
+add max-limit=6M/6M name="5221. Mas Agung Panggung" target=\
+    192.168.5.221/32
+add max-limit=3M/4M name="5218. Prapatan_Rames" target=192.168.5.218/32
+add max-limit=3M/4M name="5219. MI Rames" target=192.168.5.219/32
+add max-limit=4M/4M name="5220. pak izam trangkilan sawo" target=\
+    192.168.5.220/32
+add max-limit=4M/4M name="5222. .........Pak Nasih ndari" target=\
+    192.168.5.222/32
+add max-limit=4M/4M name="5223. Pak Kasturi rms" target=192.168.5.223/32
+add max-limit=4M/4M name="5224. Bu Nur Aisyah rms" target=\
+    192.168.5.224/32
+add max-limit=4M/4M name="5225. Pak Sugiono rms" target=192.168.5.225/32
+add max-limit=4M/4M name="5226. Bu Herlin rms" target=192.168.5.226/32
+add max-limit=4M/4M name="5227. Pak Husnan rms" target=192.168.5.227/32
+add max-limit=4M/4M name="5228. Pak Santo rms" target=192.168.5.228/32
+add max-limit=4M/4M name="5231. Pak Jasri tawang" target=192.168.5.231/32
+add max-limit=7M/7M name="5232. Mas Dani jugo" target=192.168.5.232/32
+add max-limit=4M/4M name="5233. Mardam JNT" priority=6/6 target=\
+    192.168.5.233/32
+add max-limit=6M/6M name="5217. Suto Grup" target=\
+    192.168.5.230/32,192.168.5.217/32,192.168.5.210/32
+add max-limit=4M/4M name="5234. MasEva Tlutup" target=192.168.5.234/32
+add max-limit=4k/4k name="5235. Aris Tlutup" target=192.168.5.235/32
+add max-limit=30M/30M name="5237. Zaito Caffe Mas Aris" priority=6/6 \
+    target=192.168.5.237/32
+add max-limit=8M/8M name="5236. Mas Aris Jnt Home" target=\
+    192.168.5.236/32
+add max-limit=4M/4M name="5238. pak kiswadi landoh" target=\
+    192.168.5.238/32
+add max-limit=4M/4M name="5239. Pak muslik jtk" target=192.168.5.239/32
+add max-limit=4M/4M name="5240. Pak Rahmad Pjr" target=192.168.5.240/32
+add max-limit=4M/4M name="5242. Mas Pakur rsk" target=192.168.5.242/32
+add max-limit=4M/4M name="5243. Laqudun Sucen" target=192.168.5.243/32
+add max-limit=2M/2M name="5244. Pak Suwono Tltp" target=192.168.5.244/32
+add max-limit=6M/6M name="5245. Pak Wahid Tlutup" target=192.168.5.245/32
+add max-limit=5M/5M name="5246. P aly Pol Krandan" target=\
+    192.168.5.246/32
+add max-limit=4M/4M name="5247. Pak Irham Sodiq" target=192.168.5.247/32
+add max-limit=4M/4M name="5247. Ulil Albab Ndlangu" target=\
+    192.168.5.248/32
+add max-limit=4M/4M name=5249. target=192.168.5.249/32
+add max-limit=6M/6M name="5217. SutoCell" parent="5217. Suto Grup" \
+    target=192.168.5.217/32
+add max-limit=3M/3M name="5230. suto2" parent="5217. Suto Grup" target=\
+    192.168.5.230/32
+add max-limit=2M/2M name="5210. suto3" parent="5217. Suto Grup" target=\
+    192.168.5.210/32
+add max-limit=4M/4M name="120. SDN Kadilangu" priority=7/7 target=\
+    192.168.4.120/32
+add max-limit=2M/4M name="119. Pak Agus Klopo" priority=7/7 target=\
+    192.168.4.119/32
+add max-limit=4M/7M name="139. Mbahjo baos" target=192.168.4.139/32
+add max-limit=5M/10M name="136. YSU Geneng" target=192.168.4.136/32
+add max-limit=4M/4M name="152. ,,,,,,,,,,,,Suroso Triwil" priority=5/5 \
+    target=192.168.4.152/32
+add max-limit=7M/7M name="155. Mbk dewi trangkilan" target=\
+    192.168.4.155/32
+add max-limit=5M/10M name="144. YSU Asp" target=192.168.4.144/32
+add max-limit=6M/6M name="170. SD Landoh" target=192.168.4.170/32
+add max-limit=2k/4k name="154. Kopral kalangan" target=192.168.4.154/32
+add max-limit=3M/7M name="153. budi mbenagung" target=192.168.4.153/32
+add max-limit=5M/5M name="169. Ayuk trangkilan" target=192.168.4.169/32
+add max-limit=5M/8M name="146. Pak Abad" target=\
+    192.168.4.146/32,192.168.4.147/32,192.168.5.188/32
+add max-limit=4M/4M name="142. Mbk musfiatun" priority=6/6 target=\
+    192.168.4.142/32
+add max-limit=2M/4M name="145. mbk endang kepoh" target=192.168.4.145/32
+add max-limit=4M/8M name="148. Pemdes Asemapan" target=\
+    192.168.4.148/32,192.168.4.196/32
+add max-limit=7M/7M name="128. Fcomp Group" target=\
+    192.168.4.128/32,192.168.4.149/32
+add max-limit=4M/4M name="116. Aris trangkil" target=192.168.4.116/32
+add max-limit=5M/7M name="118. Pak Samadi Trangkilan" target=\
+    192.168.4.118/32
+add max-limit=5M/5M name="117. Zada Gyn" target=192.168.4.117/32
+add max-limit=2M/6M name="114..............Qomar gyn" target=\
+    192.168.4.114/32
+add max-limit=8M/8M name="133. Pak istiadi trangkilan" target=\
+    192.168.4.133/32
+add max-limit=4M/7M name="156. P Kawi" target=\
+    192.168.4.156/32,192.168.4.166/32
+add max-limit=2M/6M name="156. home" parent="156. P Kawi" target=\
+    192.168.4.156/32
+add max-limit=2M/6M name="166. gudang" parent="156. P Kawi" target=\
+    192.168.4.166/32
+add max-limit=4M/4M name="163. Pak eko tlutup" target=192.168.4.163/32
+add max-limit=2M/4M name="164. Sumit Sppn" target=192.168.4.164/32
+add max-limit=5M/5M name="160. Sawo mbenagung" priority=4/4 target=\
+    192.168.4.160/32
+add max-limit=2M/4M name="157 Bidan ning genengmulyo" target=\
+    192.168.4.157/32
+add max-limit=2M/4M name="197. suroso kajar" target=192.168.4.197/32
+add max-limit=2M/4M name="199. " target=192.168.4.199/32
+add max-limit=33M/33M name="178. Mas UD Trangkilan" priority=5/5 target=\
+    192.168.4.178/32
+add max-limit=5M/5M name="180. Ymhtar" target=192.168.4.180/32
+add max-limit=4M/4M name="177. Pak tofa tlutup" target=192.168.4.177/32
+add max-limit=1M/3M name="127. Pak sodik" target=192.168.4.127/32
+add max-limit=2M/5M name="194. MI TU karanganyar" target=192.168.4.194/32
+add max-limit=4M/4M name="195. Suroso lahar" target=192.168.4.195/32
+add max-limit=3M/7M name="196. Perangkat Asp" parent=\
+    "148. Pemdes Asemapan" target=192.168.4.196/32
+add max-limit=2M/4M name="193. suroso trangkil" target=192.168.4.193/32
+add max-limit=2M/4M name="192. masjid jetak" target=192.168.4.192/32
+add max-limit=4M/4M name="182. Habib fast phone" target=192.168.4.182/32
+add max-limit=2M/4M name="184. c junet jetak" target=192.168.4.184/32
+add max-limit=4M/4M name="103. Pak Budi koramil" target=192.168.4.103/32
+add max-limit=7M/7M name="109. UD. Makaryo" target=192.168.4.109/32
+add max-limit=18M/18M name="111. Aman Blw Group" target=\
+    192.168.4.111/32,192.168.4.211/32
+add max-limit=5M/6M name="112. Pemdes Landoh" target=\
+    192.168.4.112/32,192.168.4.179/32,192.168.4.198/32,192.168.5.211/32
+add max-limit=7M/7M name="113. ............" priority=5/5 target=\
+    192.168.4.113/32 total-priority=5
+add comment="-----------pindah gw 4-------------------" max-limit=5M/5M \
+    name="110. Lek Sukir" target=192.168.4.10/32
+add max-limit=4M/4M name="106. Pak Topo Tapen" target=192.168.4.106/32
+add max-limit=2M/4M name="108. Yunus blw" target=192.168.4.108/32
+add max-limit=2M/4M name="115. SDN Bangsal" target=192.168.4.115/32
+add max-limit=2M/4M name="121. c Pak Galih sppn" target=192.168.4.121/32
+add max-limit=2M/4M name="122. SD Tlutup" target=192.168.4.122/32
+add max-limit=2M/4M name="123. Mb amanda GYn" target=192.168.4.123/32
+add max-limit=3M/7M name="124. mas nung ngeneng" target=192.168.4.124/32
+add max-limit=2k/5k name="125. Mas Agus Kepoh" target=192.168.4.125/32
+add max-limit=2M/4M name="126. SDN trangkil 04" target=192.168.4.126/32
+add max-limit=4M/5M name="130. Pak Bambang Mbenagung" target=\
+    192.168.4.130/32
+add max-limit=4M/4M name="131. Pak Budi PG Trangkil" target=\
+    192.168.4.131/32
+add max-limit=2M/4M name="132. Pak Bahtiar" target=192.168.4.132/32
+add max-limit=4M/4M name="134. Pak Mintarjo" target=192.168.4.134/32
+add max-limit=5M/7M name="135. Baldes trangkilan" target=192.168.4.135/32
+add max-limit=3M/5M name="137. ....." target=192.168.4.137/32
+add max-limit=2M/4M name="138. BaitulMuttaqin mbenagung" target=\
+    192.168.4.138/32
+add max-limit=4M/4M name="140. Lek dikin Tlutup" target=192.168.4.140/32
+add max-limit=4M/4M name="141. ..............Ptg Tlutub" target=\
+    192.168.4.141/32
+add max-limit=2M/4M name="143. Joko Trangkil" target=192.168.4.143/32
+add max-limit=3M/6M name="150. Bu Eko Asempapan" priority=5/5 target=\
+    192.168.4.150/32
+add max-limit=2M/4M name="151. Lelono" target=192.168.4.151/32
+add max-limit=4M/4M name="158. Mb Ayu Gyn" target=192.168.4.158/32
+add max-limit=4M/4M name="159. Pak Mudi tlutub" target=192.168.4.159/32
+add max-limit=2M/5M name="161. ........Agus Saldo" target=\
+    192.168.4.161/32
+add max-limit=2k/4k name="162. Agus Pengkik" target=192.168.4.162/32
+add max-limit=4M/4M name="165. " target=192.168.4.165/32
+add max-limit=2M/4M name="167. Ratih Gema Tlutub" target=192.168.4.167/32
+add max-limit=1M/1M name="168. Selapet sppn" target=192.168.4.168/32
+add max-limit=4M/4M name="171. Pak Aviv Landoh" target=192.168.4.171/32
+add max-limit=10M/10M name="172. Pemdes Kepoh" target=\
+    192.168.4.172/32,192.168.4.173/32,192.168.4.174/32,192.168.4.175/32
+add max-limit=3M/5M name="173. Ptg Kepoh" parent="172. Pemdes Kepoh" \
+    target=192.168.4.173/32
+add max-limit=3M/5M name="174. Carik Kepoh" parent="172. Pemdes Kepoh" \
+    target=192.168.4.174/32
+add max-limit=2M/5M name="175. Pak Bend Kepoh" parent="172. Pemdes Kepoh" \
+    target=192.168.4.175/32
+add max-limit=2M/4M name="176. Pak Wiwid Asp" target=192.168.4.176/32
+add max-limit=4M/4M name="179. Pak Rony Landoh" parent=\
+    "112. Pemdes Landoh" target=192.168.4.179/32
+add max-limit=4M/4M name="181. SD Jetak" target=192.168.4.181/32
+add max-limit=8M/8M name="183. Mas Arif Ndlangu" priority=5/5 target=\
+    192.168.4.183/32
+add max-limit=2M/4M name="185. Mb Uli Mbangsal" target=192.168.4.185/32
+add max-limit=3M/4M name="186. SD Kajar 02" target=192.168.4.186/32
+add max-limit=4M/4M name="187. ,,,,,,,,,,,,,,,,,,Mbah Gondrong" target=\
+    192.168.4.187/32
+add max-limit=12M/12M name="188. Pemdes Mbagangan" priority=5/5 target="19\
+    2.168.4.188/32,192.168.4.189/32,192.168.4.190/32,192.168.4.191/32,192.\
+    168.4.89/32,192.168.4.90/32,192.168.2.142/32"
+add max-limit=5M/5M name="188. Baldes" parent="188. Pemdes Mbagangan" \
+    target=192.168.4.188/32
+add max-limit=4M/4M name="190. Bu Puji" parent="188. Pemdes Mbagangan" \
+    target=192.168.4.190/32
+add max-limit=4M/4M name="189. pak ptg" parent="188. Pemdes Mbagangan" \
+    target=192.168.4.189/32
+add max-limit=4M/4M name="191. Pak Wo" parent="188. Pemdes Mbagangan" \
+    target=192.168.4.191/32
+add max-limit=4M/7M name="147 Roko" parent="146. Pak Abad" target=\
+    192.168.4.147/32
+add max-limit=4M/7M name="146 Rumah" parent="146. Pak Abad" target=\
+    192.168.4.146/32
+add max-limit=5M/5M name="112. Baldes Landoh" parent="112. Pemdes Landoh" \
+    target=192.168.4.112/32
+add max-limit=7M/7M name="129.. fredi sucen" target=192.168.4.129/32
+add max-limit=5M/5M name="172. Baldes Kepoh" parent="172. Pemdes Kepoh" \
+    target=192.168.4.172/32
+add max-limit=4M/4M name="90. Pak Kandar" parent="188. Pemdes Mbagangan" \
+    target=192.168.4.90/32
+add max-limit=4M/4M name="89. Pak Nasikun jugo" parent=\
+    "188. Pemdes Mbagangan" target=192.168.4.89/32
+add max-limit=2M/5M name="149. Fcom wedari" parent="128. Fcomp Group" \
+    target=192.168.4.149/32
+add max-limit=6M/6M name="128. Fcom trangkil" parent="128. Fcomp Group" \
+    target=192.168.4.128/32
+add max-limit=4M/4M name="198. carik landoh" parent="112. Pemdes Landoh" \
+    target=192.168.4.198/32
+add max-limit=2M/5M name="188. Mertua Pak Abbad sepapan" parent=\
+    "146. Pak Abad" target=192.168.5.188/32
+add max-limit=4M/7M name="148. Baldes Asempapan" parent=\
+    "148. Pemdes Asemapan" target=192.168.4.148/32
+add max-limit=18M/18M name="111. Aman Blw" parent="111. Aman Blw Group" \
+    target=192.168.4.111/32
+add max-limit=2M/4M name="111. Aman ttp" parent="111. Aman Blw Group" \
+    target=192.168.4.211/32
+add max-limit=4M/4M name="4201. Pak Sucipto nguren" target=\
+    192.168.4.201/32
+add max-limit=4M/4M name="4202. Pak Sudadi rms" target=192.168.4.202/32
+add max-limit=4M/4M name="4203. Pak Yahya Landoh" target=192.168.4.203/32
+add max-limit=4M/4M name="4204. Bu Umi Landoh" target=192.168.4.204/32
+add max-limit=4M/4M name="4205. Mas Yanto Ndari" target=192.168.4.205/32
+add max-limit=4M/4M name="4206. Mas Aly Jetak" target=192.168.4.206/32
+add max-limit=4M/4M name="4207...................Mas Yarde Nguren" \
+    target=192.168.4.207/32
+add max-limit=4M/4M name="4208. Bang Hadi Landoh" target=192.168.4.208/32
+add max-limit=6M/6M name="4209............... Rangga ndari" target=\
+    192.168.4.209/32
+add max-limit=4M/4M name="4212. Anugrah FC Tapen" target=192.168.4.212/32
+add max-limit=4M/4M name="4213. Bayu Putra Trangkilan" target=\
+    192.168.4.213/32
+add max-limit=4M/4M name="4214. Aklis Trangkilan" target=192.168.4.214/32
+add max-limit=4M/4M name="4215. Nafizul Trangkilan" target=\
+    192.168.4.215/32
+add max-limit=4M/4M name="4216. Pak Wak O Trangkilan" target=\
+    192.168.4.216/32
+add max-limit=4M/4M name="4217. Mi Tapen Lor" target=192.168.4.217/32
+add max-limit=4M/4M name="4218. Mb Pipik Tapen" target=192.168.4.218/32
+add max-limit=4M/4M name="4219. Pak Aji Sucen" target=192.168.4.219/32
+add max-limit=4M/4M name="4220. Yi Mudan rms" target=192.168.4.220/32
+add max-limit=4M/4M name="4221. Hadi Kadilangu" target=192.168.4.221/32
+add max-limit=4M/4M name="4222. Yumam sofii wowok" target=\
+    192.168.4.222/32
+add max-limit=4M/4M name="4223. Modin Tris Ndari" target=192.168.4.223/32
+add max-limit=4M/4M name="4224. Pak Bibit Nguren" target=192.168.4.224/32
+add max-limit=5M/5M name="4225. Mas Aris Kepoh" target=192.168.4.225/32
+add max-limit=4M/4M name="4226. Tanggane lek wowok" target=\
+    192.168.4.226/32
+add max-limit=4M/4M name=4227.......... target=192.168.4.227/32
+add max-limit=5M/5M name="4228. Pak Sukiswanto kepoh" target=\
+    192.168.4.228/32
+add max-limit=4M/4M name="4229. Pak iranian krandan" target=\
+    192.168.4.229/32
+add max-limit=4M/4M name="4230. romi Krandan Sawo" target=\
+    192.168.4.230/32
+add max-limit=4M/4M name="4231. Pak Mustofa krandan" target=\
+    192.168.4.231/32
+add max-limit=4M/4M name=4235. target=192.168.4.235/32
+add max-limit=4M/4M name="4232. Pak Agus Krandan" target=192.168.4.232/32
+add max-limit=4M/4M name="4233. Pak Suhardianto Krandan" target=\
+    192.168.4.233/32
+add max-limit=4M/4M name="4234. mbah moden krandan" target=\
+    192.168.4.234/32
+add max-limit=4M/4M name="5211. Pak Tres Ptg Landoh" parent=\
+    "112. Pemdes Landoh" target=192.168.5.211/32
+add max-limit=4M/6M name="107. Mas Nor Dekem" target=192.168.4.107/32
+add max-limit=4M/4M name="105. Tika Rahmania Tluwuk" target=\
+    192.168.4.105/32
+add max-limit=768k/768k name="4236. Mbah sol swduk" target=\
+    192.168.4.236/32
+add max-limit=4M/4M name="4237........Saiful Sucen" target=\
+    192.168.4.237/32
+add max-limit=4M/4M name="4238. SDN Kepoh" target=192.168.4.238/32
+[haansiro@1100D_2345] > 
