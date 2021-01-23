@@ -1,0 +1,36 @@
+{
+:foreach i in=[/tool user-manager session find active=no] do={
+:local UserName;
+:local LastSessionUpdate;
+:local StatusSession;
+:local ActiveSession;
+:set UserName [/tool user-manager session get $i user];
+:set LastSessionUpdate [/tool user-manager session get $i till-time];
+:set StatusSession [/tool user-manager session get $i status];
+:set ActiveSession [/tool user-manager session get $i active];
+:log warning (" Removed false session . User = $UserName . Status = $StatusSession . Active = $ActiveSession ");
+/tool user-manager session remove $i;
+}
+:foreach i in=[/tool user-manager session find] do={
+:local UserName;
+:local Timeout 300;
+:local LastSessionUpdate;
+:local SessionTimeout;
+:local RouterIP;
+:local ActiveSession;
+:set UserName [/tool user-manager session get $i user];
+:set LastSessionUpdate [/tool user-manager session get $i till-time];
+:set SessionTimeout ([/system clock get time] - [:pick $LastSessionUpdate ([:find $LastSessionUpdate " "]+1) [:len $LastSessionUpdate]]);
+:set RouterIP [/tool user-manager session get $i host-ip];
+:set ActiveSession [/tool user-manager session get $i active];
+:if ($RouterIP in "10.2.2.0/24") do={
+} else={
+:log warning (" Removed session wrong host-ip . $UserName . $RouterIP ");
+/tool user-manager session remove $i;
+}
+:if ($SessionTimeout > $Timeout) do={
+:log warning (" Close session timeout . SessionTimeout = $SessionTimeout . LastSessionUpdate = $LastSessionUpdate . user = $UserName . RouterIP = $RouterIP . Active = $ActiveSession ");
+/tool user-manager session close-session $i;
+}
+}
+}
