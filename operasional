@@ -795,3 +795,11 @@ add max-limit=4M/4M name="4237........Saiful Sucen" target=\
     192.168.4.237/32
 add max-limit=4M/4M name="4238. SDN Kepoh" target=192.168.4.238/32
 [haansiro@1100D_2345] > 
+
+
+/ip address
+add address=192.168.5.1/24 interface=ether9 network=192.168.5.0
+add address=192.168.2.1/24 interface=ether9 network=192.168.2.0
+add address=192.168.3.1/24 interface=ether9 network=192.168.3.0
+add address=192.168.4.1/24 interface=ether9 network=192.168.4.0
+
