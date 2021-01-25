@@ -1,0 +1,70 @@
+/system scheduler
+add interval=1d name=auto-backup on-event="/export compact file=autoscrip-\
+    1009-132\r\
+    \n/system backup save name=autobk-1009-132" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/12/2021 start-time=03:30:44
+add interval=4w2d name=masqomar@kadilangu on-event="/ppp secret set profil\
+    e=Expire [find name=masqomar@kadilangu]\r\
+    \n/ppp active remove [find name=masqomar@kadilangu]\r\
+    \n/system schedule remove [find name=masqomar@kadilangu]" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/20/2021 start-time=00:58:35
+add interval=4w2d name=123router2011@office on-event="/ppp secret set prof\
+    ile=Expire [find name=123router2011@office]\r\
+    \n/ppp active remove [find name=123router2011@office]\r\
+    \n/system schedule remove [find name=123router2011@office]" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/21/2021 start-time=16:38:15
+add interval=4w2d name=tplink on-event="/ppp secret set profile=Expire [fi\
+    nd name=tplink]\r\
+    \n/ppp active remove [find name=tplink]\r\
+    \n/system schedule remove [find name=tplink]" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/22/2021 start-time=19:55:59
+add interval=4w2d name=coba on-event="/ppp secret set profile=Expire [find\
+    \_name=coba]\r\
+    \n/ppp active remove [find name=coba]\r\
+    \n/system schedule remove [find name=coba]" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=jan/22/2021 start-time=20:26:41
+add interval=20s name=Check-IP-Indi on-event=":foreach i in=[/ip add find \
+    dynamic=yes] do={\r\
+    \n:if ( [/ip address get \$i address] in 10.0.0.0/8) do={ \r\
+    \n:global iface [/ip add get \$i interface]\r\
+    \n/int pppoe-client disable \"\$iface\" ;\r\
+    \ndelay 10\r\
+    \n/int pppoe-client en \"\$iface\" ;\r\
+    \n}\r\
+    \n}\r\
+    \n\r\
+    \n" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-time=startup
+add interval=1m name=DNS-Health on-event="{\r\
+    \n:local dns1 0; \r\
+    \n:local dns2 0; \r\
+    \n:set \$dns1 [:resolve dnstest.jsn.net.id server=103.80.80.231];\r\
+    \n:set \$dns2 [:resolve dnstest.jsn.net.id server=103.80.80.232];\r\
+    \n:if ( \$dns1 = 0 && \$dns2 = 0 && [/ip dns get server] = \"103.80.80\
+    .231;103.80.80.232\" ) do={ \r\
+    \n/ip dns set servers=1.1.1.1,8.8.8.8,1.0.0.1\r\
+    \n} \r\
+    \n:if ( \$dns1 != 0 && \$dns2 != 0 && [/ip dns get server] != \"103.80\
+    .80.231;103.80.80.232\") do={ \r\
+    \n/ip dns set servers=103.80.80.231,103.80.80.232\r\
+    \n} \r\
+    \n}\r\
+    \n" policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-time=startup
+add interval=5s name=INET1 on-event=":if ( [/ip address get [find interfac\
+    e=\"INET1\"] address] in 10.0.0.0/8) do={ \r\
+    \n/int pppoe-client disable \"INET1\";\r\
+    \ndelay 10\r\
+    \n/int pppoe-client en \"INET1\";\r\
+    \n}\r\
+    \n" policy=reboot,read,write,test,password,sniff,sensitive,romon \
+    start-time=startup
+    
+[haansiro@CCR_Retail_HaaNS] > 
