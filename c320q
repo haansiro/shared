@@ -8073,12 +8073,12 @@ pon-onu-mng gpon-onu_1/1/8:4
 end
 write
 
-8.5 Kaji fauzan angga trangkil ZTEGC85A0E43
+8.5 Kaji fauzan angga trangkil ZTEGC0D4C742
 
 ppp secret add name=005080kajifauzanangga@trangkil password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/8
-onu 5 type ZTE-F660 sn ZTEGC85A0E43
+onu 5 type ZTE-F660 sn ZTEGC0D4C742
 exit
 interface gpon-onu_1/1/8:5
   sn-bind enable sn
