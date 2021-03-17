@@ -5769,12 +5769,12 @@ pon-onu-mng gpon-onu_1/1/5:18
 end
 write
 
-5.19 pak aziz polisi ndari ZTEGCBDBE5C4
+5.19 home bang jay ndari ZTEGC8808BA3
 
-ppp secret add name=0190501aziz@ndari password=12345678 profile=pppoe200m/200m
+ppp secret add name=0190501bangjayhome@ndari password=12345678 profile=pppoe5m/5m
 conf t
 interface gpon-olt_1/1/5
-onu 19 type ZTE-F660 sn ZTEGCBDBE5C4
+onu 19 type ZTE-F660 sn ZTEGC8808BA3
 exit
 interface gpon-onu_1/1/5:19
   sn-bind enable sn
@@ -5798,7 +5798,7 @@ exit
 pon-onu-mng gpon-onu_1/1/5:19
   service HSI type internet gemport 1 vlan 600
   service HOT type internet gemport 2 vlan 500
-  wan-ip 1 mode pppoe username 0190501aziz@ndari password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 mode pppoe username 0190501bangjayhome@ndari password 12345678 vlan-profile PPPoE host 1
   wan-ip 1 ping-response enable traceroute-response enable
 end
 write
@@ -5905,7 +5905,7 @@ pon-onu-mng gpon-onu_1/1/5:22
 end
 write
 
-5.23 pak marju ndari ZTEGC86A25E3 ZTEGC8520314
+5.23 pak marju rmh ndari ZTEGC8520314
 
 ppp secret add name=0230501pakmarju@ndari password=12345678 profile=pppoe4m/4m
 conf t
@@ -6109,12 +6109,12 @@ pon-onu-mng gpon-onu_1/1/5:28
 end
 write
 
-5.29 marju ndari ZTEGCC5C735A
+5.29 marju ndari ZTEGC86A25E3
 
 ppp secret add name=0290501marju@ndari password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/5
-onu 29 type ZTE-F660 sn ZTEGCC5C735A
+onu 29 type ZTE-F660 sn ZTEGC86A25E3
 exit
 interface gpon-onu_1/1/5:29
   sn-bind enable sn
