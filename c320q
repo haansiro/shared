@@ -5444,12 +5444,12 @@ pon-onu-mng gpon-onu_1/1/5:4
 end
 write
 
-5.5 mas zakky swd ZTEGCC4E0656
+5.5 mas zakky swd ZTEGCC4E0656 ZTEGCC9D5B5F
 
 ppp secret add name=0050501maszakky@suwaduk password=12345678 profile=pppoe6m/6m
 conf t
 interface gpon-olt_1/1/5
-onu 5 type ZTE-F660 sn ZTEGCC4E0656
+onu 5 type ZTE-F660 sn ZTEGCC9D5B5F
 exit
 interface gpon-onu_1/1/5:5
   sn-bind enable sn
