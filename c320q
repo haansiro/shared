@@ -6239,12 +6239,12 @@ pon-onu-mng gpon-onu_1/1/5:19
 end
 write
 
-5.20 arwani swd ZTEGC8704AF4
+5.20 arwani swd ZTEGC8704AF4 ZTEGCC4E33ED
 
-ppp secret add name=0200501arwani@suwaduk password=12345678 profile=pppoe10m/10m
+ppp secret add name=0200501arwani@suwaduk password=12345678 profile=pppoe100m/100m
 conf t
 interface gpon-olt_1/1/5
-onu 20 type ZTE-F660 sn ZTEGC8704AF4
+onu 20 type ZTE-F660 sn ZTEGCC4E33ED
 exit
 interface gpon-onu_1/1/5:20
   sn-bind enable sn
