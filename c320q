@@ -966,7 +966,9 @@ pon-onu-mng gpon-onu_1/1/1:28
 end
 write
 
-1.29 
+1.29 kosong
+
+
 
 1.30 risto talun ZTEGC1D9373F ZTEGC861F08A
 ppp secret add name=0300101risto@jontro password=12345678 profile=pppoe3m/3m
@@ -1069,7 +1071,8 @@ pon-onu-mng gpon-onu_1/1/1:32
 end
 write
 
-1.33 minto kambang ZTEGCC9D30DC
+1.33 kosong
+
 ppp secret add name=0330101minto@ckambang password=12345678 profile=pppoe8m/8m
 conf t
 interface gpon-olt_1/1/1
