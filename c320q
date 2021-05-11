@@ -4171,12 +4171,12 @@ pon-onu-mng gpon-onu_1/1/2:79
 end
 write
 
-2.80 mb ais ngurensiti ZTEGC866E865
+2.80 KOSONG ZTEGC866E865
 
 ppp secret add name=0800201mbais@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
-onu 80 type ZTE-F660 sn ZTEGC866E865
+onu 80 type ZTE-F660 sn ZTEGC84F0885
 exit
 interface gpon-onu_1/1/2:80
   sn-bind enable sn
@@ -4239,12 +4239,12 @@ pon-onu-mng gpon-onu_1/1/2:81
 end
 write
 
-2.82 mb ais ngurensiti ZTEGC85E55A8
+2.82 mb ais ngurensiti ZTEGC85E55A8 ZTEGC84F0885
 
 ppp secret add name=0820201mbais@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
-onu 82 type ZTE-F660 sn ZTEGC85E55A8
+onu 82 type ZTE-F660 sn ZTEGC84F0885
 exit
 interface gpon-onu_1/1/2:82
   sn-bind enable sn
