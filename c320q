@@ -9692,7 +9692,7 @@ end
 write
   
 7.37 karibun jontro ZTEGC897B54E
-ppp secret add name=037070karibun@jontro password=12345678 profile=pppoe4m/4m
+ppp secret add name=037070karibun@jontro password=12345678 profile=pppoe3m/3m
 conf t
 interface gpon-olt_1/1/7
 onu 37 type ZTE-F660 sn ZTEGC897B54E
