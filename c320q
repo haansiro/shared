@@ -6962,7 +6962,7 @@ write
 ppp secret add name=0410501karwadi@ndari password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/5
-onu 40 type ZTE-F660 sn ZTEGCC55AB0E
+onu 41 type ZTE-F660 sn ZTEGCC55AB0E
 exit
 interface gpon-onu_1/1/5:41
   sn-bind enable sn
