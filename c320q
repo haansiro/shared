@@ -10089,12 +10089,12 @@ pon-onu-mng gpon-onu_1/1/7:27
 end
 write
 
-7.28 imron jontro ZTEGCBDEA5E5
+7.28 imron jontro ZTEGCBDEA5E5 ZTEGC6BF06D9
 
 ppp secret add name=028070imron@jontro password=12345678 profile=pppoe3m/3m
 conf t
 interface gpon-olt_1/1/7
-onu 28 type ZTE-F660 sn ZTEGCBDEA5E5
+onu 28 type ZTE-F660 sn ZTEGC6BF06D9
 exit
 interface gpon-onu_1/1/7:28
   sn-bind enable sn
