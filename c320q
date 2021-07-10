@@ -2451,8 +2451,7 @@ pon-onu-mng gpon-onu_1/1/2:24
 end
 write
 
-2.25 pak nur matrial nguren ZTEGC63014C8
-
+2.25 ...................
 ppp secret add name=0250201nurmatrial@nguren password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -2485,7 +2484,7 @@ pon-onu-mng gpon-onu_1/1/2:25
 end
 write
 
-2.26 pak karjo modin ngurensiti ZTEGC894AD7F
+2.26 ...................
 
 ppp secret add name=0260201modinkarjo@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -2519,8 +2518,7 @@ pon-onu-mng gpon-onu_1/1/2:26
 end
 write
 
-2.27 pak edy ngurensiti ZTEGC871B9A7
-
+2.27 ...................
 ppp secret add name=0270201pakedy@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -2553,7 +2551,7 @@ pon-onu-mng gpon-onu_1/1/2:27
 end
 write
 
-2.28 pak patman ngurensiti ZTEGC1EC24D3
+2.28 ...................
 
 
 ppp secret add name=0280201pakpatman@ngurensiti password=12345678 profile=pppoe4m/4m
@@ -2657,7 +2655,7 @@ pon-onu-mng gpon-onu_1/1/2:30
 end
 write
 
-2.31 ReniPongok Ngurensiti ZTEGC855299E
+2.31 ...................
 
 ppp secret add name=0310201pongokreni@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -2724,7 +2722,7 @@ pon-onu-mng gpon-onu_1/1/2:32
 end
 write
 
-2.33 pak jatmiko ngurensiti ZTEGC1E5E2C4
+2.33 ...................
 ppp secret add name=0330201jatmiko@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -2757,7 +2755,7 @@ pon-onu-mng gpon-onu_1/1/2:33
 end
 write
 
-2.34 ridocell ngurensiti ZTEGC1F0EBD2
+2.34 ...................
 ppp secret add name=0340201ridocell@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/13
@@ -2790,7 +2788,7 @@ pon-onu-mng gpon-onu_1/1/2:34
 end
 write
 
-2.35 mb elvi ngurensiti ZTEGC1ECFD92 ZTEGCBDA27FB
+2.35 .....................................
 
 ppp secret add name=0350201elvi@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -2858,7 +2856,7 @@ pon-onu-mng gpon-onu_1/1/2:36
 end
 write
 
-2.37 metruahrd ZTEGCC43864F
+2.37 .....................................
 ppp secret add name=0370201metruahrd@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -2925,7 +2923,7 @@ end
 write
 
 
-2.39 pak sis nguren 
+2.39 .....................................
 ppp secret add name=0390201paksis@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -2958,7 +2956,7 @@ pon-onu-mng gpon-onu_1/1/2:39
 end
 write
 
-2.40 suwaji ngurensiti ZTEGCC92C6AF
+2.40 .....................................
 ppp secret add name=0400201suwaji@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -3058,7 +3056,7 @@ pon-onu-mng gpon-onu_1/1/2:42
 end
 write
 
-2.43 catur nguren ZTEGCC813212 ZTEGCC4E70F0
+2.43 .....................................
 
 ppp secret add name=0430201catur@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -3092,7 +3090,7 @@ pon-onu-mng gpon-onu_1/1/2:43
 end
 write
 
-2.44  anita ngurensiti ZTEGC8A8E5FB
+2.44  .....................................
 
 ppp secret add name=0440201anita@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -3159,7 +3157,7 @@ pon-onu-mng gpon-onu_1/1/2:45
 end
 write
 
-2.46 aris ayla ZTEGCC9D30DA
+2.46 .....................................
 ppp secret add name=0460201arisaylai@ngurensiti password=12345678 profile=pppoe6m/6m
 conf t
 interface gpon-olt_1/1/2
@@ -3192,7 +3190,7 @@ pon-onu-mng gpon-onu_1/1/2:46
 end
 write
 
-2.47 didik nguren ZTEGCCA3B50C
+2.47 .....................................
 ppp secret add name=0470201didik@ngurensiti password=12345678 profile=pppoe6m/6m
 conf t
 interface gpon-olt_1/1/2
@@ -3259,7 +3257,7 @@ pon-onu-mng gpon-onu_1/1/2:48
 end
 write
 
-2.49 ibu mujiati nguren ZTEGCC91F92F
+2.49 .....................................
 ppp secret add name=0480201mujiati@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -3393,7 +3391,7 @@ pon-onu-mng gpon-onu_1/1/2:52
 end
 write
 
-2.53. Pak supadi ngurensiti ZTEGC8606C30
+2.53. .....................................
 
 ppp secret add name=0530201supadi@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -3561,7 +3559,7 @@ pon-onu-mng gpon-onu_1/1/2:57
 end
 write
 
-2.58 nofan ngurensiti ZTEGCC9D66B8
+2.58 .....................................
 
 ppp secret add name=0580201nofan@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -3629,7 +3627,7 @@ pon-onu-mng gpon-onu_1/1/2:59
 end
 write
 
-2.60 bu ida samijan ZTEGC8551F50
+2.60 .....................................
 
 ppp secret add name=0600201idasamijan@nguren password=12345678 profile=pppoe4m/4m
 conf t
@@ -3799,7 +3797,7 @@ pon-onu-mng gpon-onu_1/1/2:64
 end
 write
 
-2.65. mb anita ngurensiti ZTEGC881BC07
+2.65. .....................................
 
 ppp secret add name=065020anita@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -3867,7 +3865,7 @@ pon-onu-mng gpon-onu_1/1/2:66
 end
 write
 
-2.67. imam sofwan ngurensiti ZTEGC894F91E
+2.67. .....................................
 
 ppp secret add name=067020imamsofwan@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -3935,7 +3933,7 @@ pon-onu-mng gpon-onu_1/1/2:68
 end
 write
 
-2.69 tri nugroho ngurensiti ZTEGC85E1A4E
+2.69 .....................................
 
 ppp secret add name=0690201trinugroho@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4003,7 +4001,7 @@ pon-onu-mng gpon-onu_1/1/2:70
 end
 write
 
-2.71 bu nia ngurensiti ZTEGCCA56C29
+2.71 .....................................
 ppp secret add name=0710201bunia@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4036,7 +4034,7 @@ pon-onu-mng gpon-onu_1/1/2:71
 end
 write
 
-2.72 Pak Ngadiman Ngurensiti ZTEGCC98AF5B
+2.72 .....................................
 ppp secret add name=0720201pakngadiman@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4069,7 +4067,7 @@ pon-onu-mng gpon-onu_1/1/2:72
 end
 write
 
-2.73 mas muis ZTEGCCAB5579
+2.73 .....................................
 ppp secret add name=0730201masmuis@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4204,7 +4202,7 @@ pon-onu-mng gpon-onu_1/1/2:76
 end
 write
 
-2.77 kris ngurensiti ZTEGC8A6B2AE
+2.77 .....................................
 ppp secret add name=0770201kris@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4271,7 +4269,7 @@ pon-onu-mng gpon-onu_1/1/2:78
 end
 write
 
-2.79 pak dani ngurensiti ZTEGCBDD99D4
+2.79 .....................................
 
 ppp secret add name=0790201pakdani@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4305,8 +4303,7 @@ pon-onu-mng gpon-onu_1/1/2:79
 end
 write
 
-2.80 mbak is ZTEGC866E865
-
+2.80 .....................................
 ppp secret add name=0800201mbais@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4339,7 +4336,7 @@ pon-onu-mng gpon-onu_1/1/2:80
 end
 write
 
-2.81 mb insika ngurensiti ZTEGC8629D18
+2.81 .....................................
 
 ppp secret add name=0810201mbinsika@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4373,7 +4370,7 @@ pon-onu-mng gpon-onu_1/1/2:81
 end
 write
 
-2.82 mb ais ngurensiti ZTEGC85E55A8 ZTEGC84F0885
+2.82 .....................................
 
 ppp secret add name=0820201mbais@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4407,7 +4404,7 @@ pon-onu-mng gpon-onu_1/1/2:82
 end
 write
 
-2.83 bu afrah ngurensiti ZTEGC89C9620
+2.83 .....................................
 
 ppp secret add name=0830201buafrah@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4509,8 +4506,7 @@ pon-onu-mng gpon-onu_1/1/2:85
 end
 write
 
-2.86 mb wiwik nguren ZTEGCCB94BDC
-
+2.86 .....................................
 ppp secret add name=0860201mbwiwik@ngurenrejo password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4543,7 +4539,7 @@ pon-onu-mng gpon-onu_1/1/2:86
 end
 write
 
-2.87 wakidul pongok ngurensiti ZTEGC1DB60A7
+2.87 .....................................
 
 ppp secret add name=0870201wakidulpongok@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4611,7 +4607,7 @@ pon-onu-mng gpon-onu_1/1/2:88
 end
 write
 
-2.89 Bu Suyatmi ngurensiti ZTEGCCB94BDB
+2.89 .....................................
 
 ppp secret add name=0890201busuyatmi@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4645,7 +4641,7 @@ pon-onu-mng gpon-onu_1/1/2:89
 end
 write
 
-2.90 pak runadi ngurenrejo ZTEGC86AF88A
+2.90 .....................................
 
 ppp secret add name=0900201runadi@ngurenrejo password=12345678 profile=pppoe4m/4m
 conf t
@@ -4679,7 +4675,7 @@ pon-onu-mng gpon-onu_1/1/2:90
 end
 write
 
-2.91 mardi jaran ngurensiti ZTEGC896DC52
+2.91 .....................................
 
 ppp secret add name=0910201mardijaran@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4713,7 +4709,7 @@ pon-onu-mng gpon-onu_1/1/2:91
 end
 write
 
-2.92 masvedro ngurensiti ZTEGCBDE8C3C
+2.92 .....................................
 
 ppp secret add name=0920201vedro@ngurensiti password=12345678 profile=pppoe8m/8m
 conf t
@@ -4747,7 +4743,7 @@ pon-onu-mng gpon-onu_1/1/2:92
 end
 write
 
-2.93 bu fajaria ngurenngawen ZTEGC4E64B16
+2.93 .....................................
 
 ppp secret add name=0930201fajaria@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4781,7 +4777,7 @@ pon-onu-mng gpon-onu_1/1/2:93
 end
 write
 
-2.94 b fitri ngurensiti ZTEGCC9D33FE
+2.94 .....................................
 
 ppp secret add name=0940201fitri@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4815,7 +4811,7 @@ pon-onu-mng gpon-onu_1/1/2:94
 end
 write
 
-2.95 teguh wijayanto ngurensiti ZTEGCC435D53
+2.95 .....................................
 
 ppp secret add name=0950201teguhwijayanto@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -4917,7 +4913,7 @@ pon-onu-mng gpon-onu_1/1/2:97
 end
 write
 
-2.98 pak darmaji ngurensiti ZTEGC881AAA7
+2.98 .....................................
 ppp secret add name=0980201pakdarmaji@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -4984,7 +4980,7 @@ pon-onu-mng gpon-onu_1/1/2:99
 end
 write
 
-2.100 margono ngurensiti ZTEGCCB24391
+2.100 .....................................
 ppp secret add name=1000201margono@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -5017,7 +5013,7 @@ pon-onu-mng gpon-onu_1/1/2:100
 end
 write 
 
-2.101 hendro siswanto nguren apur ZTEGC86B65E9
+2.101 .....................................
 ppp secret add name=1010201hendro@ngurenapur password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -5084,7 +5080,7 @@ pon-onu-mng gpon-onu_1/1/2:102
 end
 write
 
-2.103 dwi wahyu setyani ngurensiti ZTEGC868E5BC
+2.103 .....................................
 
 ppp secret add name=1030201dwiwahyu@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
@@ -5251,7 +5247,7 @@ pon-onu-mng gpon-onu_1/1/2:107
 end
 write
 
-2.108 suyono ngurensiti ZTEGC86CF4AC
+2.108 .....................................
 ppp secret add name=1080201suyono@ngurensiti password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
@@ -5283,6 +5279,8 @@ pon-onu-mng gpon-onu_1/1/2:108
   wan-ip 1 ping-response enable traceroute-response enable
 end
 write
+
+
 2.109 pak lujeng ngurenrejo ZTEGC8602489
 ppp secret add name=1090201paklujeng@ngurenrejo password=12345678 profile=pppoe4m/4m
 conf t
