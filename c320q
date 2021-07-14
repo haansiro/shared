@@ -10366,7 +10366,7 @@ pon-onu-mng gpon-onu_1/1/7:15
 end
 write
 
-7.16 lek sobri jontro ZTEGC8A524F2
+7.16 lek sobri jontro ZTEGC4E67320 ZTEGC8A524F2
 
 ppp secret add name=016070sobri@jontro password=12345678 profile=pppoe3m/3m
 conf t
