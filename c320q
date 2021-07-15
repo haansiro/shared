@@ -7025,6 +7025,42 @@ pon-onu-mng gpon-onu_1/1/5:20
 end
 write
 
+interface gpon-onu_1/1/10:1
+  name Mohlisin-Shintacomp
+  description Mochlisin-Shintacomp-Mitra Pati
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name METRO profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name METRO unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 401 vlan 401
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+
+
+pon-onu-mng gpon-onu_1/1/10:1
+  service JSN type internet gemport 1 vlan 600
+  service METRO type internet gemport 2 vlan 401
+  wan-ip 1 mode pppoe username 0011001shintacomp@runting password 12345678 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  security-mng 1 state enable mode permit protocol web
+  interface wifi wifi_0/2 state unlock
+  vlan port eth_0/4 mode tag vlan 401
+
+exit
+end
+write
+
 5.21 pak priyadi ndari ZTEGC8A3F149
 
 ppp secret add name=0210501priyadi@suwaduk password=12345678 profile=pppoe4m/4m
