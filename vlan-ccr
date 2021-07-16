@@ -1,0 +1,120 @@
+/interface vlan
+add disabled=yes interface=bonding1 name=400 vlan-id=400
+add interface=ether8 name=vlan405 vlan-id=405
+add interface=ether10 name=vlan407-alfanet vlan-id=407
+add interface=ether7 name=vlan408-winarso vlan-id=408
+add interface=ether9 name=vlan409-paziz vlan-id=409
+add interface=ether10 name=vlan410-dvsguo vlan-id=410
+add interface=ether10 name=vlan411-masud vlan-id=411
+add interface=ether8 name=vlan412-milugandong vlan-id=412
+add interface=ether8 name=vlan413-malugandong vlan-id=413
+add interface=ether6 name=vlan414-herihastina vlan-id=414
+add interface=ether9 name=vlan415-kusumanet vlan-id=415
+add interface=ether10 name=vlan416-bumdeskemiri vlan-id=416
+add interface=ether9 name=vlan417-anggaMus vlan-id=417
+add interface=ether7 name=vlan418-beancomp vlan-id=418
+add interface=ether10 name=vlan419-bumdesjontro vlan-id=419
+add interface=ether10 name=vlan420-masrubai vlan-id=420
+add interface=ether8 name=vlan421-darsoni vlan-id=421
+add interface=ether8 name=vlan422-yusufsucen vlan-id=422
+add interface=ether8 name=vlan423-mamanbangsal vlan-id=423
+add interface=ether7 name=vlan424-alygebang vlan-id=424
+add interface=ether7 name=vlan425-muklisgabus vlan-id=425
+add interface=ether7 name=vlan426-midun vlan-id=426
+add interface=ether7 name=vlan427-warkopanjunan vlan-id=427
+add interface=ether7 name=vlan428-jukoriwinong vlan-id=428
+add interface=ether7 name=vlan429-aguspakis vlan-id=429
+add interface=ether10 name=vlan430-bumdespasucen vlan-id=430
+add interface=ether6 name=vlan431-kopral vlan-id=431
+add interface=ether6 name=vlan432-agusawu vlan-id=432
+add interface=ether6 name=vlan433-setiawan vlan-id=433
+add interface=ether6 name=vlan434-tristanet vlan-id=434
+add interface=ether10 name=vlan501 vlan-id=501
+add interface=ether10 name=vlan502 vlan-id=502
+add interface=ether9 name=vlan503 vlan-id=503
+add interface=ether8 name=vlan504 vlan-id=504
+add interface=ether7 name=vlan506 vlan-id=506
+add interface=ether11 name=vlan600 vlan-id=600
+
+/ip address
+add address=103.80.81.147 interface=bonding1 network=103.80.81.128
+add address=172.16.106.6/29 disabled=yes interface=sfp1 network=172.16.106.0
+add address=192.168.30.1/24 interface=vlan503 network=192.168.30.0
+add address=136.1.1.254/24 interface=ether9 network=136.1.1.0
+add address=192.168.23.1/24 interface=ether9 network=192.168.23.0
+add address=192.168.90.100/24 interface=ether8 network=192.168.90.0
+add address=192.168.33.1/24 interface=vlan504 network=192.168.33.0
+add address=172.172.172.1/24 interface=vlan504 network=172.172.172.0
+add address=172.172.173.1/24 interface=vlan506 network=172.172.173.0
+add address=192.168.35.1/24 interface=vlan407-alfanet network=192.168.35.0
+add address=192.168.36.1/24 interface=vlan408-winarso network=192.168.36.0
+add address=192.168.37.1/24 interface=ether9 network=192.168.37.0
+add address=192.168.39.1/24 interface=vlan410-dvsguo network=192.168.39.0
+add address=192.168.38.1/24 interface=ether9 network=192.168.38.0
+add address=10.1.1.2/24 disabled=yes interface=bonding1 network=10.1.1.0
+add address=192.168.40.1/24 interface=vlan411-masud network=192.168.40.0
+add address=192.168.42.1/24 interface=vlan413-malugandong network=192.168.42.0
+add address=192.168.43.1/24 interface=vlan414-herihastina network=192.168.43.0
+add address=192.168.44.1/24 interface=vlan415-kusumanet network=192.168.44.0
+add address=192.168.41.1/24 interface=vlan412-milugandong network=192.168.41.0
+add address=192.168.45.1/24 interface=vlan416-bumdeskemiri network=192.168.45.0
+add address=192.168.46.1/24 interface=vlan417-anggaMus network=192.168.46.0
+add address=192.168.47.1/24 interface=vlan418-beancomp network=192.168.47.0
+add address=192.168.102.1/24 interface=ether8 network=192.168.102.0
+add address=192.168.48.1/24 interface=vlan419-bumdesjontro network=192.168.48.0
+add address=103.80.81.147 interface=lo network=103.80.81.147
+add address=192.168.49.1/24 interface=vlan420-masrubai network=192.168.49.0
+add address=192.168.50.1/24 interface=vlan421-darsoni network=192.168.50.0
+add address=192.168.51.1/24 interface=vlan422-yusufsucen network=192.168.51.0
+add address=192.168.52.1/24 interface=vlan423-mamanbangsal network=192.168.52.0
+add address=192.168.53.1/24 interface=ether8 network=192.168.53.0
+add address=192.168.54.1/24 interface=vlan424-alygebang network=192.168.54.0
+add address=192.168.55.1/24 interface=vlan425-muklisgabus network=192.168.55.0
+add address=192.168.56.1/24 interface=vlan426-midun network=192.168.56.0
+add address=192.168.57.1/24 interface=vlan427-warkopanjunan network=192.168.57.0
+add address=192.168.58.1/24 interface=vlan428-jukoriwinong network=192.168.58.0
+add address=192.168.59.1/24 disabled=yes interface=vlan429-aguspakis network=192.168.59.0
+add address=192.100.1.1/24 interface=ether8 network=192.100.1.0
+add address=192.168.60.1/24 interface=vlan430-bumdespasucen network=192.168.60.0
+add address=192.168.61.1/24 interface=vlan431-kopral network=192.168.61.0
+add address=192.168.62.1/24 interface=vlan432-agusawu network=192.168.62.0
+add address=172.20.106.3/29 comment="BW TEST" interface=bonding1 network=172.20.106.0
+add address=192.168.63.1/24 interface=vlan433-setiawan network=192.168.63.0
+add address=192.168.64.1/24 interface=vlan434-tristanet network=192.168.64.0
+
+/queue simple
+add max-limit=130M/130M name=3011.bumdes@krandan target=192.168.30.11/32
+add disabled=yes max-limit=150M/150M name=3012pongokgroup@nganggrek target=192.168.30.12/32
+add max-limit=150M/150M name=aly@gebaggabus target=vlan424-alygebang
+add disabled=yes max-limit=100M/100M name=midun-winong target=vlan426-midun
+add max-limit=110M/110M name=muklis@gabus target=vlan425-muklisgabus
+add max-limit=200M/200M name=3013surosodvs@bapoh target=192.168.30.13/32,103.153.149.150/32
+add disabled=yes max-limit=100M/100M name=alfanet target=vlan407-alfanet
+add max-limit=100M/100M name=tristanet@pongok@karanglegi target=vlan434-tristanet
+add disabled=yes max-limit=100M/100M name=winarso target=vlan408-winarso
+add max-limit=200M/200M name=172173agus@pakis target=172.172.173.0/24
+add max-limit=50M/50M name=37.pakSafin@ketanen target=192.168.37.0/24
+add max-limit=52M/52M name=38yudha@blmnis target=192.168.38.0/24
+add disabled=yes max-limit=150M/150M name=suroso@dvs@guo target=vlan410-dvsguo
+add disabled=yes max-limit=100M/100M name=jukori@winong target=vlan428-jukoriwinong
+add disabled=yes max-limit=165M/165M name=bumdes@pasucen target=vlan430-bumdespasucen
+add disabled=yes max-limit=160M/160M name=warko@panjunan target=vlan427-warkopanjunan
+add disabled=yes max-limit=100M/100M name=masud@trangkilan target=vlan411-masud
+add max-limit=200M/200M name=kopral@pohijo target=vlan431-kopral
+add max-limit=200M/200M name=agusawu@bulumanis target=vlan432-agusawu
+add disabled=yes max-limit=10M/10M name=milu@gandong target=vlan412-milugandong
+add disabled=yes max-limit=10M/10M name=malu@gandong target=vlan413-malugandong
+add disabled=yes max-limit=37M/37M name=bumdes@kemiri target=vlan416-bumdeskemiri
+add max-limit=405M/405M name=kusumanet@sekarjalak target=vlan415-kusumanet
+add max-limit=205M/205M name=beancomp@kayen target=vlan418-beancomp
+add disabled=yes max-limit=150M/150M name=masrubai target=vlan420-masrubai
+add disabled=yes max-limit=30M/30M name=yusufsucen target=vlan422-yusufsucen
+add max-limit=40M/40M name=edy@tekputih target=192.168.53.0/24
+add disabled=yes max-limit=150M/150M name=mamanbangsal target=vlan423-mamanbangsal
+add max-limit=400M/400M name="p azis " target=192.168.102.0/24
+add max-limit=200M/200M name=heri@hastina target=vlan414-herihastina
+add disabled=yes max-limit=100M/100M name=421darsony target=vlan421-darsoni
+add max-limit=100M/100M name=setiawan@mojoagung target=vlan433-setiawan
+add disabled=yes max-limit=160M/160M name=bumdes@jontro target=vlan419-bumdesjontro
+add max-limit=60M/60M name=tristanet@karanglegi target=vlan434-tristanet
+
