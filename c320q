@@ -5316,6 +5316,45 @@ pon-onu-mng gpon-onu_1/1/2:109
 end
 write
 
+2. 110. yanzid prapean ZTEGCC97037D  --------------------------
+ppp secret add name=110_2_01yanzid@prapean password=12345678 profile=pppoe4m/4m
+
+conf t
+interface gpon-olt_1/1/2
+onu 110 type ZTE-F660 sn ZTEGCC97037D 
+exit
+interface gpon-onu_1/1/2:110
+sn-bind enable sn
+tcont 1 name HSI profile 100M
+tcont 2 name HOT profile 100M
+gemport 1 name HSI unicast tcont 1 dir both
+gemport 1 traffic-limit upstream UP100M downstream DW100M
+gemport 2 name HOT unicast tcont 1 dir both
+gemport 2 traffic-limit upstream UP100M downstream DW100M
+switchport mode hybrid vport 1
+switchport mode hybrid vport 2
+service-port 1 vport 1 user-vlan 600 vlan 600
+service-port 2 vport 2 user-vlan 500 vlan 500
+port-location format dsl-forum sport 1
+port-location sub-option remote-id enable sport 1
+port-location sub-option remote-id name 600 sport 1
+port-location ft-cid 600 sport 1
+pppoe-plus enable sport 1
+pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/2:110
+service HSI type internet gemport 1 vlan 600
+service HOT type internet gemport 2 vlan 500
+wan-ip 1 mode pppoe username 110_2_01yanzid@prapean password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 ping-response enable traceroute-response enable
+security-mng 1 state enable mode permit protocol web
+end
+write
+
+con t
+interface gpon-olt_1/1/2
+no onu 110
+
 -----------------------------pindah port 3 arah ngidul(pati)----------------------------
 
 3.1 arah pati studio kusuma pati ZTEGC0C662F4 ZTEGC1DC0DC5
@@ -6376,6 +6415,44 @@ con t
 interface gpon-olt_1/1/4
 no onu 20
 
+4. 21. kamituo karangturi ZTEGC87AF16A  --------------------------
+ppp secret add name=21_4_01kamituo@karangturi password=12345678 profile=pppoe4m/4m
+
+conf t
+interface gpon-olt_1/1/4
+onu 21 type ZTE-F660 sn ZTEGC87AF16A 
+exit
+interface gpon-onu_1/1/4:21
+sn-bind enable sn
+tcont 1 name HSI profile 100M
+tcont 2 name HOT profile 100M
+gemport 1 name HSI unicast tcont 1 dir both
+gemport 1 traffic-limit upstream UP100M downstream DW100M
+gemport 2 name HOT unicast tcont 1 dir both
+gemport 2 traffic-limit upstream UP100M downstream DW100M
+switchport mode hybrid vport 1
+switchport mode hybrid vport 2
+service-port 1 vport 1 user-vlan 600 vlan 600
+service-port 2 vport 2 user-vlan 500 vlan 500
+port-location format dsl-forum sport 1
+port-location sub-option remote-id enable sport 1
+port-location sub-option remote-id name 600 sport 1
+port-location ft-cid 600 sport 1
+pppoe-plus enable sport 1
+pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/4:21
+service HSI type internet gemport 1 vlan 600
+service HOT type internet gemport 2 vlan 500
+wan-ip 1 mode pppoe username 21_4_01kamituo@karangturi password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 ping-response enable traceroute-response enable
+security-mng 1 state enable mode permit protocol web
+end
+write
+
+con t
+interface gpon-olt_1/1/4
+no onu 21
 
 --------------------------------pindah port 5 odc dpan pasar wdr--------------------------------------
 
