@@ -14872,12 +14872,12 @@ con t
 interface gpon-olt_1/1/13
 no onu 50
 
-13. 51. arfan ngurenapur ZTEGC073E7A0 --------------------------
+13. 51. arfan ngurenapur ZTEGC0430B68 --------------------------
 ppp secret add name=51_13_01arfan@ngurenapur password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/13
-onu 51 type ZTE-F660 sn ZTEGC073E7A0
+onu 51 type ZTE-F660 sn ZTEGC0430B68
 exit
 interface gpon-onu_1/1/13:51
 sn-bind enable sn
@@ -14910,6 +14910,7 @@ write
 con t
 interface gpon-olt_1/1/13
 no onu 51
+
 -============================ odc dpn rsu soewondo ======================
 
 14. 1. ricanorhidayati sidokerto ZTEGC8684EC7
