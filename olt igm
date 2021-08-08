@@ -309,6 +309,28 @@ write
 con t
 interface gpon-olt_1/1/8
 no onu 99
+
+conf t
+interface gpon-olt_1/2/8
+onu 101 type ZTE-F641 sn FHTT11F01AB0
+exit
+interface gpon-onu_1/2/8:101
+sn-bind enable sn
+tcont 1 name HSI profile 100M
+gemport 1 name 1 unicast tcont 1 dir both
+gemport 1 traffic-limit upstream UP100M downstream DW100M
+switchport mode hybrid vport 1
+service-port 1 vport 1 user-vlan 500 vlan 500
+exit
+pon-onu-mng gpon-onu_1/2/8:101
+service hsi gemport 1 vlan 500
+vlan port eth_0/1 mode tag vlan 500
+vlan port eth_0/2 mode tag vlan 500
+vlan port eth_0/3 mode tag vlan 500
+vlan port eth_0/4 mode tag vlan 500
+exit
+end
+Write
 ---------------------------------------------------------------------------------
 config baru
 conf t
