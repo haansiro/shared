@@ -6762,12 +6762,12 @@ con t
 interface gpon-olt_1/1/4
 no onu 24
 
-4. 25. teguhbasuki@dwek tawangharjo ZTEGCC4180B9 --------------------------
+4. 25. teguhbasuki@dwek tawangharjo ZTEGC85E3401 --------------------------
 ppp secret add name=25_4_01teguhbasuki@dwek@tawangharjo password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/4
-onu 25 type ZTE-F660 sn ZTEGCC4180B9
+onu 25 type ZTE-F660 sn ZTEGC85E3401
 exit
 interface gpon-onu_1/1/4:25
 sn-bind enable sn
@@ -6800,6 +6800,7 @@ write
 con t
 interface gpon-olt_1/1/4
 no onu 25
+
 
 --------------------------------pindah port 5 odc dpan pasar wdr--------------------------------------
 
