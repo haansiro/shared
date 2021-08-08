@@ -21,8 +21,12 @@ interface gpon-olt_1/2/1
   onu 8 type ZTE-F609 sn ZTEGC1ED47C1
   onu 9 type ZTE-F609 sn ZTEGC1ED15B3
   onu 10 type ZTE-F609 sn ZTEGC630228A
-  onu 11 type ZTE-F609 sn ZTEGC0FA761B
-  conf t
+  onu 11 type ZTE-F609 sn ZTEGC0FA761B 
+  
+  1. 12. bayanagus igm@jontro ZTEGC6300FD3 --------------------------
+ppp secret add name=12_1_01bayanagus@igm@jontro password=12345678 profile=PPPoE3m
+
+conf t
 interface gpon-olt_1/2/1
 onu 12 type ZTE-F609 sn ZTEGC6300FD3
 exit
@@ -54,6 +58,10 @@ security-mng 1 state enable mode permit protocol web
 vlan port eth_0/4 mode tag vlan 500
 end
 write
+
+con t
+interface gpon-olt_1/1/1
+no onu 12
   onu 13 type ZTE-F609 sn ZTEGC6BF04DB
   onu 14 type ZTE-F609 sn ZTEGC86455FC
   onu 15 type ZTE-F609 sn ZTEGCBD8BEC6
