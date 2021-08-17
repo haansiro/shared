@@ -10029,7 +10029,7 @@ pon-onu-mng gpon-onu_1/1/6:34
 end
 write
 
-6.35 bidin wowok pajaran ZTEGC875D29D
+6.35 bidin wowok pajaran ZTEGC875D29D  
 
 ppp secret add name=0350601bidinwowok@pajaran password=12345678 profile=pppoe4m/4m
 conf t
@@ -10063,12 +10063,12 @@ pon-onu-mng gpon-onu_1/1/6:35
 end
 write
 
-6.36 saeroji bayan ndari ZTEGC89CADF2
+6.36 saeroji bayan ndari ZTEGC89CADF2   ZTEGC84A0DDC
 
 ppp secret add name=0360601saeroji@ndari password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/6
-onu 36 type ZTE-F660 sn ZTEGC89CADF2
+onu 36 type ZTE-F609 sn ZTEGC84A0DDC
 exit
 interface gpon-onu_1/1/6:36
   sn-bind enable sn
