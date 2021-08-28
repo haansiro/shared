@@ -5357,15 +5357,6 @@ pon-onu-mng gpon-onu_1/2/4:33
 end
 write
 
-gpon-onu_1/2/1:1                 unknown             
-gpon-onu_1/2/1:2                 unknown             
-gpon-onu_1/2/1:3         ZTEGC6300FD3        unknown             
-gpon-onu_1/2/1:4         ZTEGC1ED47C1        unknown             
-gpon-onu_1/2/1:5         ZTEGC630228A        unknown             
-gpon-onu_1/2/1:6         ZTEGC6BF04DB        unknown             
-gpon-onu_1/2/1:7         ZTEGC1ED15B3        unknown             
-gpon-onu_1/2/1:8         ZTEGC0FA761B        unknown             
-gpon-onu_1/2/4:1         ZTEGC1ED4562        unknown        
 
 1.6 unkn
 157 6 ZTEGC6BF0992
@@ -5613,162 +5604,38 @@ security-mng 1 state enable mode permit protocol web
 end
 write
 
+1. 27. mbaksusdarmono igm ZTEGCC5C65CB --------------------------
+ppp secret add name=27_1_01mbaksusdarmono@igm-ZTEGCC5C65CB password=12345678 profile=PPPoE3m
 
-ZXAN#show gpon onu baseinfo gpon-olt_1/2/2
-OnuIndex            Type        Mode    AuthInfo                State
--------------------------------------------------------------------------------
-gpon-onu_1/2/2:1    ZTE-F660    sn      SN:ZTEGC0D4759E         ready          
-gpon-onu_1/2/2:2    ZTE-F609    sn      SN:ZTEGC67498EB         ready          
-gpon-onu_1/2/2:3    ZTE-F609    sn      SN:ZTEGC1C7D2DE         ready          
-gpon-onu_1/2/2:4    ZTE-F609    sn      SN:ZTEGC8620548         ready          
-gpon-onu_1/2/2:5    ZTE-F609    sn      SN:ZTEGC1DB5A59         ready          
-gpon-onu_1/2/2:6    ZTE-F609    sn      SN:ZTEGC6735487         ready          
-gpon-onu_1/2/2:7    ZTE-F609    sn      SN:ZTEGC68EEBE6         ready          
-gpon-onu_1/2/2:8    ZTE-F609    sn      SN:ZTEGC850FF2F         ready          
-gpon-onu_1/2/2:9    ZTE-F609    sn      SN:ZTEGC1C7DE4F         ready          
-gpon-onu_1/2/2:10   ZTE-F660    sn      SN:ZTEGC89065A2         ready          
-gpon-onu_1/2/2:117  ZTE-F660    sn      SN:ZTEGC87837A7         ready          
-gpon-onu_1/2/2:128  ZTE-F660    sn      SN:ZTEGC8906D29         ready          
+conf t
+interface gpon-olt_1/2/1
+onu 27 type ZTE-F609 sn ZTEGCC5C65CB
+exit
+interface gpon-onu_1/2/1:27
+sn-bind enable sn
+tcont 1 name HSI profile 100M
+tcont 2 name HOT profile 100M
+gemport 1 name HSI unicast tcont 1 dir both
+gemport 1 traffic-limit upstream UP100M downstream DW100M
+gemport 2 name HOT unicast tcont 1 dir both
+gemport 2 traffic-limit upstream UP100M downstream DW100M
+switchport mode hybrid vport 1
+switchport mode hybrid vport 2
+service-port 1 vport 1 user-vlan 600 vlan 600
+service-port 2 vport 2 user-vlan 500 vlan 500
+port-location format dsl-forum sport 1
+port-location sub-option remote-id enable sport 1
+port-location sub-option remote-id name 600 sport 1
+port-location ft-cid 600 sport 1
+pppoe-plus enable sport 1
+pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/2/1:27
+service HSI type internet gemport 1 vlan 600
+service HOT type internet gemport 2 vlan 500
+wan-ip 1 mode pppoe username 27_1_01mbaksusdarmono@igm-ZTEGCC5C65CB password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 ping-response enable traceroute-response enable
+security-mng 1 state enable mode permit protocol web
+end
+write
 
-ZXAN#show gpon onu baseinfo gpon-olt_1/2/4
-OnuIndex            Type        Mode    AuthInfo                State
--------------------------------------------------------------------------------
-gpon-onu_1/2/4:1    ZTE-F609    sn      SN:ZTEGC1DB5A59         ready          
-gpon-onu_1/2/4:2    ZTE-F609    sn      SN:ZTEGC6760875         ready          
-gpon-onu_1/2/4:3    ZTE-F609    sn      SN:ZTEGC838A160         ready          
-gpon-onu_1/2/4:4    ZTE-F609    sn      SN:ZTEGC8491137         ready          
-gpon-onu_1/2/4:5    ZTE-F609    sn      SN:ZTEGC8389C04         ready          
-gpon-onu_1/2/4:6    ZTE-F609    sn      SN:ZTEGC8380A87         ready          
-gpon-onu_1/2/4:7    ZTE-F609    sn      SN:ZTEGC8374C08         ready          
-gpon-onu_1/2/4:8    ZTE-F609    sn      SN:ZTEGC860CB25         ready          
-gpon-onu_1/2/4:9    ZTE-F609    sn      SN:ZTEGC1E90529         ready          
-gpon-onu_1/2/4:10   ZTE-F609    sn      SN:ZTEGC04000A1         ready          
-gpon-onu_1/2/4:11   ZTE-F609    sn      SN:ZTEGC673C40A         ready          
-gpon-onu_1/2/4:12   ZTE-F609    sn      SN:ZTEGC6721B52         ready          
-gpon-onu_1/2/4:13   ZTE-F609    sn      SN:ZTEGC877CC16         ready          
-gpon-onu_1/2/4:14   ZTE-F609    sn      SN:ZTEGC8259AF2         ready          
-gpon-onu_1/2/4:15   ZTE-F660    sn      SN:ZTEGC8906D6F         ready          
-gpon-onu_1/2/4:16   ZTE-F660    sn      SN:ZTEGC89065C0         ready          
-gpon-onu_1/2/4:17   ZTE-F660    sn      SN:ZTEGC89065E3         ready          
-gpon-onu_1/2/4:18   ZTE-F660    sn      SN:ZTEGC8906576         ready          
-gpon-onu_1/2/4:19   ZTE-F660    sn      SN:ZTEGC89065B5         ready          
-gpon-onu_1/2/4:20   ZTE-F660    sn      SN:ZTEGC890658B         ready          
-gpon-onu_1/2/4:21   ZTE-F660    sn      SN:ZTEGCBD8BEC6         ready          
-gpon-onu_1/2/4:22   ZTE-F660    sn      SN:ZTEGC89065E6         ready          
-gpon-onu_1/2/4:23   ZTE-F660    sn      SN:ZTEGCBD8BEC4         ready          
-gpon-onu_1/2/4:24   ZTE-F660    sn      SN:ZTEGC8906D34         ready          
-gpon-onu_1/2/4:25   ZTE-F660    sn      SN:ZTEGCBD8BEC7         ready          
-gpon-onu_1/2/4:26   ZTE-F660    sn      SN:ZTEGCBD8D959         ready          
-gpon-onu_1/2/4:60   ZTE-F660    sn      SN:ZTEGC870696D         ready          
-gpon-onu_1/2/4:118  ZTE-F660    sn      SN:ZTEGC862DD88         ready          
-gpon-onu_1/2/4:119  ZTE-F660    sn      SN:ZTEGC86E0668         ready          
-gpon-onu_1/2/4:120  ZTE-F660    sn      SN:ZTEGC877C230         ready          
-gpon-onu_1/2/4:121  ZTE-F660    sn      SN:ZTEGC8906D82         ready          
-gpon-onu_1/2/4:122  ZTE-F660    sn      SN:ZTEGC8906D62         ready          
-gpon-onu_1/2/4:123  ZTE-F660    sn      SN:ZTEGC8906D38         ready          
-gpon-onu_1/2/4:124  ZTE-F660    sn      SN:ZTEGC8906D70         ready          
-gpon-onu_1/2/4:125  ZTE-F660    sn      SN:ZTEGC8906D07         ready          
-gpon-onu_1/2/4:126  ZTE-F660    sn      SN:ZTEGCBD8BEC5         ready          
-gpon-onu_1/2/4:127  ZTE-F660    sn      SN:ZTEGC8906D45         ready          
-ZXAN#show gpon onu baseinfo gpon-olt_1/2/5
-OnuIndex            Type        Mode    AuthInfo                State
--------------------------------------------------------------------------------
-gpon-onu_1/2/5:1    ZTE-F609    sn      SN:ZTEGC6736F2A         ready          
-gpon-onu_1/2/5:2    ZTE-F609    sn      SN:ZTEGC85AEF90         ready          
-gpon-onu_1/2/5:3    ZTE-F609    sn      SN:ZTEGC0D4759E         ready          
-gpon-onu_1/2/5:4    ZTE-F609    sn      SN:ZTEGC6747653         ready          
-gpon-onu_1/2/5:5    ZTE-F609    sn      SN:ZTEGC84F9EA0         ready          
-gpon-onu_1/2/5:6    ZTE-F609    sn      SN:ZTEGC6752237         ready          
-gpon-onu_1/2/5:7    ZTE-F609    sn      SN:ZTEGC0E4D833         ready          
-gpon-onu_1/2/5:8    ZTE-F609    sn      SN:ZTEGC0DCB209         ready          
-gpon-onu_1/2/5:9    ZTE-F609    sn      SN:ZTEGC0E4943E         ready          
-gpon-onu_1/2/5:10   ZTE-F609    sn      SN:ZTEGC674B585         ready          
-gpon-onu_1/2/5:11   ZTE-F609    sn      SN:ZTEGC6748EE9         ready          
-gpon-onu_1/2/5:12   ZTE-F609    sn      SN:ZTEGC0DD93F7         ready          
-gpon-onu_1/2/5:13   ZTE-F609    sn      SN:ZTEGC84F9380         ready          
-gpon-onu_1/2/5:14   ZTE-F609    sn      SN:ZTEGC850C228         ready          
-gpon-onu_1/2/5:15   ZTE-F609    sn      SN:ZTEGC0E5085B         ready          
-gpon-onu_1/2/5:16   ZTE-F609    sn      SN:ZTEGC68BC3BD         ready          
-gpon-onu_1/2/5:17   ZTE-F609    sn      SN:ZTEGC6752714         ready          
-gpon-onu_1/2/5:18   ZTE-F609    sn      SN:ZTEGC85E40F6         ready          
-gpon-onu_1/2/5:19   ZTE-F609    sn      SN:ZTEGC0D476F5         ready          
-gpon-onu_1/2/5:20   ZTE-F609    sn      SN:ZTEGC0D4BAA7         ready          
-gpon-onu_1/2/5:21   ZTE-F609    sn      SN:ZTEGC0E4D332         ready          
-gpon-onu_1/2/5:22   ZTE-F609    sn      SN:ZTEGC85C37AD         ready          
-gpon-onu_1/2/5:23   ZTE-F609    sn      SN:ZTEGC1DB298F         ready          
-gpon-onu_1/2/5:24   ZTE-F609    sn      SN:ZTEGC84FA024         ready          
-gpon-onu_1/2/5:25   ZTE-F609    sn      SN:ZTEGC848F258         ready          
-gpon-onu_1/2/5:26   ZTE-F609    sn      SN:ZTEGC673758D         ready          
-gpon-onu_1/2/5:27   ZTE-F609    sn      SN:ZTEGC1DCCB41         ready          
-gpon-onu_1/2/5:28   ZTE-F609    sn      SN:ZTEGC670FA56         ready          
-gpon-onu_1/2/5:29   ZTE-F609    sn      SN:ZTEGC6734384         ready          
-gpon-onu_1/2/5:30   ZTE-F609    sn      SN:ZTEGC836A5FE         ready          
-gpon-onu_1/2/5:31   ZTE-F609    sn      SN:ZTEGC0CE014C         ready          
-gpon-onu_1/2/5:32   ZTE-F609    sn      SN:ZTEGC0E4CEE0         ready          
-gpon-onu_1/2/5:33   ZTE-F609    sn      SN:ZTEGC0E78EFC         ready          
-gpon-onu_1/2/5:34   ZTE-F609    sn      SN:ZTEGC85BEE6C         ready          
-gpon-onu_1/2/5:35   ZTE-F609    sn      SN:ZTEGC0CDEB1C         ready          
-gpon-onu_1/2/5:36   ZTE-F609    sn      SN:ZTEGC83892FA         ready          
-gpon-onu_1/2/5:37   ZTE-F609    sn      SN:ZTEGCB06E16A         ready          
-gpon-onu_1/2/5:38   ZTE-F609    sn      SN:ZTEGC0D4C858         ready          
-gpon-onu_1/2/5:39   ZTE-F660    sn      SN:ZTEGC89065B7         ready          
-gpon-onu_1/2/5:40   ZTE-F660    sn      SN:ZTEGC8A525DB         ready          
-ZXAN#show gpon onu baseinfo gpon-olt_1/2/8
-OnuIndex            Type        Mode    AuthInfo                State
--------------------------------------------------------------------------------
-gpon-onu_1/2/8:1    ZTE-F609    sn      SN:ZTEGC84F942A         ready          
-gpon-onu_1/2/8:2    ZTE-F609    sn      SN:ZTEGC859753E         ready          
-gpon-onu_1/2/8:3    ZTE-F609    sn      SN:ZTEGC84F9380         ready          
-gpon-onu_1/2/8:4    ZTE-F609    sn      SN:ZTEGC0DCC1CC         ready          
-gpon-onu_1/2/8:5    ZTE-F609    sn      SN:ZTEGC847A20A         ready          
-gpon-onu_1/2/8:6    ZTE-F609    sn      SN:ZTEGC8520408         ready          
-gpon-onu_1/2/8:7    ZTE-F609    sn      SN:ZTEGC868569A         ready          
-gpon-onu_1/2/8:8    ZTE-F609    sn      SN:ZTEGC85963C8         ready          
-gpon-onu_1/2/8:9    ZTE-F609    sn      SN:ZTEGC85E233D         ready          
-gpon-onu_1/2/8:10   ZTE-F609    sn      SN:ZTEGC0DD915B         ready          
-gpon-onu_1/2/8:11   ZTE-F609    sn      SN:ZTEGC8487975         ready          
-gpon-onu_1/2/8:12   ZTE-F609    sn      SN:ZTEGC8380C41         ready          
-gpon-onu_1/2/8:13   ZTE-F609    sn      SN:ZTEGC8486B6D         ready          
-gpon-onu_1/2/8:14   ZTE-F609    sn      SN:ZTEGC1D99093         ready          
-gpon-onu_1/2/8:15   ZTE-F609    sn      SN:ZTEGC68EE074         ready          
-gpon-onu_1/2/8:16   ZTE-F609    sn      SN:ZTEGC0DDA945         ready          
-gpon-onu_1/2/8:17   ZTE-F609    sn      SN:ZTEGC0E33981         ready          
-gpon-onu_1/2/8:18   ZTE-F609    sn      SN:ZTEGC862E665         ready          
-gpon-onu_1/2/8:19   ZTE-F609    sn      SN:ZTEGC1D97FDE         ready          
-gpon-onu_1/2/8:20   ZTE-F609    sn      SN:ZTEGC675D15E         ready          
-gpon-onu_1/2/8:21   ZTE-F609    sn      SN:ZTEGC674C127         ready          
-gpon-onu_1/2/8:22   ZTE-F609    sn      SN:ZTEGC84F99AA         ready          
-gpon-onu_1/2/8:23   ZTE-F609    sn      SN:ZTEGC84899AD         ready          
-gpon-onu_1/2/8:24   ZTE-F609    sn      SN:ZTEGC85A3887         ready          
-gpon-onu_1/2/8:25   ZTE-F609    sn      SN:ZTEGC8389C04         ready          
-gpon-onu_1/2/8:27   ZTE-F609    sn      SN:ZTEGC674BAE1         ready          
-gpon-onu_1/2/8:28   ZTE-F609    sn      SN:ZTEGC848C5DA         ready          
-gpon-onu_1/2/8:29   ZTE-F609    sn      SN:ZTEGC1D9909E         ready          
-gpon-onu_1/2/8:30   ZTE-F609    sn      SN:ZTEGC8601E3B         ready          
-gpon-onu_1/2/8:31   ZTE-F609    sn      SN:ZTEGC1D98757         ready          
-gpon-onu_1/2/8:32   ZTE-F609    sn      SN:ZTEGC85A1346         ready          
-gpon-onu_1/2/8:33   ZTE-F609    sn      SN:ZTEGC0E4D349         ready          
-gpon-onu_1/2/8:34   ZTE-F609    sn      SN:ZTEGC8389D59         ready          
-gpon-onu_1/2/8:35   ZTE-F609    sn      SN:ZTEGC1DCCA5B         ready          
-gpon-onu_1/2/8:36   ZTE-F609    sn      SN:ZTEGC6753D96         ready          
-gpon-onu_1/2/8:37   ZTE-F609    sn      SN:ZTEGC0E7AF45         ready          
-gpon-onu_1/2/8:38   ZTE-F609    sn      SN:ZTEGC0DCF81A         ready          
-gpon-onu_1/2/8:39   ZTE-F609    sn      SN:ZTEGC0E9EBD3         ready          
-gpon-onu_1/2/8:40   ZTE-F609    sn      SN:ZTEGC0D41603         ready          
-gpon-onu_1/2/8:41   ZTE-F609    sn      SN:ZTEGC0E0793F         ready          
-gpon-onu_1/2/8:42   ZTE-F609    sn      SN:ZTEGC0EA2F53         ready          
-gpon-onu_1/2/8:43   ZTE-F609    sn      SN:ZTEGC8510A21         ready          
-gpon-onu_1/2/8:44   ZTE-F609    sn      SN:ZTEGC68EF423         ready          
-gpon-onu_1/2/8:45   ZTE-F609    sn      SN:ZTEGC0E50D07         ready          
-gpon-onu_1/2/8:46   ZTE-F660    sn      SN:ZTEGC85E3FDC         ready          
-gpon-onu_1/2/8:47   ZTE-F609    sn      SN:ZTEGC84C4F81         ready          
-gpon-onu_1/2/8:48   ZTE-F609    sn      SN:ZTEGC0DDB00F         ready          
-gpon-onu_1/2/8:49   ZTE-F609    sn      SN:ZTEGC85AB963         ready          
-gpon-onu_1/2/8:50   ZTE-F609    sn      SN:ZTEGC868152F         ready          
-gpon-onu_1/2/8:51   ZTE-F609    sn      SN:ZTEGC1E61164         ready          
-gpon-onu_1/2/8:52   ZTE-F660    sn      SN:ZTEGC8906D1E         ready          
-gpon-onu_1/2/8:53   ZTE-F660    sn      SN:ZTEGC8376186         ready          
-gpon-onu_1/2/8:54   ZTE-F660    sn      SN:ZTEGC89065DD         ready          
-gpon-onu_1/2/8:55   ZTE-F660    sn      SN:ZTEGCBD8BEC3         ready          
-gpon-onu_1/2/8:98   ZTE-F660    sn      SN:ZTEGC673BECA         ready          
-ZXAN#
