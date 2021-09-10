@@ -279,3 +279,1192 @@ write
 show pon power olt-rx gpon-onu_1/1/1:1
 show pon power attenuation gpon-onu_1/1/1:1
 show pon power onu-rx gpon-onu_1/1/1:1
+
+
+---------------------------------------------------------------------edisi njajal---------------------------------------------------
+
+
+Configurasi OLT ZTE C320 , ONU dan Mikrotik
+
+
+Sekilas pengenalan perangkat OLT
+
+
+
+OLT adalah singkatan dari “Optical Line Termination” perangkat yg berfungsi sebagai server dari jaringan optik pasif. Untuk OLT sendiri banyak merek dan typenya, namun kali ini kita khusus membahas OLT keluaran ZTE dengan type C320 yg memiliki saudara type C220 dan C300 yang memiliki body yg besar untuk menampung card gpon yg banyak.
+ZTE C320 standarnya memiliki komponen sasis, modul fan, card uplink ( SMXA ), card gpon atau epon, card power suplay ( PRAM ).
+Sasis ZTE C320 memiliki slot modul / card. Slot 1 dan slot 2 untuk modul / card gpon atau epon. Slot 3 untuk modul / card power suplay atau card uplink. Slot 4 hanya untuk modul / card uplink. Digambar diatas angka sesuai dengan nomor urut slot. Modul / card GPON memiliki 2 seri yaitu GTGO yg memiliki 8 port dan GTGH yg memiliki 16 port. Untu uplink ada yg 1G ( SMXA UCDC/1 ) dan 10G ( SMXA UCDC/3 )
+Posisi card sangat menentukan untuk script configurasi dari OLT. Sebuah contoh gpon-olt_1/x/y dimana x adalah letak slot GPON dan y adalah urutan port sfp pada GPON. Dalam tutorial ini posisi card GPON ( GTGH ) berada pada slot 1 sehingga config menjadi gpon-olt_1/1/1 dan gpon-onu_1/1/1:z dimana z adalah urutan dari modem yg di register 
+
+
+
+Settingan / Configurasi Mikrotik untuk terhubung ke OLT
+# Mikrotik yg akan kita gunakan diasumsikan kosong tanpa ada konfigurasi sama sekali ( reset non default ) 
+# atau jika ingin mereset ke non default menggunakan perintah berikut ( resiko reset ditanggung sendiri )
+
+/system reset-configuration no-defaults=yes skip-backup=yes
+
+# Selanjutnya mari kita setting mikrotik dengan ketentuan
+# ether1 = Digunakan untuk terhubung Internet dengan DHCP
+# ether2 = Akses remote OLT ( port di OLT 10/100 )
+# ether3 = Jalur internet untuk client via OLT ( port di OLT GEFE )
+# ether4 = Komputer untuk monitoring dengan ip komputer 192.168.255.2 subnet 255.255.255.0 gateway 192.168.255.1
+# vlan 500 = vlan untuk jalur Hotspot berdiri di ether3
+# vlan 600 = vlan untuk jalur PPPoE berdiri di ether3
+
+# berikut ini adalah config mikrotiknya yg dapat di copy paste langsung
+/user group add name=ftp policy=local,ftp,read,write,!telnet,!ssh,!reboot,!policy,!test,!winbox,!password,!web,!sniff,!sensitive,!api,!romon,!dude,!tikapp
+/user add name=zte password=zte group=ftp disabled=no
+/ip service set ftp address=136.1.1.100/32,192.168.0.0/16,172.16.0.0/12,10.0.0.0/8 disabled=yes
+/interface vlan add name=500-Hotspot vlan-id=500 interface=ether3
+/interface vlan add name=600-PPPoE vlan-id=600 interface=ether3
+/ip dhcp-client add interface=ether1 add-default-route=yes default-route-distance=1 use-peer-dns=yes use-peer-ntp=yes
+/ip address add interface=ether2 address=136.1.1.1/24
+/ip address add interface=ether4 address=192.168.255.1/30
+/ip address add interface=500-Hotspot address=10.20.30.1/23
+/ip firewall nat add chain=srcnat action=masquerade
+/ip dns set servers=8.8.8.8,1.1.1.1 allow-remote-requests=yes cache-max-ttl=00:10:00 cache-size=20480 max-concurrent-tcp-sessions=100 max-concurrent-queries=1000
+/ip pool add name=PPPoE ranges=10.11.12.0/22
+/queue simple add max-limit=1G/1G name=ALL-Traffic target=""
+/queue simple add max-limit=1G/1G name=PPPoE parent=ALL-Traffic target=""
+/queue simple add max-limit=1G/1G name=Hotspot parent=ALL-Traffic target=""
+/ip hotspot user profile set [ find default=yes ] parent-queue=Hotspot rate-limit=10M/10M
+/ppp profile add name=PPPoE-03M change-tcp-mss=yes dns-server=10.9.8.7 local-address=10.9.8.7 only-one=yes parent-queue=PPPoE rate-limit="3M/3M 3379k/3379k 1M/1M 16/16 3 384k/384k" remote-address=PPPoE
+/ppp profile add name=PPPoE-05M change-tcp-mss=yes dns-server=10.9.8.7 local-address=10.9.8.7 only-one=yes parent-queue=PPPoE rate-limit="5M/5M 5632k/5632k 1706k/1706k 16/16 4 640k/640k" remote-address=PPPoE
+/ppp profile add name=PPPoE-10M change-tcp-mss=yes dns-server=10.9.8.7 local-address=10.9.8.7 only-one=yes parent-queue=PPPoE rate-limit="10M/10M 11264k/11264k 3413k/3413k 16/16 5 1280k/1280k" remote-address=PPPoE
+/interface pppoe-server server add service-name=PPPoE-JSN interface=600-PPPoE max-mtu=1500 max-mru=1500 disabled=no default-profile=PPPoE-03M
+/ppp secret add name=123456@jsn.net.id password=123 profile=PPPoE-03M service=pppoe
+/ppp secret add name=234567@jsn.net.id password=123 profile=PPPoE-10M service=pppoe
+/ip hotspot setup
+
+
+
+# langkah config setup dengan penjelasan sebagai berikut
+# Langkah 1 = Perintah setup hotspot yg kita ketik lalu tekan enter
+# Langkah 2 = Diminta untuk menentukan interfacenya, berhubung nama interface vlan yg kita buat adalah 500-Hotspot maka cukup ketik 5 lalu tekan tombol tab lalu enter
+# Langkah 3 = tekan enter
+# Langkah 4 = tekan enter
+# Langkah 5 = tekan enter
+# Langkah 6 = hapus yg muncul lalu ketik none
+# Langkah 7 = tekan enter
+# Langkah 8 = kita gunakan ip mikrotik yg mengarak ke hotspot lalu enter
+# Langkah 9 = isi dengan nama yg diinginkan, ini akan tampil di alamat hotspot lalu enter
+# Langkah 10 = tentukan nama user hotspot pertama lalu enter
+# Langkah 11 = tentukan password dari user hotspot yg pertama lalu enter
+
+
+Settingan / Configurasi OLT ZTE C320 V1.2.5
+( Untuk settingan V2.1 ada dibagian bawah )
+# Perbedaan versi membuat configurasi ada perubahan sedikit
+
+# Setelah configurasi Mikrotik sekarang kita config OLT
+# Telnet dari mikrotik atau komputer ke ip 136.1.1.100 dengan user zte dan password zte
+lalu check config shelf dan card ( jika sudah diconfig )
+
+/system telnet 136.1.1.100
+
+# gambar login melihat shelf, rack, card dan subcard yg sama sekali belum diconfig
+# Perintah untuk melihat config shelf, jika tidak ada hasil maka belum diconfig sama sekali
+show shelf
+show rack
+# gambar shelf dan rack yg telah diconfig
+
+# jika sudah ada shelf maka check card sudah terconfig atau belum. tapi sebaiknya di delet config jika belum merasa config. Berikut untuk mengecek card dan subcard
+show card
+show subcard
+# gambar card dan subcard yg sudah terconfig
+
+# perintah untuk delet config ( alias reset ke kosongan )
+# untuk melihat apakah ada config atau tidak
+dir cfg
+
+# gambar melihat file config
+
+# jika ada file maka dapat di delet dengan perintah dibawah ini
+# perintah di input per baris tidak dapat sekaligus memasukkannya, akan diminta confirmasi apakah betul ingin mendelet atau tidak, jika iya maka tekan y
+delete cfg startrun.dat
+delete cfg startrun.sav
+
+# gambar menghapus file config
+
+# setelah itu reboot dengan perintah
+reboot
+
+# gambar perintah reboot dan permintaan confirmasi bahwa memang ingin me reboot
+
+# memulai config dari kosongan
+conf t
+set-pnp enable
+line telnet idle-timeout 1000
+snmp-server community public view allview rw
+snmp-server enable trap
+ip route 0.0.0.0 0.0.0.0 136.1.1.1
+auto-write enable
+auto-write 00:00:00  everyday
+ntp server 103.136.182.170 priority 1
+ntp server 203.114.74.17 priority 2
+ntp enable
+alarm disable
+alarm confirm
+nms-hello-trap disable
+alarm trap-confirm retry 1 timeout 30
+add-rack rackno 1 racktype C320Rack
+add-shelf shelfno 1 shelftype C320_SHELF
+
+# tunggu beberapa saat untuk waktu auto provision sekitar 3 menit
+# selanjutnya check card yg ada agar tau type dan slotnya
+
+show card
+show subcard
+
+# gambar tampilan informasi card dan subcard yg belum diconfig
+# check kembali card sampai status "INSERVICE" lalu lanjut perintah selanjutnya dapat dicopi sampai pagar selanjutnya
+
+fan control temp_level 30 35 40 45
+fan speed-percent-set 40 50 60 70
+
+# fan control temp_level 30 35 40 45
+# fan speed-percent-set 50 65 80 95
+
+fan high-threshold 60
+gpon
+  profile tcont 100M type 4 maximum 1000000
+  profile traffic DW100M sir 900000 pir 1000000
+  profile traffic UP100M sir 900000 pir 1000000
+
+# profile ip dibawah ini digunakan jika ingin menggunakan mode ip static ke modem bukan pppoe
+# sesuaikan dari gateway dan dns server yg digunakan
+
+  onu profile ip JSN static gateway 192.168.79.254 primary-dns 103.80.80.243 second-dns 103.80.80.244
+  onu profile vlan PPPoE tag-mode tag cvlan 600
+exit
+pon
+onu-type ZTE-F660 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F660 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F660 eth_0/1-4
+onu-type-if ZTE-F660 pots_0/1-2
+onu-type-if ZTE-F660 wifi_0/1-4
+onu-type ZTE-F609 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F609 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F609 eth_0/1-4
+onu-type-if ZTE-F609 pots_0/1-2
+onu-type-if ZTE-F609 wifi_0/1-4
+onu-type HW-HG8245A gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type HW-HG8245A gpon max-tcont 40 max-gemport 255 max-switch-perslot 32 max-flow-perswitch 200 max-iphost 5
+onu-type-if HW-HG8245A eth_0/1-4
+onu-type-if HW-HG8245A pots_0/1-2
+onu-type-if HW-HG8245A wifi_0/1-4
+exit
+
+# sesuaikan dengan slot SMXA yaitu angka urutan ke 2 ( ditengah )
+
+interface gei_1/4/3
+no shutdown
+switchport mode trunk
+
+# tentukan vlan yg diinginkan untuk layanan PPPoE ataupun bridge dhcp misal VLAN 600, jika ada beberapa vlan maka gunakan koma antar vlan misal vlan 500 dan 600 maka ditulis 500,600
+
+switchport vlan 500,600 tag
+exit
+
+# berikut untuk interface 10g
+
+interface xgei_1/4/2
+no shutdown
+switchport mode trunk
+switchport vlan 500,600  tag
+end
+write
+
+#sampai disini sudah selesai persiapan config awal OLT, selanjutnya pengecekan modem dan setting
+# untuk melihat modem yg belum ter register
+
+Show gpon onu uncfg
+
+# gambar informasi onu yg belum diconfig, dari Sn 3 huruf diawal mencerminkan mereknya
+
+conf t
+
+# angka 1/1/1 sesuaikan urutan di tengah dengan letak slot si card GPON, sedangka angka terakhir untuk letak port GPON pada card tersebut yg sebetulnya terlihat dari pengecekan modem yg belum terconfig
+
+interface gpon-olt_1/1/1
+
+# sesuaikan urutan onu, type dan sn nya, sebaiknya untuk colok ke jalur gpon dilakukan 1 per 1, tidak bersamaan karena akan bingung jika sudah dilapangan. 
+
+onu 1 type ZTE-F609 sn ZTEGC8A29DC9
+exit
+
+#sesuaikan gpon-onu_1/1/1:1 dengan urutan slot, card, port gpon dan urutan modem di register diatas
+
+interface gpon-onu_1/1/1:1
+
+#sesuaikan nama dan deskripsi
+  name PEMDA
+  description 1$$PEMDA$$
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+
+#sesuaikan gpon-onu_1/1/1:1 dengan urutan slot, card, port gpon dan urutan modem di register diatas
+
+pon-onu-mng gpon-onu_1/1/1:1
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+#sesuaikan username PPPoE dan password
+  wan-ip 1 mode pppoe username 123456@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  security-mng 1 state enable mode permit protocol web
+# untuk SSID dibawah ini sesuaikan dengan SSID yg diinginkan
+#  interface wifi wifi_0/2 state unlock
+#  vlan port eth_0/4 mode tag vlan 500
+#  vlan port wifi_0/2 mode tag vlan 500
+#  ssid auth wep wifi_0/2 open-system
+# untuk SSID dibawah ini sesuaikan dengan SSID yg diinginkan
+#  ssid ctrl wifi_0/2 name HOTSPOTKU
+exit
+end
+write
+
+
+# Sampai disini selesai config modem pertama, untuk selanjutnya tinggal diulang dari melihat modem yg belum terregister sampai selesai, tentu disesuaikan port, user password dan yg perlu di sesuaikan lainnya
+# jangan lupa untuk membuat firewall di mikrotik agar hanya dari segmen atau ip tertentu saja yg dapat mengakses ke 136.1.1.100
+
+
+
+# contoh config ke 2 untuk menggunakan ip static
+show gpon onu uncfg
+
+
+conf t
+interface gpon-olt_1/1/1
+  onu 2 type ZTE-F609 sn ZTEGC8A29E56
+exit
+interface gpon-onu_1/1/1:2
+  name Client 2
+  description 1$$Client 2$$
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/1:2
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode static ip-profile JSN ip 192.168.79.1 mask 255.255.255.0 vlan-profile PPPoE host 1
+# perintah yg dipagar dibawah ini berfungsi untuk membuka security modem agar dapat diremote dari luar. Boleh dimasukkan tapi sebaiknya di buang kembali jika sudah
+# security-mng 1 state enable mode permit protocol web
+  interface wifi wifi_0/2 state unlock
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/2 mode tag vlan 500
+  ssid auth wep wifi_0/2 open-system
+# untuk SSID dibawah ini sesuaikan dengan SSID yg diinginkan
+  ssid ctrl wifi_0/2 name HOTSPOTKU
+  wan 1 service internet host 1
+exit
+end
+write
+
+
+
+# Contoh config ke 3 bridging modem HUAWEI atau Fiberhome
+conf t
+interface gpon-olt_1/1/1
+  onu 3 type ZTE-F641 sn HWTCAADBEF5B
+exit
+interface gpon-onu_1/1/1:1
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  gemport 1 name 1 unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  service-port 1 vport 1 user-vlan 600 vlan 600
+exit
+pon-onu-mng gpon-onu_1/1/1:1
+  service hsi gemport 1 vlan 600
+  vlan port eth_0/1 mode tag vlan 600
+  vlan port eth_0/2 mode tag vlan 600
+  vlan port eth_0/3 mode tag vlan 600
+  vlan port eth_0/4 mode tag vlan 600
+exit
+end
+Write
+# setting ke 5 untuk modem HUAWEI dengan mode PPPoE namun harus setting manual di modem juga 
+# 
+conf t
+interface gpon-olt_1/1/1
+onu 3 type ZTE-F641 sn HWTCAADBEF5B
+exit
+interface gpon-onu_1/1/1:3
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/1:3
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+switchport-bind switch_0/1 iphost 1
+switchport-bind switch_0/1 iphost 2
+exit
+end
+write
+
+# contoh setting modem dengan mode super user. Untuk user/passwordnya dapat dicoba menggunakan user/password berikut
+# Support/theworldinyourhand atau telecomadmin/admintelecom
+
+
+
+
+
+# perintah untuk melihat power dari olt dan ont, syarat ont sudah diregister terlebih dahulu
+show pon power olt-rx gpon-onu_1/1/1:1
+show pon power attenuation gpon-onu_1/1/1:1
+show pon power onu-rx gpon-onu_1/1/1:1
+
+
+
+
+# untuk melihat temperature
+Show temp
+
+# untuk backup file config ke mikrotik ( service ftp harus enable )
+upload cfg * ftp ipaddress 136.1.1.1 user user-winbox password pass-winbox
+
+
+
+
+
+
+
+
+
+
+
+interface gpon-onu_1/1/1:1
+  name PEMDA
+  description 1$$PEMDA$$
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+
+pon-onu-mng gpon-onu_1/1/1:1
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+#sesuaikan username PPPoE dan password
+  wan-ip 1 mode pppoe username 123456@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  interface wifi wifi_0/2 state unlock
+  interface wifi wifi_0/3 state unlock
+  interface wifi wifi_0/4 state unlock
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/3 mode tag vlan 500
+  ssid auth wep wifi_0/1 open-system
+  ssid auth wpa wifi_0/2 wpa2-psk key qwerty123456
+  ssid auth wep wifi_0/3 open-system
+  ssid auth wep wifi_0/4 open-system
+  ssid ctrl wifi_0/1 name 1
+  ssid ctrl wifi_0/2 name WIFIKU-ae
+  ssid ctrl wifi_0/3 name HOTSPOTKU
+  ssid ctrl wifi_0/4 name 4
+  interface wifi wifi_0/1 state lock
+  interface wifi wifi_0/4 state lock
+exit
+end
+write
+
+
+Konfigurasi ZTE C320 V2.1
+
+Perbedaan versi pada OLT ZTE C320 mengakibatkan sedikit perubahan pada config. Selain itu default dari port Uplink dan port GPON semua dalam kondisi shutdown, sehingga harus diaktifkan dengan menggunakan perintah “no shutdown”. IP di settingan SNMP adalah ip dari netnumen untuk settingan “snmp-server community public view AllView rw” case sensitif. Untuk versi 2.1 ini config awal harus dimulai dari console dengan mengetikkan perintah enable dengan default password zxr10
+
+conf t
+set-pnp enable
+username zte password zte privilege 15
+line telnet idle-timeout 1000
+line console idle-timeout 1000
+# jika menginginkan menggunakan telnet maka gunakan perintah “no ssh server enable”
+ip route 0.0.0.0 0.0.0.0 136.1.1.1
+auto-write enable
+auto-write 00:00:00 everyday
+ntp server 103.136.182.170 priority 1
+ntp server 203.114.74.17 priority 2
+ntp enable
+alarm disable
+alarm confirm
+nms-hello-trap disable
+alarm trap-confirm retry 1 timeout 30
+fan control temp_level 40 50 60 65
+fan speed-percent-set 40 50 60 70
+snmp-server community public view AllView rw
+snmp-server host 10.10.10.10  version 2c public enable NOTIFICATIONS target-addr-name zte udp-port 162
+gpon
+  profile tcont 100M type 4 maximum 102400
+  profile traffic DW100M sir 102400 pir 102400
+  profile traffic UP100M sir 102400 pir 102400
+  onu profile ip JSN gateway 192.168.79.254 primary-dns 103.80.80.243 second-dns 103.80.80.244
+  onu profile vlan PPPoE tag-mode tag cvlan 600
+!
+pon
+onu-type ZTE-F660 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F660 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F660 eth_0/1-4
+onu-type-if ZTE-F660 pots_0/1-2
+onu-type-if ZTE-F660 wifi_0/1-4
+onu-type ZTE-F609 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F609 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F609 eth_0/1-4
+onu-type-if ZTE-F609 pots_0/1-2
+onu-type-if ZTE-F609 wifi_0/1-4
+onu-type HW-HG8245A gpon description 4ETH,2POTS,WIFI max-tcont 40 max-gemport 255 max-switch-perslot 32 max-flow-perswitch 200 max-iphost 5
+onu-type-if HW-HG8245A eth_0/1-4
+onu-type-if HW-HG8245A pots_0/1-2
+onu-type-if HW-HG8245A wifi_0/1-4
+!
+interface gei_1/4/3
+switchport mode trunk
+switchport vlan 500,600 tag
+no shutdown
+end
+write
+
+
+
+conf t
+interface gpon-olt_1/1/1
+  no shutdown
+  onu 1 type ZTE-F609 sn ZTEGC8969621
+  onu 2 type ZTE-F609 sn ZTEGC896969B
+!
+interface gpon-onu_1/1/1:1
+  name PEMDA1
+  description 1$$PEMDA1$$
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN tcont 1
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT tcont 2
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-identification format DSL-FORUM-PON sport 1
+  pppoe-intermediate-agent enable sport 1
+!
+pon-onu-mng gpon-onu_1/1/1:1
+  service JSN gemport 1 vlan 600
+  service HOT gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 123456@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/2 mode tag vlan 500
+  interface wifi wifi_0/2 state unlock
+  security-mgmt 1 state enable mode forward protocol web
+  ssid auth wep wifi_0/2 open-system
+  ssid ctrl wifi_0/2 name HOTSPOTKU01
+!
+interface gpon-onu_1/1/1:2
+  name PEMDA2
+  description 1$$PEMDA2$$
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN tcont 1
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT tcont 2
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-identification format DSL-FORUM-PON sport 1
+  pppoe-intermediate-agent enable sport 1
+!
+pon-onu-mng gpon-onu_1/1/1:2
+  service JSN gemport 1 vlan 600
+  service HOT gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 234567@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/2 mode tag vlan 500
+  interface wifi wifi_0/2 state unlock
+  security-mgmt 1 state enable mode forward protocol web
+  ssid auth wep wifi_0/2 open-system
+  ssid ctrl wifi_0/2 name HOTSPOTKU02
+!
+end
+write
+
+
+untuk modem HUAWEI dengan mode PPPoE
+( namun harus setting manual di modem juga )
+
+
+conf t
+interface gpon-olt_1/1/1
+  onu 3 type ZTE-F641 sn HWTCAADBEF5B
+!
+interface gpon-onu_1/1/1:3
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN tcont 1
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT tcont 2
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-identification format DSL-FORUM-PON sport 1
+  pppoe-intermediate-agent enable sport 1
+!
+pon-onu-mng gpon-onu_1/1/1:3
+  service JSN gemport 1 vlan 600
+  service HOT gemport 2 vlan 500
+  switchport-bind switch_0/1 iphost 1
+  switchport-bind switch_0/1 iphost 2
+!
+end
+write
+
+Configurasi OLT ZTE C320 , ONU dan Mikrotik
+
+
+Sekilas pengenalan perangkat OLT
+
+
+
+OLT adalah singkatan dari “Optical Line Termination” perangkat yg berfungsi sebagai server dari jaringan optik pasif. Untuk OLT sendiri banyak merek dan typenya, namun kali ini kita khusus membahas OLT keluaran ZTE dengan type C320 yg memiliki saudara type C220 dan C300 yang memiliki body yg besar untuk menampung card gpon yg banyak.
+ZTE C320 standarnya memiliki komponen sasis, modul fan, card uplink ( SMXA ), card gpon atau epon, card power suplay ( PRAM ).
+Sasis ZTE C320 memiliki slot modul / card. Slot 1 dan slot 2 untuk modul / card gpon atau epon. Slot 3 untuk modul / card power suplay atau card uplink. Slot 4 hanya untuk modul / card uplink. Digambar diatas angka sesuai dengan nomor urut slot. Modul / card GPON memiliki 2 seri yaitu GTGO yg memiliki 8 port dan GTGH yg memiliki 16 port. Untu uplink ada yg 1G ( SMXA UCDC/1 ) dan 10G ( SMXA UCDC/3 )
+Posisi card sangat menentukan untuk script configurasi dari OLT. Sebuah contoh gpon-olt_1/x/y dimana x adalah letak slot GPON dan y adalah urutan port sfp pada GPON. Dalam tutorial ini posisi card GPON ( GTGH ) berada pada slot 1 sehingga config menjadi gpon-olt_1/1/1 dan gpon-onu_1/1/1:z dimana z adalah urutan dari modem yg di register 
+
+
+
+Settingan / Configurasi Mikrotik untuk terhubung ke OLT
+# Mikrotik yg akan kita gunakan diasumsikan kosong tanpa ada konfigurasi sama sekali ( reset non default ) 
+# atau jika ingin mereset ke non default menggunakan perintah berikut ( resiko reset ditanggung sendiri )
+
+/system reset-configuration no-defaults=yes skip-backup=yes
+
+# Selanjutnya mari kita setting mikrotik dengan ketentuan
+# ether1 = Digunakan untuk terhubung Internet dengan DHCP
+# ether2 = Akses remote OLT ( port di OLT 10/100 )
+# ether3 = Jalur internet untuk client via OLT ( port di OLT GEFE )
+# ether4 = Komputer untuk monitoring dengan ip komputer 192.168.255.2 subnet 255.255.255.0 gateway 192.168.255.1
+# vlan 500 = vlan untuk jalur Hotspot berdiri di ether3
+# vlan 600 = vlan untuk jalur PPPoE berdiri di ether3
+
+# berikut ini adalah config mikrotiknya yg dapat di copy paste langsung
+/user group add name=ftp policy=local,ftp,read,write,!telnet,!ssh,!reboot,!policy,!test,!winbox,!password,!web,!sniff,!sensitive,!api,!romon,!dude,!tikapp
+/user add name=zte password=zte group=ftp disabled=no
+/ip service set ftp address=136.1.1.100/32,192.168.0.0/16,172.16.0.0/12,10.0.0.0/8 disabled=yes
+/interface vlan add name=500-Hotspot vlan-id=500 interface=ether3
+/interface vlan add name=600-PPPoE vlan-id=600 interface=ether3
+/ip dhcp-client add interface=ether1 add-default-route=yes default-route-distance=1 use-peer-dns=yes use-peer-ntp=yes
+/ip address add interface=ether2 address=136.1.1.1/24
+/ip address add interface=ether4 address=192.168.255.1/30
+/ip address add interface=500-Hotspot address=10.20.30.1/23
+/ip firewall nat add chain=srcnat action=masquerade
+/ip dns set servers=8.8.8.8,1.1.1.1 allow-remote-requests=yes cache-max-ttl=00:10:00 cache-size=20480 max-concurrent-tcp-sessions=100 max-concurrent-queries=1000
+/ip pool add name=PPPoE ranges=10.11.12.0/22
+/queue simple add max-limit=1G/1G name=ALL-Traffic target=""
+/queue simple add max-limit=1G/1G name=PPPoE parent=ALL-Traffic target=""
+/queue simple add max-limit=1G/1G name=Hotspot parent=ALL-Traffic target=""
+/ip hotspot user profile set [ find default=yes ] parent-queue=Hotspot rate-limit=10M/10M
+/ppp profile add name=PPPoE-03M change-tcp-mss=yes dns-server=10.9.8.7 local-address=10.9.8.7 only-one=yes parent-queue=PPPoE rate-limit="3M/3M 3379k/3379k 1M/1M 16/16 3 384k/384k" remote-address=PPPoE
+/ppp profile add name=PPPoE-05M change-tcp-mss=yes dns-server=10.9.8.7 local-address=10.9.8.7 only-one=yes parent-queue=PPPoE rate-limit="5M/5M 5632k/5632k 1706k/1706k 16/16 4 640k/640k" remote-address=PPPoE
+/ppp profile add name=PPPoE-10M change-tcp-mss=yes dns-server=10.9.8.7 local-address=10.9.8.7 only-one=yes parent-queue=PPPoE rate-limit="10M/10M 11264k/11264k 3413k/3413k 16/16 5 1280k/1280k" remote-address=PPPoE
+/interface pppoe-server server add service-name=PPPoE-JSN interface=600-PPPoE max-mtu=1500 max-mru=1500 disabled=no default-profile=PPPoE-03M
+/ppp secret add name=123456@jsn.net.id password=123 profile=PPPoE-03M service=pppoe
+/ppp secret add name=234567@jsn.net.id password=123 profile=PPPoE-10M service=pppoe
+/ip hotspot setup
+
+
+
+# langkah config setup dengan penjelasan sebagai berikut
+# Langkah 1 = Perintah setup hotspot yg kita ketik lalu tekan enter
+# Langkah 2 = Diminta untuk menentukan interfacenya, berhubung nama interface vlan yg kita buat adalah 500-Hotspot maka cukup ketik 5 lalu tekan tombol tab lalu enter
+# Langkah 3 = tekan enter
+# Langkah 4 = tekan enter
+# Langkah 5 = tekan enter
+# Langkah 6 = hapus yg muncul lalu ketik none
+# Langkah 7 = tekan enter
+# Langkah 8 = kita gunakan ip mikrotik yg mengarak ke hotspot lalu enter
+# Langkah 9 = isi dengan nama yg diinginkan, ini akan tampil di alamat hotspot lalu enter
+# Langkah 10 = tentukan nama user hotspot pertama lalu enter
+# Langkah 11 = tentukan password dari user hotspot yg pertama lalu enter
+
+
+Settingan / Configurasi OLT ZTE C320 V1.2.5
+( Untuk settingan V2.1 ada dibagian bawah )
+# Perbedaan versi membuat configurasi ada perubahan sedikit
+
+# Setelah configurasi Mikrotik sekarang kita config OLT
+# Telnet dari mikrotik atau komputer ke ip 136.1.1.100 dengan user zte dan password zte
+lalu check config shelf dan card ( jika sudah diconfig )
+
+/system telnet 136.1.1.100
+
+
+
+
+# gambar login melihat shelf, rack, card dan subcard yg sama sekali belum diconfig
+# Perintah untuk melihat config shelf, jika tidak ada hasil maka belum diconfig sama sekali
+show shelf
+show rack
+# gambar shelf dan rack yg telah diconfig
+
+# jika sudah ada shelf maka check card sudah terconfig atau belum. tapi sebaiknya di delet config jika belum merasa config. Berikut untuk mengecek card dan subcard
+show card
+show subcard
+# gambar card dan subcard yg sudah terconfig
+
+
+# perintah untuk delet config ( alias reset ke kosongan )
+# untuk melihat apakah ada config atau tidak
+dir cfg
+
+# gambar melihat file config
+
+# jika ada file maka dapat di delet dengan perintah dibawah ini
+# perintah di input per baris tidak dapat sekaligus memasukkannya, akan diminta confirmasi apakah betul ingin mendelet atau tidak, jika iya maka tekan y
+delete cfg startrun.dat
+delete cfg startrun.sav
+
+
+# gambar menghapus file config
+
+
+# setelah itu reboot dengan perintah
+reboot
+
+# gambar perintah reboot dan permintaan confirmasi bahwa memang ingin me reboot
+
+
+# memulai config dari kosongan
+conf t
+set-pnp enable
+line telnet idle-timeout 1000
+snmp-server community public view allview rw
+snmp-server enable trap
+ip route 0.0.0.0 0.0.0.0 136.1.1.1
+auto-write enable
+auto-write 00:00:00  everyday
+ntp server 103.136.182.170 priority 1
+ntp server 203.114.74.17 priority 2
+ntp enable
+alarm disable
+alarm confirm
+nms-hello-trap disable
+alarm trap-confirm retry 1 timeout 30
+add-rack rackno 1 racktype C320Rack
+add-shelf shelfno 1 shelftype C320_SHELF
+# tunggu beberapa saat untuk waktu auto provision sekitar 3 menit
+# selanjutnya check card yg ada agar tau type dan slotnya
+show card
+show subcard
+# gambar tampilan informasi card dan subcard yg belum diconfig
+
+# check kembali card sampai status "INSERVICE" lalu lanjut perintah selanjutnya dapat dicopi sampai pagar selanjutnya
+fan control temp_level 30 35 40 45
+fan speed-percent-set 40 50 60 70
+# fan control temp_level 30 35 40 45
+# fan speed-percent-set 50 65 80 95
+fan high-threshold 60
+gpon
+  profile tcont 100M type 4 maximum 100000
+  profile traffic DW100M sir 90000 pir 100000
+  profile traffic UP100M sir 90000 pir 100000
+
+# profile ip dibawah ini digunakan jika ingin menggunakan mode ip static ke modem bukan pppoe
+# sesuaikan dari gateway dan dns server yg digunakan
+  onu profile ip JSN static gateway 192.168.79.254 primary-dns 103.80.80.243 second-dns 103.80.80.244
+  onu profile vlan PPPoE tag-mode tag cvlan 600
+exit
+pon
+onu-type ZTE-F660 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F660 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F660 eth_0/1-4
+onu-type-if ZTE-F660 pots_0/1-2
+onu-type-if ZTE-F660 wifi_0/1-4
+onu-type ZTE-F609 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F609 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F609 eth_0/1-4
+onu-type-if ZTE-F609 pots_0/1-2
+onu-type-if ZTE-F609 wifi_0/1-4
+onu-type HW-HG8245A gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type HW-HG8245A gpon max-tcont 40 max-gemport 255 max-switch-perslot 32 max-flow-perswitch 200 max-iphost 5
+onu-type-if HW-HG8245A eth_0/1-4
+onu-type-if HW-HG8245A pots_0/1-2
+onu-type-if HW-HG8245A wifi_0/1-4
+exit
+# sesuaikan dengan slot SMXA yaitu angka urutan ke 2 ( ditengah )
+interface gei_1/4/3
+no shutdown
+switchport mode trunk
+# tentukan vlan yg diinginkan untuk layanan PPPoE ataupun bridge dhcp misal VLAN 600,
+jika ada beberapa vlan maka gunakan koma antar vlan misal vlan 500 dan 600 maka ditulis 500,600
+switchport vlan 500,600 tag
+exit
+# berikut untuk interface 10g
+interface xgei_1/4/2
+no shutdown
+switchport mode trunk
+switchport vlan 500,600  tag
+end
+write
+#sampai disini sudah selesai persiapan config awal OLT, selanjutnya pengecekan modem dan setting
+
+# untuk melihat modem yg belum ter register
+Show gpon onu uncfg
+# gambar informasi onu yg belum diconfig, dari Sn 3 huruf diawal mencerminkan mereknya
+
+conf t
+# angka 1/1/1 sesuaikan urutan di tengah dengan letak slot si card GPON, sedangka angka terakhir untuk letak port GPON pada card tersebut yg sebetulnya terlihat dari pengecekan modem yg belum terconfig
+interface gpon-olt_1/1/1
+# sesuaikan urutan onu, type dan sn nya, sebaiknya untuk colok ke jalur gpon dilakukan 1 per 1, tidak bersamaan karena akan bingung jika sudah dilapangan. 
+  onu 1 type ZTE-F609 sn ZTEGC8A29DC9
+exit
+
+#sesuaikan gpon-onu_1/1/1:1 dengan urutan slot, card, port gpon dan urutan modem di register diatas
+interface gpon-onu_1/1/1:1
+#sesuaikan nama dan deskripsi
+  name PEMDA
+  description 1$$PEMDA$$
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+
+#sesuaikan gpon-onu_1/1/1:1 dengan urutan slot, card, port gpon dan urutan modem di register diatas
+
+pon-onu-mng gpon-onu_1/1/1:1
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+#sesuaikan username PPPoE dan password
+  wan-ip 1 mode pppoe username 123456@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  security-mng 1 state enable mode permit protocol web
+# untuk SSID dibawah ini sesuaikan dengan SSID yg diinginkan
+#  interface wifi wifi_0/2 state unlock
+#  vlan port eth_0/4 mode tag vlan 500
+#  vlan port wifi_0/2 mode tag vlan 500
+#  ssid auth wep wifi_0/2 open-system
+# untuk SSID dibawah ini sesuaikan dengan SSID yg diinginkan
+#  ssid ctrl wifi_0/2 name HOTSPOTKU
+exit
+end
+write
+
+
+# Sampai disini selesai config modem pertama, untuk selanjutnya tinggal diulang dari melihat modem yg belum terregister sampai selesai,
+tentu disesuaikan port, user password dan yg perlu di sesuaikan lainnya
+# jangan lupa untuk membuat firewall di mikrotik agar hanya dari segmen atau ip tertentu saja yg dapat mengakses ke 136.1.1.100
+
+
+
+# contoh config ke 2 untuk menggunakan ip static
+show gpon onu uncfg
+
+
+conf t
+interface gpon-olt_1/1/1
+  onu 2 type ZTE-F609 sn ZTEGC8A29E56
+exit
+interface gpon-onu_1/1/1:2
+  name Client 2
+  description 1$$Client 2$$
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/1:2
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+  wan-ip 1 mode static ip-profile JSN ip 192.168.79.1 mask 255.255.255.0 vlan-profile PPPoE host 1
+# perintah yg dipagar dibawah ini berfungsi untuk membuka security modem agar dapat diremote dari luar. Boleh dimasukkan tapi sebaiknya di buang kembali jika sudah
+# security-mng 1 state enable mode permit protocol web
+  interface wifi wifi_0/2 state unlock
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/2 mode tag vlan 500
+  ssid auth wep wifi_0/2 open-system
+# untuk SSID dibawah ini sesuaikan dengan SSID yg diinginkan
+  ssid ctrl wifi_0/2 name HOTSPOTKU
+  wan 1 service internet host 1
+exit
+end
+write
+
+
+
+# Contoh config ke 3 bridging modem HUAWEI atau Fiberhome
+conf t
+interface gpon-olt_1/1/1
+  onu 3 type ZTE-F641 sn HWTCAADBEF5B
+exit
+interface gpon-onu_1/1/1:1
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  gemport 1 name 1 unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  service-port 1 vport 1 user-vlan 600 vlan 600
+exit
+pon-onu-mng gpon-onu_1/1/1:1
+  service hsi gemport 1 vlan 600
+  vlan port eth_0/1 mode tag vlan 600
+  vlan port eth_0/2 mode tag vlan 600
+  vlan port eth_0/3 mode tag vlan 600
+  vlan port eth_0/4 mode tag vlan 600
+exit
+end
+Write
+# setting ke 5 untuk modem HUAWEI dengan mode PPPoE namun harus setting manual di modem juga 
+# 
+conf t
+interface gpon-olt_1/1/1
+onu 3 type ZTE-F641 sn HWTCAADBEF5B
+exit
+interface gpon-onu_1/1/1:3
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/1:3
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+switchport-bind switch_0/1 iphost 1
+switchport-bind switch_0/1 iphost 2
+exit
+end
+write
+
+# contoh setting modem dengan mode super user. Untuk user/passwordnya dapat dicoba menggunakan user/password berikut
+# Support/theworldinyourhand atau telecomadmin/admintelecom
+
+
+
+
+
+# perintah untuk melihat power dari olt dan ont, syarat ont sudah diregister terlebih dahulu
+show pon power olt-rx gpon-onu_1/1/1:1
+show pon power attenuation gpon-onu_1/1/1:1
+show pon power onu-rx gpon-onu_1/1/1:1
+
+
+
+
+# untuk melihat temperature
+Show temp
+
+# untuk backup file config ke mikrotik ( service ftp harus enable )
+upload cfg * ftp ipaddress 136.1.1.1 user user-winbox password pass-winbox
+
+
+
+
+
+
+
+
+
+
+
+interface gpon-onu_1/1/1:1
+  name PEMDA
+  description 1$$PEMDA$$
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN unicast tcont 1 dir both
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT unicast tcont 2 dir both
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-location format dsl-forum sport 1
+  port-location sub-option remote-id enable sport 1
+  port-location sub-option remote-id name 600 sport 1
+  port-location ft-cid 600 sport 1
+  pppoe-plus enable sport 1
+  pppoe-plus trust true replace sport 1
+exit
+
+pon-onu-mng gpon-onu_1/1/1:1
+  service JSN type internet gemport 1 vlan 600
+  service HOT type internet gemport 2 vlan 500
+#sesuaikan username PPPoE dan password
+  wan-ip 1 mode pppoe username 123456@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  interface wifi wifi_0/2 state unlock
+  interface wifi wifi_0/3 state unlock
+  interface wifi wifi_0/4 state unlock
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/3 mode tag vlan 500
+  ssid auth wep wifi_0/1 open-system
+  ssid auth wpa wifi_0/2 wpa2-psk key qwerty123456
+  ssid auth wep wifi_0/3 open-system
+  ssid auth wep wifi_0/4 open-system
+  ssid ctrl wifi_0/1 name 1
+  ssid ctrl wifi_0/2 name WIFIKU-ae
+  ssid ctrl wifi_0/3 name HOTSPOTKU
+  ssid ctrl wifi_0/4 name 4
+  interface wifi wifi_0/1 state lock
+  interface wifi wifi_0/4 state lock
+exit
+end
+write
+
+
+Konfigurasi ZTE C320 V2.1
+
+Perbedaan versi pada OLT ZTE C320 mengakibatkan sedikit perubahan pada config.
+Selain itu default dari port Uplink dan port GPON semua dalam kondisi shutdown,
+sehingga harus diaktifkan dengan menggunakan perintah “no shutdown”.
+IP di settingan SNMP adalah ip dari netnumen untuk settingan “snmp-server community public view AllView rw” case sensitif.
+Untuk versi 2.1 ini config awal harus dimulai dari console dengan mengetikkan perintah enable dengan default password zxr10
+
+conf t
+set-pnp enable
+username zte password zte privilege 15
+line telnet idle-timeout 1000
+line console idle-timeout 1000
+# jika menginginkan menggunakan telnet maka gunakan perintah “no ssh server enable”
+ip route 0.0.0.0 0.0.0.0 136.1.1.1
+auto-write enable
+auto-write 00:00:00 everyday
+ntp server 103.136.182.170 priority 1
+ntp server 203.114.74.17 priority 2
+ntp enable
+alarm disable
+alarm confirm
+nms-hello-trap disable
+alarm trap-confirm retry 1 timeout 30
+fan control temp_level 40 50 60 65
+fan speed-percent-set 40 50 60 70
+snmp-server community public view AllView rw
+snmp-server host 10.10.10.10  version 2c public enable NOTIFICATIONS target-addr-name zte udp-port 162
+gpon
+  profile tcont 100M type 4 maximum 102400
+  profile traffic DW100M sir 102400 pir 102400
+  profile traffic UP100M sir 102400 pir 102400
+  onu profile ip JSN gateway 192.168.79.254 primary-dns 103.80.80.243 second-dns 103.80.80.244
+  onu profile vlan PPPoE tag-mode tag cvlan 600
+!
+pon
+onu-type ZTE-F660 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F660 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F660 eth_0/1-4
+onu-type-if ZTE-F660 pots_0/1-2
+onu-type-if ZTE-F660 wifi_0/1-4
+onu-type ZTE-F609 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F609 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F609 eth_0/1-4
+onu-type-if ZTE-F609 pots_0/1-2
+onu-type-if ZTE-F609 wifi_0/1-4
+onu-type HW-HG8245A gpon description 4ETH,2POTS,WIFI max-tcont 40 max-gemport 255 max-switch-perslot 32 max-flow-perswitch 200 max-iphost 5
+onu-type-if HW-HG8245A eth_0/1-4
+onu-type-if HW-HG8245A pots_0/1-2
+onu-type-if HW-HG8245A wifi_0/1-4
+!
+interface gei_1/4/3
+switchport mode trunk
+switchport vlan 500,600 tag
+no shutdown
+end
+write
+
+
+
+conf t
+interface gpon-olt_1/1/1
+  no shutdown
+  onu 1 type ZTE-F609 sn ZTEGC8969621
+  onu 2 type ZTE-F609 sn ZTEGC896969B
+!
+interface gpon-onu_1/1/1:1
+  name PEMDA1
+  description 1$$PEMDA1$$
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN tcont 1
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT tcont 2
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-identification format DSL-FORUM-PON sport 1
+  pppoe-intermediate-agent enable sport 1
+!
+pon-onu-mng gpon-onu_1/1/1:1
+  service JSN gemport 1 vlan 600
+  service HOT gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 123456@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/2 mode tag vlan 500
+  interface wifi wifi_0/2 state unlock
+  security-mgmt 1 state enable mode forward protocol web
+  ssid auth wep wifi_0/2 open-system
+  ssid ctrl wifi_0/2 name HOTSPOTKU01
+!
+interface gpon-onu_1/1/1:2
+  name PEMDA2
+  description 1$$PEMDA2$$
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN tcont 1
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT tcont 2
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-identification format DSL-FORUM-PON sport 1
+  pppoe-intermediate-agent enable sport 1
+!
+pon-onu-mng gpon-onu_1/1/1:2
+  service JSN gemport 1 vlan 600
+  service HOT gemport 2 vlan 500
+  wan-ip 1 mode pppoe username 234567@jsn.net.id password 123 vlan-profile PPPoE host 1
+  wan-ip 1 ping-response enable traceroute-response enable
+  vlan port eth_0/4 mode tag vlan 500
+  vlan port wifi_0/2 mode tag vlan 500
+  interface wifi wifi_0/2 state unlock
+  security-mgmt 1 state enable mode forward protocol web
+  ssid auth wep wifi_0/2 open-system
+  ssid ctrl wifi_0/2 name HOTSPOTKU02
+!
+end
+write
+
+
+untuk modem HUAWEI dengan mode PPPoE
+( namun harus setting manual di modem juga )
+
+
+conf t
+interface gpon-olt_1/1/1
+  onu 3 type ZTE-F641 sn HWTCAADBEF5B
+!
+interface gpon-onu_1/1/1:3
+  sn-bind enable sn
+  tcont 1 name JSN profile 100M
+  tcont 2 name HOT profile 100M
+  gemport 1 name JSN tcont 1
+  gemport 1 traffic-limit upstream UP100M downstream DW100M
+  gemport 2 name HOT tcont 2
+  gemport 2 traffic-limit upstream UP100M downstream DW100M
+  switchport mode hybrid vport 1
+  switchport mode hybrid vport 2
+  service-port 1 vport 1 user-vlan 600 vlan 600
+  service-port 2 vport 2 user-vlan 500 vlan 500
+  port-identification format DSL-FORUM-PON sport 1
+  pppoe-intermediate-agent enable sport 1
+!
+pon-onu-mng gpon-onu_1/1/1:3
+  service JSN gemport 1 vlan 600
+  service HOT gemport 2 vlan 500
+  switchport-bind switch_0/1 iphost 1
+  switchport-bind switch_0/1 iphost 2
+!
+end
+write
+
+
