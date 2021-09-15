@@ -16961,12 +16961,13 @@ con t
 interface gpon-olt_1/1/13
 no onu 49
 
-13. 50. morotuomardam ngurensiti ZTEGC041AAAF --------------------------
-ppp secret add name=50_13_01morotuomardam@ngurensiti password=12345678 profile=pppoe4m/4m
+
+13. 50. mertuo@mardam ngurensiti ZTEGCC5C67F8 --------------------------
+ppp secret add name=50_13_01mertuo@mardam@ngurensitiZTEGCC5C67F8 password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/13
-onu 50 type ZTE-F660 sn ZTEGC041AAAF
+onu 50 type ZTE-F660 sn ZTEGCC5C67F8
 exit
 interface gpon-onu_1/1/13:50
 sn-bind enable sn
@@ -16990,7 +16991,7 @@ exit
 pon-onu-mng gpon-onu_1/1/13:50
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 50_13_01morotuomardam@ngurensiti password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 50_13_01mertuo@mardam@ngurensitiZTEGCC5C67F8 password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
