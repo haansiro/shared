@@ -4698,12 +4698,12 @@ pon-onu-mng gpon-onu_1/1/2:87
 end
 write
 
-2.88 mas maarif pak yahdi ngurenrejo ZTEGC850C239
+2.88 mas maarif pak yahdi ngurenrejo ZTEGC850C239 ZTEGCC5C56EE
 
 ppp secret add name=0880201maarifpakyahdi@ngurenrejo password=12345678 profile=pppoe4m/4m
 conf t
 interface gpon-olt_1/1/2
-onu 88 type ZTE-F660 sn ZTEGC850C239
+onu 88 type ZTE-F660 sn ZTEGCC5C56EE
 exit
 interface gpon-onu_1/1/2:88
   sn-bind enable sn
