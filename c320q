@@ -14536,12 +14536,12 @@ pon-onu-mng gpon-onu_1/1/8:10
 end
 write
 
-8. 11. solkan@pongok kepoh ZTEGC4E67320 --------------------------
+8. 11. solkan@pongok kepoh ZTEGCC5C63E7 --------------------------
 ppp secret add name=11_8_01solkan@pongok@kepoh password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/8
-onu 11 type ZTE-F660 sn ZTEGC4E67320
+onu 11 type ZTE-F660 sn ZTEGCC5C63E7
 exit
 interface gpon-onu_1/1/8:11
 sn-bind enable sn
