@@ -9323,12 +9323,12 @@ interface gpon-olt_1/1/5
 no onu 59
 
 
-5. 60. herimulyono swaduk ZTEGCC4E5822 --------------------------
+5. 60. herimulyono swaduk ZTEGCBDD8089 --------------------------
 ppp secret add name=60_5_01herimulyono@swaduk password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/5
-onu 60 type ZTE-F660 sn ZTEGCC4E5822
+onu 60 type ZTE-F660 sn ZTEGCBDD8089
 exit
 interface gpon-onu_1/1/5:60
 sn-bind enable sn
