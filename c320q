@@ -14775,12 +14775,12 @@ con t
 interface gpon-olt_1/1/7
 no onu 47
 
-7. 48. sitizulaikah jontro ZTEGC871A955 --------------------------
+7. 48. sitizulaikah jontro ZTEGC866D066 --------------------------
 ppp secret add name=48_7_01sitizulaikah@jontro password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/7
-onu 48 type ZTE-F660 sn ZTEGC871A955
+onu 48 type ZTE-F660 sn ZTEGC866D066
 exit
 interface gpon-onu_1/1/7:48
 sn-bind enable sn
