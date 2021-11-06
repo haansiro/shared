@@ -7686,12 +7686,12 @@ interface gpon-olt_1/1/4
 no onu 39
 
 
-4. 40. mbakvina@dwex karanganyar@tawangharjo ZTEGCD9D5BDD --------------------------
+4. 40. mbakvina@dwex karanganyar@tawangharjo ZTEGCD9D5BDD ZTEGC871A955--------------
 ppp secret add name=40_4_01mbakvina@dwex@karanganyar@tawangharjoZTEGCD9D5BDD password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/4
-onu 40 type ZTE-F660 sn ZTEGCD9D5BDD
+onu 40 type ZTE-F660 sn ZTEGC871A955
 exit
 interface gpon-onu_1/1/4:40
 sn-bind enable sn
