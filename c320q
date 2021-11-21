@@ -21424,6 +21424,7 @@ con t
 interface gpon-olt_1/1/13
 no onu 63
 
+
 13. 64. wahyudi ngurensiti ZTEGC77DF91E --------------------------
 ppp secret add name=64_13_01wahyudi@ngurensitiZTEGC77DF91E password=12345678 profile=pppoe4m/4m
 
@@ -21462,7 +21463,6 @@ write
 con t
 interface gpon-olt_1/1/13
 no onu 64
-
 
 -============================ odc dpn rsu soewondo ======================
 
