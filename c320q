@@ -16208,8 +16208,8 @@ interface gpon-olt_1/1/8
 no onu 16
 
 
-8. 17. paksutrisno kepoh ZTEGCBDA8745 --------------------------
-ppp secret add name=17_8_01paksutrisno@kepohZTEGCBDA8745 password=12345678 profile=pppoe4m/4m
+0000000. 1. 8. 17. sutrisno kepoh ZTEGCBDA8745 --------------------------
+ppp secret add name=17_8_1_sutrisno@kepohZTEGCBDA8745 password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/8
@@ -16217,6 +16217,7 @@ onu 17 type ZTE-F660 sn ZTEGCBDA8745
 exit
 interface gpon-onu_1/1/8:17
 sn-bind enable sn
+name 17_8_1_sutrisno@kepoh
 tcont 1 name HSI profile 100M
 tcont 2 name HOT profile 100M
 gemport 1 name HSI unicast tcont 1 dir both
@@ -16237,7 +16238,7 @@ exit
 pon-onu-mng gpon-onu_1/1/8:17
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 17_8_01paksutrisno@kepohZTEGCBDA8745 password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 17_8_1_sutrisno@kepohZTEGCBDA8745 password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
@@ -16246,7 +16247,6 @@ write
 con t
 interface gpon-olt_1/1/8
 no onu 17
-
 0000000. 1. 8. 18. SDN jetak ZTEGCC5C67FC --------------------------
 ppp secret add name=18_8_1_SDN@jetakZTEGCC5C67FC password=12345678 profile=pppoe4m/4m
 
