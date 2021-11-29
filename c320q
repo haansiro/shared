@@ -20011,7 +20011,9 @@ pon-onu-mng gpon-onu_1/1/13:19
 end
 write
 
-13.20 aris ayla ZTEGCC9D30DA
+0000000. 1. 13. 20. arisayla ngurensiti ZTEGCC9D30DA --------------------------
+ppp secret add name=20_13_1_arisayla@ngurensitiZTEGCC9D30DA password=12345678 profile=pppoe6m/6m
+
 conf t
 interface gpon-olt_1/1/13
 onu 20 type ZTE-F660 sn ZTEGCC9D30DA
