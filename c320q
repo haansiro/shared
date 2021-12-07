@@ -11323,7 +11323,7 @@ interface gpon-olt_1/1/5
 no onu 87
 
 
-0000000. 1. 5. 88. ariharianto wedarijaksa ZTEGC8A436B5 --------------------------
+mamu. 1. 5. 88. ariharianto wedarijaksa ZTEGC8A436B5 --------------------------
 ppp secret add name=88_5_1_ariharianto@wedarijaksaZTEGC8A436B5 password=12345678 profile=pppoe4m/4m
 
 conf t
@@ -11362,7 +11362,6 @@ write
 con t
 interface gpon-olt_1/1/5
 no onu 88
-
 
 
 --------------------------------pindah port 6 odp jontro odc kantor pos n pasar pajaran --------------------------------------
