@@ -20286,7 +20286,6 @@ pon-onu-mng gpon-onu_1/1/13:19
   wan-ip 1 ping-response enable traceroute-response enable
 end
 write
-
 0000000. 1. 13. 20. arisayla ngurensiti ZTEGCC9D30DA --------------------------
 ppp secret add name=20_13_1_arisayla@ngurensitiZTEGCC9D30DA password=12345678 profile=pppoe6m/6m
 
@@ -20326,7 +20325,6 @@ write
 con t
 interface gpon-olt_1/1/13
 no onu 20
-
 13.21 didik nguren ZTEGCCA3B50C
 ppp secret add name=0470201didik@ngurensiti password=12345678 profile=pppoe6m/6m
 conf t
