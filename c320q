@@ -21439,7 +21439,6 @@ con t
 interface gpon-olt_1/1/13
 no onu 47
 
-
 13. 48. bupaniti ngurensiti ZTEGC880B882 --------------------------
 ppp secret add name=48_13_01bupaniti@ngurensiti password=12345678 profile=pppoe4m/4m
 
