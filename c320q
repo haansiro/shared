@@ -7595,8 +7595,8 @@ con t
 interface gpon-olt_1/1/4
 no onu 33
 
-4. 34. ricowahyu tawangharjo ZTEGCC5C7DC3 --------------------------
-ppp secret add name=34_4_01ricowahyu@tawangharjoZTEGCC5C7DC3 password=12345678 profile=pppoe4m/4m
+0000000. 1. 4. 34. ricowahyudi tawangharjo ZTEGCC5C7DC3 --------------------------
+ppp secret add name=34_4_1_ricowahyudi@tawangharjoZTEGCC5C7DC3 password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/4
@@ -7604,6 +7604,7 @@ onu 34 type ZTE-F660 sn ZTEGCC5C7DC3
 exit
 interface gpon-onu_1/1/4:34
 sn-bind enable sn
+name 34_4_1_ricowahyudi@tawangharjo
 tcont 1 name HSI profile 100M
 tcont 2 name HOT profile 100M
 gemport 1 name HSI unicast tcont 1 dir both
@@ -7624,7 +7625,7 @@ exit
 pon-onu-mng gpon-onu_1/1/4:34
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 34_4_01ricowahyu@tawangharjoZTEGCC5C7DC3 password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 34_4_1_ricowahyudi@tawangharjoZTEGCC5C7DC3 password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
