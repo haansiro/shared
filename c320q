@@ -18121,7 +18121,10 @@ pon-onu-mng gpon-onu_1/1/9:1
 end
 write
 
-9.2 imam soting ZTEGC86AF954
+
+
+0000000. 1. 9. 2. imamsoting ndarikoki ZTEGC86AF954 --------------------------
+ppp secret add name=2_9_1_imamsoting@ndarikokiZTEGC86AF954 password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/9
@@ -18159,6 +18162,8 @@ write
 con t
 interface gpon-olt_1/1/9
 no onu 2
+
+
 
 9. 3. trista wedarijaksa ZTEGCC4E88A5
 ppp secret add name=3_9_01trista@wedarijaksa password=12345678 profile=pppoe4m/4m
