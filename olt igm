@@ -6452,7 +6452,8 @@ security-mng 1 state enable mode permit protocol web
 end
 write
 
-
+1. 38. rumaji igm@jontro ELWGC09CB6BC --------------------------
+ppp secret add name=38_1_01rumaji@igm@jontro-ELWGC09CB6BC password=12345678 profile=PPPoE3m
 conf t
 interface gpon-olt_1/2/1
 onu 38 type ZTE-F609 sn ELWGC09CB6BC
