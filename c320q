@@ -23494,7 +23494,7 @@ no onu 69
 
 
 0000000. 1. 13. 70. safaatunboby ngurensiti ZTEGC9850320 --------------------------
-ppp secret add name=70_13_1_safaatunboby@ngurensitiZTEGC9850320 password=12345678 profile=ZTEGC9850320
+ppp secret add name=70_13_1_safaatunboby@ngurensitiZTEGC9850320 password=12345678 profile=pppoe3m/3m
 
 conf t
 interface gpon-olt_1/1/13
@@ -23532,8 +23532,6 @@ write
 con t
 interface gpon-olt_1/1/13
 no onu 70
-
-
 
 -============================ odc dpn rsu soewondo ======================
 
