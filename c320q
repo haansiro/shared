@@ -22421,7 +22421,7 @@ interface gpon-olt_1/1/13
 no onu 36
 
 0000000. 1. 13. 37. pakpatman ngurensiti ZTEGC1EC24D3 --------------------------
-ppp secret add name=37_13_1_pakpatman@ngurensitiZTEGC1EC24D3 password=12345678 profile=pppoe4m/4m
+ppp secret add name=37_13_1_pakpatman@ngurensitiZTEGC1EC24D3 password=12345678 profile=pppoe7m/7m
 
 conf t
 interface gpon-olt_1/1/13
