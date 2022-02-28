@@ -25775,16 +25775,16 @@ con t
 interface gpon-olt_1/1/16
 no onu 13
 
-0000000. 1. 16. 14. laili pagerharjo ZTEGCA21DC7D --------------------------
-ppp secret add name=14_16_1_laili@pagerharjoZTEGCA21DC7D password=12345678 profile=pppoe5m/5m
+0000000. 1. 16. 14. laili@wowok pagerharjo ZTEGCCA164BC --------------------------
+ppp secret add name=14_16_1_laili@wowok@pagerharjoZTEGCCA164BC password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/16
-onu 14 type ZTE-F660 sn ZTEGCA21DC7D
+onu 14 type ZTE-F660 sn ZTEGCCA164BC
 exit
 interface gpon-onu_1/1/16:14
 sn-bind enable sn
-name 14_16_1_laili@pagerharjo
+name 14_16_1_laili@wowok@pagerharjo
 tcont 1 name HSI profile 100M
 tcont 2 name HOT profile 100M
 gemport 1 name HSI unicast tcont 1 dir both
@@ -25805,7 +25805,7 @@ exit
 pon-onu-mng gpon-onu_1/1/16:14
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 14_16_1_laili@pagerharjoZTEGCA21DC7D password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 14_16_1_laili@wowok@pagerharjoZTEGCCA164BC password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
@@ -25814,12 +25814,6 @@ write
 con t
 interface gpon-olt_1/1/16
 no onu 14
-=======================================================================   GTGH 2   =====================================================================
-
--------------------- Port 1 jajalan ------------------
-
-1.1 e
-
 
 
 
