@@ -22145,8 +22145,8 @@ interface gpon-olt_1/1/12
 no onu 17
 
 
-12. 18. harsono ngurenrejo ZTEGCC52141F --------------------------
-ppp secret add name=18_12_01harsono@ngurenrejoZTEGCC52141F password=12345678 profile=pppoe4m/4m
+0000000. 1. 12. 18. harsono ngurensiti ZTEGCC52141F --------------------------
+ppp secret add name=18_12_1_harsono@ngurensitiZTEGCC52141F password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/12
@@ -22154,6 +22154,7 @@ onu 18 type ZTE-F660 sn ZTEGCC52141F
 exit
 interface gpon-onu_1/1/12:18
 sn-bind enable sn
+name 18_12_1_harsono@ngurensiti
 tcont 1 name HSI profile 100M
 tcont 2 name HOT profile 100M
 gemport 1 name HSI unicast tcont 1 dir both
@@ -22174,7 +22175,7 @@ exit
 pon-onu-mng gpon-onu_1/1/12:18
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 18_12_01harsono@ngurenrejoZTEGCC52141F password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 18_12_1_harsono@ngurensitiZTEGCC52141F password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
