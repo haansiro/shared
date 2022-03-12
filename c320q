@@ -5138,8 +5138,8 @@ pon-onu-mng gpon-onu_1/1/2:83
 end
 write
 
-ngurensiti. 1. 2. 84. agus ngurenrejo ZTEGCCB246E4 --------------------------
-ppp secret add name=84_2_1_agus@ngurenrejoZTEGCCB246E4 password=12345678 profile=pppoe4m/4m
+0000000. 1. 2. 84. aguslorkali ngurenrejo ZTEGCCB246E4 --------------------------
+ppp secret add name=84_2_1_aguslorkali@ngurenrejoZTEGCCB246E4 password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/2
@@ -5147,7 +5147,7 @@ onu 84 type ZTE-F660 sn ZTEGCCB246E4
 exit
 interface gpon-onu_1/1/2:84
 sn-bind enable sn
-name 84_2_1_agus@ngurenrejo
+name 84_2_1_aguslorkali@ngurenrejo
 tcont 1 name HSI profile 100M
 tcont 2 name HOT profile 100M
 gemport 1 name HSI unicast tcont 1 dir both
@@ -5168,7 +5168,7 @@ exit
 pon-onu-mng gpon-onu_1/1/2:84
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 84_2_1_agus@ngurenrejoZTEGCCB246E4 password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 84_2_1_aguslorkali@ngurenrejoZTEGCCB246E4 password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
