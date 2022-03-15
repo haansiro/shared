@@ -28341,18 +28341,20 @@ no onu 3
 
 
 
-------------------------------
+============================================================ JALUR JUWANA  PORT 7 GTGH 2 ==========================================================
 
-0000000. 2. 14. 1. mitraekorianto bajo ZTEGC4EE5A80 --------------------------
-ppp secret add name=1_14_2_mitraekorianto@bajoZTEGC4EE5A80 password=12345678 profile=pppoe4m/4m
+
+
+0000000. 2. 7. 1. mitra@ekoriyanto bajomulyo ZTEGC4EE5A80  --------------------------
+ppp secret add name=1_7_2_mitra@ekoriyanto@bajomulyoZTEGC4EE5A80  password=12345678 profile=pppoe4m/4m
 
 conf t
-interface gpon-olt_1/2/14
-onu 1 type ZTE-F660 sn ZTEGC4EE5A80
+interface gpon-olt_1/2/7
+onu 1 type ZTE-F660 sn ZTEGC4EE5A80 
 exit
-interface gpon-onu_1/2/14:1
+interface gpon-onu_1/2/7:1
 sn-bind enable sn
-name 1_14_2_mitraekorianto@bajo
+name 1_7_2_mitra@ekoriyanto@bajomulyo
 tcont 1 name HSI profile 100M
 tcont 2 name HOT profile 100M
 gemport 1 name HSI unicast tcont 1 dir both
@@ -28370,15 +28372,16 @@ port-location ft-cid 600 sport 1
 pppoe-plus enable sport 1
 pppoe-plus trust true replace sport 1
 exit
-pon-onu-mng gpon-onu_1/2/14:1
+pon-onu-mng gpon-onu_1/2/7:1
 service HSI type internet gemport 1 vlan 600
 service HOT type internet gemport 2 vlan 500
-wan-ip 1 mode pppoe username 1_14_2_mitraekorianto@bajoZTEGC4EE5A80 password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 mode pppoe username 1_7_2_mitra@ekoriyanto@bajomulyoZTEGC4EE5A80  password 12345678 vlan-profile PPPoE host 1
 wan-ip 1 ping-response enable traceroute-response enable
 security-mng 1 state enable mode permit protocol web
 end
 write
 
 con t
-interface gpon-olt_1/2/14
+interface gpon-olt_1/2/7
 no onu 1
+
