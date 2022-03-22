@@ -20189,7 +20189,7 @@ no onu 61
 
 
 0000000. 1. 8. 62. pakpuji karanganyarlor ELWGC09C756B --------------------------
-ppp secret add name=62_8_1_pakpuji@karanganyarlorELWGC09C756B password=12345678 profile=pppoe3m/3m
+ppp secret add name=62_8_1_pakpuji@karanganyarlorELWGC09C756B password=12345678 profile=pppoe4m/4m
 
 conf t
 interface gpon-olt_1/1/8
@@ -20227,9 +20227,6 @@ write
 con t
 interface gpon-olt_1/1/8
 no onu 62
-
-
-
 
 =======port9 ==============
 
