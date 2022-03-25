@@ -9327,6 +9327,49 @@ interface gpon-olt_1/1/4
 no onu 53
 
 
+0000000. 1. 4. 54. sahruman tapenkidul ZTEGCCB9490C --------------------------
+ppp secret add name=54_4_1_sahruman@tapenkidulZTEGCCB9490C password=12345678 profile=pppoe4m/4m
+
+conf t
+interface gpon-olt_1/1/4
+onu 54 type ZTE-F660 sn ZTEGCCB9490C
+exit
+interface gpon-onu_1/1/4:54
+sn-bind enable sn
+name 54_4_1_sahruman@tapenkidul
+tcont 1 name HSI profile 100M
+tcont 2 name HOT profile 100M
+gemport 1 name HSI unicast tcont 1 dir both
+gemport 1 traffic-limit upstream UP100M downstream DW100M
+gemport 2 name HOT unicast tcont 1 dir both
+gemport 2 traffic-limit upstream UP100M downstream DW100M
+switchport mode hybrid vport 1
+switchport mode hybrid vport 2
+service-port 1 vport 1 user-vlan 600 vlan 600
+service-port 2 vport 2 user-vlan 500 vlan 500
+port-location format dsl-forum sport 1
+port-location sub-option remote-id enable sport 1
+port-location sub-option remote-id name 600 sport 1
+port-location ft-cid 600 sport 1
+pppoe-plus enable sport 1
+pppoe-plus trust true replace sport 1
+exit
+pon-onu-mng gpon-onu_1/1/4:54
+service HSI type internet gemport 1 vlan 600
+service HOT type internet gemport 2 vlan 500
+wan-ip 1 mode pppoe username 54_4_1_sahruman@tapenkidulZTEGCCB9490C password 12345678 vlan-profile PPPoE host 1
+wan-ip 1 ping-response enable traceroute-response enable
+security-mng 1 state enable mode permit protocol web
+end
+write
+
+con t
+interface gpon-olt_1/1/4
+no onu 54
+
+
+
+
 --------------------------------pindah port 5 odc dpan pasar wdr--------------------------------------
 
 0000000. 1. 5. 1. asri wedarijaksa ZTEGC85C0A37 --------------------------
