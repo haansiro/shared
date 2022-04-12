@@ -67,10 +67,26 @@ gpon
 # profile ip dibawah ini digunakan jika ingin menggunakan mode ip static ke modem bukan pppoe
 # sesuaikan dari gateway dan dns server yg digunakan
   onu profile ip HSI static gateway 192.168.79.254 primary-dns 103.80.80.243 second-dns 103.80.80.244
-  
   onu profile vlan PPPoE tag-mode tag cvlan 600
 exit
 pon
+onu-type ZTE-F660 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F660 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F660 eth_0/1-4
+onu-type-if ZTE-F660 pots_0/1-2
+onu-type-if ZTE-F660 wifi_0/1-4
+onu-type ZTE-F609 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type ZTE-F609 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
+onu-type-if ZTE-F609 eth_0/1-4
+onu-type-if ZTE-F609 pots_0/1-2
+onu-type-if ZTE-F609 wifi_0/1-4
+onu-type HW-HG8245A gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
+onu-type HW-HG8245A gpon max-tcont 40 max-gemport 255 max-switch-perslot 32 max-flow-perswitch 200 max-iphost 5
+onu-type-if HW-HG8245A eth_0/1-4
+onu-type-if HW-HG8245A pots_0/1-2
+onu-type-if HW-HG8245A wifi_0/1-4
+exit
+
 onu-type ZTE-F660 gpon description 4ETH,2POTS,WIFI service-mgmt-via-non-omci wifi enable
 onu-type ZTE-F660 gpon max-tcont 7 max-gemport 32 max-switch-perslot 8 max-flow-perswitch 32 max-iphost 5
 onu-type-if ZTE-F660 eth_0/1-4
