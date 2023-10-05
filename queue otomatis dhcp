@@ -1,0 +1,7 @@
+:local queueName "IPTV- $leaseActMAC";
+
+:if ($leaseBound = "1") do={
+    /queue simple add name=$queueName target=($leaseActIP . "/22") limit-at=512k/769k max-limit=512k/1024k comment=[/ip dhcp-server lease get [find where active-mac-address=$leaseActMAC && active-address=$leaseActIP] host-name];
+} else={
+    /queue simple remove $queueName
+}
