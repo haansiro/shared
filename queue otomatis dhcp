@@ -1,6 +1,6 @@
 :local queueName "KT_BC-$leaseActMAC";
 :if ($leaseBound = "1") do={
-/queue simple add name=$queueName target=($leaseActIP . "/24") limit-at=10M/10M max-limit=15M/15M;
+/queue simple add name=$queueName target=($leaseActIP . "/32") limit-at=10M/10M max-limit=15M/15M;
 } else={
 /queue simple remove $queueName
 }
