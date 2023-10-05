@@ -1,7 +1,38 @@
+:local queueName "KT_BC-$leaseActMAC";
+:if ($leaseBound = "1") do={
+/queue simple add name=$queueName target=($leaseActIP . "/24") limit-at=10M/10M max-limit=15M/15M;
+} else={
+/queue simple remove $queueName
+}
+
+-------------------------------------------
+
 :local queueName "IPTV- $leaseActMAC";
 
 :if ($leaseBound = "1") do={
     /queue simple add name=$queueName target=($leaseActIP . "/22") limit-at=512k/769k max-limit=512k/1024k comment=[/ip dhcp-server lease get [find where active-mac-address=$leaseActMAC && active-address=$leaseActIP] host-name];
 } else={
     /queue simple remove $queueName
+}
+
+--------------------------------------------
+:local client1 "C4:2A:FE:60:74:64";
+:local client2 "C4:2A:FE:55:94:03";
+:local queName "Client-$leaseActMAC";
+:local queParent "TOTAL";
+
+:if (($leaseActMAC = $client1) or ($leaseActMAC = $client2)) do={
+/queue simple add name=$queName target=($leaseActIP."/32") max-limit=3M/5M parent=$queParent;
+} else={
+:if ($leaseBound = "1") do={
+/queue simple add name=$queName target=($leaseActIP."/32") max-limit=2M/3M parent=$queParent;
+} else={ /que simple remove $queName;}
+}
+
+--------------------------------------------
+:local queueName "Client-$leaseActMAC";
+:if ($leaseBound = "1") do={
+/queue simple add name=$queueName target=($leaseActIP . "/32") limit-at=1M/2M max-limit=1M/2M parent=Lokal;
+} else={
+/queue simple remove $queueName
 }
