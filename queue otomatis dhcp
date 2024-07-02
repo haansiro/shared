@@ -32,7 +32,16 @@
 --------------------------------------------
 :local queueName "Client-$leaseActMAC";
 :if ($leaseBound = "1") do={
-/queue simple add name=$queueName target=($leaseActIP . "/32") limit-at=1M/2M max-limit=1M/2M parent=Lokal;
+/queue simple add name=$queueName target=($leaseActIP . "/32") limit-at=5M/5M max-limit=5M/5M parent=Lokal;
 } else={
 /queue simple remove $queueName
+}
+
+---------------------------------------------
+:local queueName "Client- $leaseActMAC";
+
+:if ($leaseBound = "1") do={
+    /queue simple add name=$queueName target=($leaseActIP . "/32") limit-at=512k/769k max-limit=512k/1024k comment=[/ip dhcp-server lease get [find where active-mac-address=$leaseActMAC && active-address=$leaseActIP] host-name];
+} else={
+    /queue simple remove $queueName
 }
