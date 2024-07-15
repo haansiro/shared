@@ -1,0 +1,7 @@
+/ip route
+add check-gateway=ping comment=inputkabel disabled=no distance=1 dst-address=\
+    8.8.8.8/32 gateway=192.168.30.1 routing-table=main scope=30 \
+    suppress-hw-offload=no target-scope=10
+add check-gateway=ping comment=inputkabel disabled=no distance=1 dst-address=\
+    0.0.0.0/0 gateway=8.8.8.8 routing-table=main scope=30 suppress-hw-offload=\
+    no target-scope=30
