@@ -24,3 +24,15 @@
 :execute [/system backup save name=$"backupfilename"]
 #Allow time for export to complete
 :delay 2s
+
+#upload file menggunakan ftp
+tool fetch url="ftp://192.168.100.254/home/mikrotik/$textfilename" src-path=$textfilename user=dan password=dan port=21 upload=yes
+tool fetch url="ftp://xx.xx.xx.xx/home/mikrotik/$backupfilename" src-path=$backupfilename user=mikrotik password=xxxx port=21 upload=yes
+
+#Allow time to send
+:delay 5s
+
+#delete copies
+/file remove $textfilename
+/file remove $backupfilename
+
